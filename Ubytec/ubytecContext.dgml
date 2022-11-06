@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+<Node Id="IModel" Label="ubytecContext" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" PropertyAccessMode="PropertyAccessMode.Default" ProductVersion="6.0.10" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]]
+Npgsql:PostgresExtension:pg_buffercache: ,,
+Npgsql:PostgresExtension:pg_stat_statements: ,,
+Npgsql:ValueGenerationStrategy: IdentityByDefaultColumn
+Relational:MaxIdentifierLength: 63
+RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]]" Category="Model" Group="Expanded" />
+<Node Id = "AsignarRepartidor" Label="AsignarRepartidor" Name="AsignarRepartidor" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AsignarRepartidor
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Afiliado" Label="Afiliado" Name="Afiliado" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Afiliado
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "AsignarRepartidor.ComprobantePago" Label="ComprobantePago (string)" Name="ComprobantePago" Category="Property Primary" Type="string" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AsignarRepartidor.CedulaRepartidor" Label="CedulaRepartidor (string)" Name="CedulaRepartidor" Category="Property Primary" Type="string" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa" Label="AfiliadoPa" Name="AfiliadoPa" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AfiliadoPA
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Afiliado.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Gerentes" Label="Gerentes (*)" Name="Gerentes" Category="Navigation Collection" Type="ICollection&lt;Gerente&gt;"  Field="" Dependent="Gerente" Principal="" Inverse="CedulaJuridicaNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Afiliado.Pedidos" Label="Pedidos (*)" Name="Pedidos" Category="Navigation Collection" Type="ICollection&lt;Pedido&gt;"  Field="" Dependent="Pedido" Principal="" Inverse="CedulaJafiliadoNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Afiliado.Productos" Label="Productos (*)" Name="Productos" Category="Navigation Collection" Type="ICollection&lt;Producto&gt;"  Field="" Dependent="Producto" Principal="" Inverse="CedulaJafiliadoNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Afiliado.TelefonoAfiliados" Label="TelefonoAfiliados (*)" Name="TelefonoAfiliados" Category="Navigation Collection" Type="ICollection&lt;TelefonoAfiliado&gt;"  Field="" Dependent="TelefonoAfiliado" Principal="" Inverse="CedulaJuridicaNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Afiliado.Canton" Label="Canton (string)" Name="Canton" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Correo" Label="Correo (string)" Name="Correo" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Nombre" Label="Nombre (string)" Name="Nombre" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Afiliado.Sinpe" Label="Sinpe (string)" Name="Sinpe" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente" Label="Cliente" Name="Cliente" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Cliente
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "AfiliadoPa.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.GerentePas" Label="GerentePas (*)" Name="GerentePas" Category="Navigation Collection" Type="ICollection&lt;GerentePa&gt;"  Field="" Dependent="GerentePa" Principal="" Inverse="CedulaJuridicaNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "AfiliadoPa.TelefonoAfiliadoPas" Label="TelefonoAfiliadoPas (*)" Name="TelefonoAfiliadoPas" Category="Navigation Collection" Type="ICollection&lt;TelefonoAfiliadoPa&gt;"  Field="" Dependent="TelefonoAfiliadoPa" Principal="" Inverse="CedulaJuridicaNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "AfiliadoPa.Canton" Label="Canton (string)" Name="Canton" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.Correo" Label="Correo (string)" Name="Correo" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.Nombre" Label="Nombre (string)" Name="Nombre" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "AfiliadoPa.Sinpe" Label="Sinpe (string)" Name="Sinpe" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "FotosProducto" Label="FotosProducto" Name="FotosProducto" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: FotosProducto
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Cliente.Cedula" Label="Cedula (string)" Name="Cedula" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Pedidos" Label="Pedidos (*)" Name="Pedidos" Category="Navigation Collection" Type="ICollection&lt;Pedido&gt;"  Field="" Dependent="Pedido" Principal="" Inverse="CedulaClienteNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Cliente.TelefonoClientes" Label="TelefonoClientes (*)" Name="TelefonoClientes" Category="Navigation Collection" Type="ICollection&lt;TelefonoCliente&gt;"  Field="" Dependent="TelefonoCliente" Principal="" Inverse="CedulaClienteNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Cliente.Apellidos" Label="Apellidos (string)" Name="Apellidos" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Canton" Label="Canton (string)" Name="Canton" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Contraseña" Label="Contraseña (string)" Name="Contraseña" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Correo" Label="Correo (string)" Name="Correo" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.FechaNacimiento" Label="FechaNacimiento (DateOnly?)" Name="FechaNacimiento" Category="Property Optional" Type="DateOnly?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Nombre" Label="Nombre (string)" Name="Nombre" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cliente.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente" Label="Gerente" Name="Gerente" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Gerente
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "FotosProducto.CedulaJafiliado" Label="CedulaJafiliado (string)" Name="CedulaJafiliado" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: CedulaJAfiliado" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "FotosProducto.Producto" Label="Producto (1)" Name="Producto" Category="Navigation Property" Type="Producto"  Field="" Dependent="" Principal="Producto" Inverse="FotosProductos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "FotosProducto.NombreProducto" Label="NombreProducto (string)" Name="NombreProducto" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "FotosProducto.Urlfoto" Label="Urlfoto (string)" Name="Urlfoto" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: URLFoto" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa" Label="GerentePa" Name="GerentePa" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: GerentePA
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Gerente.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.CedulaJuridicaNavigation" Label="CedulaJuridicaNavigation (1)" Name="CedulaJuridicaNavigation" Category="Navigation Property" Type="Afiliado"  Field="" Dependent="" Principal="Afiliado" Inverse="Gerentes" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Gerente.TelefonoGerentes" Label="TelefonoGerentes (*)" Name="TelefonoGerentes" Category="Navigation Collection" Type="ICollection&lt;TelefonoGerente&gt;"  Field="" Dependent="TelefonoGerente" Principal="" Inverse="UsuarioNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Gerente.Canton" Label="Canton (string)" Name="Canton" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Foreign" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.Contraseña" Label="Contraseña (string)" Name="Contraseña" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.NombreCompleto" Label="NombreCompleto (string)" Name="NombreCompleto" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Gerente.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido" Label="Pedido" Name="Pedido" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Pedido
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "GerentePa.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.CedulaJuridicaNavigation" Label="CedulaJuridicaNavigation (1)" Name="CedulaJuridicaNavigation" Category="Navigation Property" Type="AfiliadoPa"  Field="" Dependent="" Principal="AfiliadoPa" Inverse="GerentePas" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "GerentePa.TelefonoGerentePas" Label="TelefonoGerentePas (*)" Name="TelefonoGerentePas" Category="Navigation Collection" Type="ICollection&lt;TelefonoGerentePa&gt;"  Field="" Dependent="TelefonoGerentePa" Principal="" Inverse="UsuarioNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "GerentePa.Canton" Label="Canton (string)" Name="Canton" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Foreign" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.Contraseña" Label="Contraseña (string)" Name="Contraseña" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.NombreCompleto" Label="NombreCompleto (string)" Name="NombreCompleto" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "GerentePa.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Producto" Label="Producto" Name="Producto" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Producto
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Pedido.ComprobantePago" Label="ComprobantePago (string)" Name="ComprobantePago" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido.CedulaClienteNavigation" Label="CedulaClienteNavigation (1)" Name="CedulaClienteNavigation" Category="Navigation Property" Type="Cliente"  Field="" Dependent="" Principal="Cliente" Inverse="Pedidos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Pedido.CedulaJafiliadoNavigation" Label="CedulaJafiliadoNavigation (1)" Name="CedulaJafiliadoNavigation" Category="Navigation Property" Type="Afiliado"  Field="" Dependent="" Principal="Afiliado" Inverse="Pedidos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Pedido.ProductoPedidos" Label="ProductoPedidos (*)" Name="ProductoPedidos" Category="Navigation Collection" Type="ICollection&lt;ProductoPedido&gt;"  Field="" Dependent="ProductoPedido" Principal="" Inverse="ComprobantePagoNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Pedido.CedulaRepartidors" Label="CedulaRepartidors (1)" Name="CedulaRepartidors" Category="Navigation Property" Type="ICollection&lt;Repartidor&gt;"  Field="" Dependent="" Principal="" Inverse="ComprobantePagos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Pedido.CedulaCliente" Label="CedulaCliente (string)" Name="CedulaCliente" Category="Property Foreign" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido.CedulaJafiliado" Label="CedulaJafiliado (string)" Name="CedulaJafiliado" Category="Property Foreign" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: CedulaJAfiliado" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido.Dirreccion" Label="Dirreccion (string)" Name="Dirreccion" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido.EstadoPedido" Label="EstadoPedido (string)" Name="EstadoPedido" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Pedido.Id" Label="Id (long)" Name="Id" Category="Property Required" Type="long" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Npgsql:ValueGenerationStrategy: IdentityAlwaysColumn
+Relational:ColumnName: ID" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Pedido.Monto" Label="Monto (long)" Name="Monto" Category="Property Required" Type="long" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductoPedido" Label="ProductoPedido" Name="ProductoPedido" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: ProductoPedido
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Producto.NombreProducto" Label="NombreProducto (string)" Name="NombreProducto" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Producto.CedulaJafiliadoNavigation" Label="CedulaJafiliadoNavigation (1)" Name="CedulaJafiliadoNavigation" Category="Navigation Property" Type="Afiliado"  Field="" Dependent="" Principal="Afiliado" Inverse="Productos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Producto.FotosProductos" Label="FotosProductos (*)" Name="FotosProductos" Category="Navigation Collection" Type="ICollection&lt;FotosProducto&gt;"  Field="" Dependent="FotosProducto" Principal="" Inverse="Producto" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Producto.ProductoPedidos" Label="ProductoPedidos (*)" Name="ProductoPedidos" Category="Navigation Collection" Type="ICollection&lt;ProductoPedido&gt;"  Field="" Dependent="ProductoPedido" Principal="" Inverse="Producto" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Producto.CedulaJafiliado" Label="CedulaJafiliado (string)" Name="CedulaJafiliado" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: CedulaJAfiliado" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Producto.Categoria" Label="Categoria (string)" Name="Categoria" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Producto.Precio" Label="Precio (long)" Name="Precio" Category="Property Required" Type="long" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor" Label="Repartidor" Name="Repartidor" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Repartidor
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ProductoPedido.ComprobantePago" Label="ComprobantePago (string)" Name="ComprobantePago" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductoPedido.ComprobantePagoNavigation" Label="ComprobantePagoNavigation (1)" Name="ComprobantePagoNavigation" Category="Navigation Property" Type="Pedido"  Field="" Dependent="" Principal="Pedido" Inverse="ProductoPedidos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ProductoPedido.Producto" Label="Producto (1)" Name="Producto" Category="Navigation Property" Type="Producto"  Field="" Dependent="" Principal="Producto" Inverse="ProductoPedidos" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ProductoPedido.NombreProducto" Label="NombreProducto (string)" Name="NombreProducto" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductoPedido.CedulaJafiliado" Label="CedulaJafiliado (string)" Name="CedulaJafiliado" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: CedulaJAfiliado" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductoPedido.Cantidad" Label="Cantidad (string)" Name="Cantidad" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnName: cantidad" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoAfiliado" Label="TelefonoAfiliado" Name="TelefonoAfiliado" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoAfiliado
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Repartidor.Cedula" Label="Cedula (string)" Name="Cedula" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.TelefonoRepartidors" Label="TelefonoRepartidors (*)" Name="TelefonoRepartidors" Category="Navigation Collection" Type="ICollection&lt;TelefonoRepartidor&gt;"  Field="" Dependent="TelefonoRepartidor" Principal="" Inverse="CedulaRepartidorNavigation" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Repartidor.ComprobantePagos" Label="ComprobantePagos (1)" Name="ComprobantePagos" Category="Navigation Property" Type="ICollection&lt;Pedido&gt;"  Field="" Dependent="" Principal="" Inverse="CedulaRepartidors" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Repartidor.Canton" Label="Canton (string)" Name="Canton" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Contraseña" Label="Contraseña (string)" Name="Contraseña" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Correo" Label="Correo (string)" Name="Correo" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Disponible" Label="Disponible (bool?)" Name="Disponible" Category="Property Optional" Type="bool?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Distrito" Label="Distrito (string)" Name="Distrito" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.NombreCompleto" Label="NombreCompleto (string)" Name="NombreCompleto" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Provincia" Label="Provincia (string)" Name="Provincia" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Repartidor.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoAfiliadoPa" Label="TelefonoAfiliadoPa" Name="TelefonoAfiliadoPa" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoAfiliadoPA
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoAfiliado.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoAfiliado.CedulaJuridicaNavigation" Label="CedulaJuridicaNavigation (1)" Name="CedulaJuridicaNavigation" Category="Navigation Property" Type="Afiliado"  Field="" Dependent="" Principal="Afiliado" Inverse="TelefonoAfiliados" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoAfiliado.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoCliente" Label="TelefonoCliente" Name="TelefonoCliente" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoCliente
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoAfiliadoPa.CedulaJuridica" Label="CedulaJuridica (string)" Name="CedulaJuridica" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoAfiliadoPa.CedulaJuridicaNavigation" Label="CedulaJuridicaNavigation (1)" Name="CedulaJuridicaNavigation" Category="Navigation Property" Type="AfiliadoPa"  Field="" Dependent="" Principal="AfiliadoPa" Inverse="TelefonoAfiliadoPas" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoAfiliadoPa.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoGerente" Label="TelefonoGerente" Name="TelefonoGerente" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoGerente
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoCliente.CedulaCliente" Label="CedulaCliente (string)" Name="CedulaCliente" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoCliente.CedulaClienteNavigation" Label="CedulaClienteNavigation (1)" Name="CedulaClienteNavigation" Category="Navigation Property" Type="Cliente"  Field="" Dependent="" Principal="Cliente" Inverse="TelefonoClientes" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoCliente.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoGerentePa" Label="TelefonoGerentePa" Name="TelefonoGerentePa" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoGerentePA
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoGerente.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoGerente.UsuarioNavigation" Label="UsuarioNavigation (1)" Name="UsuarioNavigation" Category="Navigation Property" Type="Gerente"  Field="" Dependent="" Principal="Gerente" Inverse="TelefonoGerentes" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoGerente.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoRepartidor" Label="TelefonoRepartidor" Name="TelefonoRepartidor" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TelefonoRepartidor
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoGerentePa.Usuario" Label="Usuario (string)" Name="Usuario" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoGerentePa.UsuarioNavigation" Label="UsuarioNavigation (1)" Name="UsuarioNavigation" Category="Navigation Property" Type="GerentePa"  Field="" Dependent="" Principal="GerentePa" Inverse="TelefonoGerentePas" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoGerentePa.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoRepartidor" Label="TelefonoRepartidor" Name="TelefonoRepartidor" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="" Category="EntityType" Group="Expanded" />
+<Node Id = "TelefonoRepartidor.CedulaRepartidor" Label="CedulaRepartidor (string)" Name="CedulaRepartidor" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TelefonoRepartidor.CedulaRepartidorNavigation" Label="CedulaRepartidorNavigation (1)" Name="CedulaRepartidorNavigation" Category="Navigation Property" Type="Repartidor"  Field="" Dependent="" Principal="Repartidor" Inverse="TelefonoRepartidors" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TelefonoRepartidor.Telefono" Label="Telefono (string)" Name="Telefono" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+<Link Source = "IModel" Target="AsignarRepartidor" Category="Contains" />
+<Link Source = "IModel" Target="Afiliado" Category="Contains" />
+<Link Source = "AsignarRepartidor" Target="AsignarRepartidor.ComprobantePago" Category="Contains" />
+<Link Source="AsignarRepartidor" Target="Repartidor" From="AsignarRepartidor.CedulaRepartidor" To="Repartidor.Cedula" Name="AsignarRepartidor -> Repartidor" Annotations="Relational:Name: AsignarRepartidor_CedulaRepartidor_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="AsignarRepartidor" Target="Pedido" From="AsignarRepartidor.ComprobantePago" To="Pedido.ComprobantePago" Name="AsignarRepartidor -> Pedido" Annotations="Relational:Name: AsignarRepartidor_ComprobantePago_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "AsignarRepartidor" Target="AsignarRepartidor.CedulaRepartidor" Category="Contains" />
+<Link Source = "IModel" Target="AfiliadoPa" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Gerentes" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Pedidos" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Productos" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.TelefonoAfiliados" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.CedulaJuridica" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Canton" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Correo" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Distrito" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Nombre" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Provincia" Category="Contains" />
+<Link Source = "Afiliado" Target="Afiliado.Sinpe" Category="Contains" />
+<Link Source = "IModel" Target="Cliente" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.GerentePas" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.TelefonoAfiliadoPas" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.CedulaJuridica" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Canton" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Correo" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Distrito" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Nombre" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Provincia" Category="Contains" />
+<Link Source = "AfiliadoPa" Target="AfiliadoPa.Sinpe" Category="Contains" />
+<Link Source = "IModel" Target="FotosProducto" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Pedidos" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.TelefonoClientes" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Cedula" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Apellidos" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Canton" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Contraseña" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Correo" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Distrito" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.FechaNacimiento" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Nombre" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Provincia" Category="Contains" />
+<Link Source = "Cliente" Target="Cliente.Usuario" Category="Contains" />
+<Link Source = "IModel" Target="Gerente" Category="Contains" />
+<Link Source = "FotosProducto" Target="FotosProducto.Producto" Category="Contains" />
+<Link Source = "FotosProducto" Target="FotosProducto.CedulaJafiliado" Category="Contains" />
+<Link Source="FotosProducto" Target="Producto" From="FotosProducto.NombreProducto,CedulaJafiliado" To="Producto.NombreProducto,CedulaJafiliado" Name="FotosProducto -> Producto" Annotations="Relational:Name: FotosProducto_NombreProducto_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "FotosProducto" Target="FotosProducto.NombreProducto" Category="Contains" />
+<Link Source = "FotosProducto" Target="FotosProducto.Urlfoto" Category="Contains" />
+<Link Source = "IModel" Target="GerentePa" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.CedulaJuridicaNavigation" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.TelefonoGerentes" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.Usuario" Category="Contains" />
+<Link Source="Gerente" Target="Afiliado" From="Gerente.CedulaJuridica" To="Afiliado.CedulaJuridica" Name="Gerente -> Afiliado" Annotations="Relational:Name: Gerente_CedulaJuridica_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Gerente" Target="Gerente.Canton" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.CedulaJuridica" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.Contraseña" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.Distrito" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.NombreCompleto" Category="Contains" />
+<Link Source = "Gerente" Target="Gerente.Provincia" Category="Contains" />
+<Link Source = "IModel" Target="Pedido" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.CedulaJuridicaNavigation" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.TelefonoGerentePas" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.Usuario" Category="Contains" />
+<Link Source="GerentePa" Target="AfiliadoPa" From="GerentePa.CedulaJuridica" To="AfiliadoPa.CedulaJuridica" Name="GerentePa -> AfiliadoPa" Annotations="Relational:Name: GerentePA_CedulaJuridica_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "GerentePa" Target="GerentePa.Canton" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.CedulaJuridica" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.Contraseña" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.Distrito" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.NombreCompleto" Category="Contains" />
+<Link Source = "GerentePa" Target="GerentePa.Provincia" Category="Contains" />
+<Link Source = "IModel" Target="Producto" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.CedulaClienteNavigation" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.CedulaJafiliadoNavigation" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.ProductoPedidos" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.CedulaRepartidors" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.ComprobantePago" Category="Contains" />
+<Link Source="Pedido" Target="Cliente" From="Pedido.CedulaCliente" To="Cliente.Cedula" Name="Pedido -> Cliente" Annotations="Relational:Name: Pedido_CedulaCliente_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Pedido" Target="Afiliado" From="Pedido.CedulaJafiliado" To="Afiliado.CedulaJuridica" Name="Pedido -> Afiliado" Annotations="Relational:Name: Pedido_CedulaJAfiliado_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Pedido" Target="Pedido.CedulaCliente" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.CedulaJafiliado" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.Dirreccion" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.EstadoPedido" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.Id" Category="Contains" />
+<Link Source = "Pedido" Target="Pedido.Monto" Category="Contains" />
+<Link Source = "IModel" Target="ProductoPedido" Category="Contains" />
+<Link Source = "Producto" Target="Producto.CedulaJafiliadoNavigation" Category="Contains" />
+<Link Source = "Producto" Target="Producto.FotosProductos" Category="Contains" />
+<Link Source = "Producto" Target="Producto.ProductoPedidos" Category="Contains" />
+<Link Source = "Producto" Target="Producto.NombreProducto" Category="Contains" />
+<Link Source="Producto" Target="Afiliado" From="Producto.CedulaJafiliado" To="Afiliado.CedulaJuridica" Name="Producto -> Afiliado" Annotations="Relational:Name: Producto_CedulaJAfiliado_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Producto" Target="Producto.CedulaJafiliado" Category="Contains" />
+<Link Source = "Producto" Target="Producto.Categoria" Category="Contains" />
+<Link Source = "Producto" Target="Producto.Precio" Category="Contains" />
+<Link Source = "IModel" Target="Repartidor" Category="Contains" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.ComprobantePagoNavigation" Category="Contains" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.Producto" Category="Contains" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.ComprobantePago" Category="Contains" />
+<Link Source="ProductoPedido" Target="Pedido" From="ProductoPedido.ComprobantePago" To="Pedido.ComprobantePago" Name="ProductoPedido -> Pedido" Annotations="Relational:Name: ProductoPedido_ComprobantePago_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="ProductoPedido" Target="Producto" From="ProductoPedido.NombreProducto,CedulaJafiliado" To="Producto.NombreProducto,CedulaJafiliado" Name="ProductoPedido -> Producto" Annotations="Relational:Name: ProductoPedido_NombreProducto_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.NombreProducto" Category="Contains" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.CedulaJafiliado" Category="Contains" />
+<Link Source = "ProductoPedido" Target="ProductoPedido.Cantidad" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoAfiliado" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.TelefonoRepartidors" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.ComprobantePagos" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Cedula" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Canton" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Contraseña" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Correo" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Disponible" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Distrito" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.NombreCompleto" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Provincia" Category="Contains" />
+<Link Source = "Repartidor" Target="Repartidor.Usuario" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoAfiliadoPa" Category="Contains" />
+<Link Source = "TelefonoAfiliado" Target="TelefonoAfiliado.CedulaJuridicaNavigation" Category="Contains" />
+<Link Source = "TelefonoAfiliado" Target="TelefonoAfiliado.CedulaJuridica" Category="Contains" />
+<Link Source="TelefonoAfiliado" Target="Afiliado" From="TelefonoAfiliado.CedulaJuridica" To="Afiliado.CedulaJuridica" Name="TelefonoAfiliado -> Afiliado" Annotations="Relational:Name: TelefonoAfiliado_CedulaJuridica_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoAfiliado" Target="TelefonoAfiliado.Telefono" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoCliente" Category="Contains" />
+<Link Source = "TelefonoAfiliadoPa" Target="TelefonoAfiliadoPa.CedulaJuridicaNavigation" Category="Contains" />
+<Link Source = "TelefonoAfiliadoPa" Target="TelefonoAfiliadoPa.CedulaJuridica" Category="Contains" />
+<Link Source="TelefonoAfiliadoPa" Target="AfiliadoPa" From="TelefonoAfiliadoPa.CedulaJuridica" To="AfiliadoPa.CedulaJuridica" Name="TelefonoAfiliadoPa -> AfiliadoPa" Annotations="Relational:Name: TelefonoAfiliadoPA_CedulaJuridica_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoAfiliadoPa" Target="TelefonoAfiliadoPa.Telefono" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoGerente" Category="Contains" />
+<Link Source = "TelefonoCliente" Target="TelefonoCliente.CedulaClienteNavigation" Category="Contains" />
+<Link Source = "TelefonoCliente" Target="TelefonoCliente.CedulaCliente" Category="Contains" />
+<Link Source="TelefonoCliente" Target="Cliente" From="TelefonoCliente.CedulaCliente" To="Cliente.Cedula" Name="TelefonoCliente -> Cliente" Annotations="Relational:Name: TelefonoCliente_CedulaCliente_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoCliente" Target="TelefonoCliente.Telefono" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoGerentePa" Category="Contains" />
+<Link Source = "TelefonoGerente" Target="TelefonoGerente.UsuarioNavigation" Category="Contains" />
+<Link Source = "TelefonoGerente" Target="TelefonoGerente.Usuario" Category="Contains" />
+<Link Source="TelefonoGerente" Target="Gerente" From="TelefonoGerente.Usuario" To="Gerente.Usuario" Name="TelefonoGerente -> Gerente" Annotations="Relational:Name: TelefonoGerente_Usuario_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoGerente" Target="TelefonoGerente.Telefono" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoRepartidor" Category="Contains" />
+<Link Source = "TelefonoGerentePa" Target="TelefonoGerentePa.UsuarioNavigation" Category="Contains" />
+<Link Source = "TelefonoGerentePa" Target="TelefonoGerentePa.Usuario" Category="Contains" />
+<Link Source="TelefonoGerentePa" Target="GerentePa" From="TelefonoGerentePa.Usuario" To="GerentePa.Usuario" Name="TelefonoGerentePa -> GerentePa" Annotations="Relational:Name: TelefonoGerentePA_Usuario_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoGerentePa" Target="TelefonoGerentePa.Telefono" Category="Contains" />
+<Link Source = "IModel" Target="TelefonoRepartidor" Category="Contains" />
+<Link Source = "TelefonoRepartidor" Target="TelefonoRepartidor.CedulaRepartidorNavigation" Category="Contains" />
+<Link Source = "TelefonoRepartidor" Target="TelefonoRepartidor.CedulaRepartidor" Category="Contains" />
+<Link Source="TelefonoRepartidor" Target="Repartidor" From="TelefonoRepartidor.CedulaRepartidor" To="Repartidor.Cedula" Name="TelefonoRepartidor -> Repartidor" Annotations="Relational:Name: TelefonoRepartidor_CedulaRepartidor_fkey" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "TelefonoRepartidor" Target="TelefonoRepartidor.Telefono" Category="Contains" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+  <Properties>
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="Field"  Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type"  Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />    
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass"  Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

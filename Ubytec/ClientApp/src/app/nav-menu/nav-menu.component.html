@@ -1,44 +1,103 @@
-<header>
+<header xmlns="http://www.w3.org/1999/html">
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Ubytec</a>
+    <div class="navbar" style="margin: 0">
+      <a [routerLink]="['/']" class="navbar-brand text-center">DetailTEC </a>
+
+    </div>
+    <div class="container" style="margin: 0">
+      <a [routerLink]="['/']" class="navbar-brand" href="favicon.png"></a>
       <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
         (click)="toggle()"
+        [attr.aria-expanded]="isExpanded"
+        aria-label="Toggle navigation"
+        class="navbar-toggler"
+        data-target=".navbar-collapse"
+        data-toggle="collapse"
+        type="button"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
+      <div *ngIf="token==='True'" [ngClass]="{ show: isExpanded }"
+           class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
       >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+        <div *ngIf="rol=== 'Trabajador';else elseBlock ">
+          <ul class="navbar-nav flex-grow">
+            <li
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLinkActive]="['link-active']"
+              class="nav-item"
             >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
+              <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
+            </li>
+
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Insumos']" class="nav-link text-dark"
+              >Insumos</a
+              >
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Lavados']" class="nav-link text-dark"
+              >Lavados</a
+              >
+            </li>
+
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Sucursales']" class="nav-link text-dark"
+              >Sucursales</a
+              >
+            </li>
+
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Citas']" class="nav-link text-dark"
+              >Citas</a
+              >
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Trabajadores']" class="nav-link text-dark"
+              >Trabajadores</a
+              >
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Proveedores']" class="nav-link text-dark"
+              >Proveedores</a
+              >
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/Clientes']" class="nav-link text-dark"
+              >Clientes</a
+              >
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['admin/CFactura']" class="nav-link text-dark"
+              >Consulta_Facturas</a>
+            </li>
+            <li class="nav-item">
+              <button (click)="logout()" class="text-dark">LogOut</button>
+            </li>
+          </ul>
+        </div>
+
+        <ng-template #elseBlock>
+
+          <ul class="navbar-nav flex-grow">
+            <li
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLinkActive]="['link-active']"
+              class="nav-item"
             >
-          </li>
-        </ul>
+              <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
+            </li>
+            
+            <li class="nav-item">
+              <button (click)="logout()" class="btn btn-link" type="button">LogOut</button>
+            </li>
+          </ul>
+
+        </ng-template>
       </div>
+
     </div>
   </nav>
 </header>
