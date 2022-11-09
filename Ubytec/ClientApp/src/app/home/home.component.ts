@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   //Variables a utilizar
   token = sessionStorage.getItem("Token");
   user = sessionStorage.getItem("Nombre")
+  rol = sessionStorage.getItem("Rol")
   headers = {};
   respuesta = {};
   http: HttpClient;
@@ -64,24 +65,32 @@ export class HomeComponent implements OnInit {
       'Contraseña': this.login.controls.pass.value,
     };
     console.log(answer);
+
+    sessionStorage.setItem("Nombre", <string>answer.Usuario);
+    sessionStorage.setItem("Token", "True");
+    this.user = answer.Usuario;
+    sessionStorage.setItem("Rol", (<HTMLButtonElement>document.getElementById("Selector")).innerText);
+    window.location.reload();
+    /*
     const res = this.http.put<string>("https://localhost:7274/api/Signin", answer, {
       headers: this.httpOptions.headers,
       withCredentials: true,
     });
-    res.subscribe(result => {
-      console.log(answer);
+    //res.subscribe(result => {
+      //console.log(answer);
 
-      this.respuesta = result;
-      sessionStorage.setItem("Nombre", <string>answer.Usuario);
-      sessionStorage.setItem("Token", "True");
-      this.user = answer.Usuario
-      sessionStorage.setItem("Rol", result)
-      window.location.reload()
-      console.log(this.respuesta);
+      //this.respuesta = result;
+      //sessionStorage.setItem("Nombre", <string>answer.Usuario);
+      //sessionStorage.setItem("Token", "True");
+      //this.user = answer.Usuario
+      //sessionStorage.setItem("Rol", result)
+      //window.location.reload()
+      //console.log(this.respuesta);
 
-    }, error => {
-      console.error(error)
-    });
+      //}, error => {
+      //console.error(error)
+      //});
+      */
   }
 
   /**
@@ -98,7 +107,7 @@ export class HomeComponent implements OnInit {
       this.snackBar.open("Log out sucefully", "close");
       console.log(result);
       sessionStorage.clear();
-      // window.location.reload()
+      window.location.reload()
     }, error => console.error(error));
   }
   Select() {

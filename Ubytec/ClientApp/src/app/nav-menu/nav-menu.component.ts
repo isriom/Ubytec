@@ -31,6 +31,10 @@ export class NavMenuComponent {
   }
 
   async logout() {
+
+    sessionStorage.clear();
+    window.location.reload();
+    /*
     let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
       headers: this.httpOptions.headers,
       withCredentials: true,
@@ -42,5 +46,6 @@ export class NavMenuComponent {
       window.location.reload()
       window.location.assign("");
     }, error => console.error(error));
+     */
   }
 }

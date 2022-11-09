@@ -1,12 +1,16 @@
 {
   "dependencies": {
-    "secrets1": {
-      "type": "secrets",
-      "connectionId": "VaultUri"
-    },
     "postgresql1": {
-      "type": "postgresql",
-      "connectionId": "UbytecBase"
+      "ignored": "true",
+      "type": "postgresql"
+    },
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql"
+    },
+    "secrets1": {
+      "ignored": "true",
+      "type": "secrets.keyVault"
     }
   }
 }

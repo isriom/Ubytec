@@ -5,14 +5,10 @@ using Ubytec.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
-builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
-
 // Add cookie Authenticationas a default politic
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
-    {
-        options.LoginPath = "";
+    {options.LoginPath = "";
         options.AccessDeniedPath = "";
     });
 //Add cors  
