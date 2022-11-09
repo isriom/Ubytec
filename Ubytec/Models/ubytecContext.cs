@@ -17,20 +17,17 @@ namespace Ubytec.Models
         }
 
         public virtual DbSet<Afiliado> Afiliados { get; set; } = null!;
-        public virtual DbSet<AfiliadoPa> AfiliadoPas { get; set; } = null!;
         public virtual DbSet<Cliente> Clientes { get; set; } = null!;
+        public virtual DbSet<Comentario> Comentarios { get; set; } = null!;
         public virtual DbSet<FotosProducto> FotosProductos { get; set; } = null!;
         public virtual DbSet<Gerente> Gerentes { get; set; } = null!;
-        public virtual DbSet<GerentePa> GerentePas { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
         public virtual DbSet<Producto> Productos { get; set; } = null!;
         public virtual DbSet<ProductoPedido> ProductoPedidos { get; set; } = null!;
         public virtual DbSet<Repartidor> Repartidors { get; set; } = null!;
         public virtual DbSet<TelefonoAfiliado> TelefonoAfiliados { get; set; } = null!;
-        public virtual DbSet<TelefonoAfiliadoPa> TelefonoAfiliadoPas { get; set; } = null!;
         public virtual DbSet<TelefonoCliente> TelefonoClientes { get; set; } = null!;
         public virtual DbSet<TelefonoGerente> TelefonoGerentes { get; set; } = null!;
-        public virtual DbSet<TelefonoGerentePa> TelefonoGerentePas { get; set; } = null!;
         public virtual DbSet<TelefonoRepartidor> TelefonoRepartidors { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -55,20 +52,30 @@ namespace Ubytec.Models
                 entity.ToTable("Afiliado");
             });
 
-            modelBuilder.Entity<AfiliadoPa>(entity =>
-            {
-                entity.HasKey(e => e.CedulaJuridica)
-                    .HasName("AfiliadoPA_pkey");
-
-                entity.ToTable("AfiliadoPA");
-            });
-
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasKey(e => e.Cedula)
                     .HasName("Cliente_pkey");
 
                 entity.ToTable("Cliente");
+            });
+
+            modelBuilder.Entity<Comentario>(entity =>
+            {
+                entity.HasKey(e => new { e.CedulaJafiliado, e.Comentario1 })
+                    .HasName("Comentario_pkey");
+
+                entity.ToTable("Comentario");
+
+                entity.Property(e => e.CedulaJafiliado).HasColumnName("CedulaJAfiliado");
+
+                entity.Property(e => e.Comentario1).HasColumnName("Comentario");
+
+                entity.HasOne(d => d.CedulaJafiliadoNavigation)
+                    .WithMany(p => p.Comentarios)
+                    .HasForeignKey(d => d.CedulaJafiliado)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("Comentario_CedulaJAfiliado_fkey");
             });
 
             modelBuilder.Entity<FotosProducto>(entity =>
@@ -101,20 +108,6 @@ namespace Ubytec.Models
                     .HasForeignKey(d => d.CedulaJuridica)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("Gerente_CedulaJuridica_fkey");
-            });
-
-            modelBuilder.Entity<GerentePa>(entity =>
-            {
-                entity.HasKey(e => e.Usuario)
-                    .HasName("GerentePA_pkey");
-
-                entity.ToTable("GerentePA");
-
-                entity.HasOne(d => d.CedulaJuridicaNavigation)
-                    .WithMany(p => p.GerentePas)
-                    .HasForeignKey(d => d.CedulaJuridica)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("GerentePA_CedulaJuridica_fkey");
             });
 
             modelBuilder.Entity<Pedido>(entity =>
@@ -222,20 +215,6 @@ namespace Ubytec.Models
                     .HasConstraintName("TelefonoAfiliado_CedulaJuridica_fkey");
             });
 
-            modelBuilder.Entity<TelefonoAfiliadoPa>(entity =>
-            {
-                entity.HasKey(e => new { e.CedulaJuridica, e.Telefono })
-                    .HasName("TelefonoAfiliadoPA_pkey");
-
-                entity.ToTable("TelefonoAfiliadoPA");
-
-                entity.HasOne(d => d.CedulaJuridicaNavigation)
-                    .WithMany(p => p.TelefonoAfiliadoPas)
-                    .HasForeignKey(d => d.CedulaJuridica)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("TelefonoAfiliadoPA_CedulaJuridica_fkey");
-            });
-
             modelBuilder.Entity<TelefonoCliente>(entity =>
             {
                 entity.HasKey(e => new { e.CedulaCliente, e.Telefono })
@@ -262,20 +241,6 @@ namespace Ubytec.Models
                     .HasForeignKey(d => d.Usuario)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("TelefonoGerente_Usuario_fkey");
-            });
-
-            modelBuilder.Entity<TelefonoGerentePa>(entity =>
-            {
-                entity.HasKey(e => new { e.Usuario, e.Telefono })
-                    .HasName("TelefonoGerentePA_pkey");
-
-                entity.ToTable("TelefonoGerentePA");
-
-                entity.HasOne(d => d.UsuarioNavigation)
-                    .WithMany(p => p.TelefonoGerentePas)
-                    .HasForeignKey(d => d.Usuario)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("TelefonoGerentePA_Usuario_fkey");
             });
 
             modelBuilder.Entity<TelefonoRepartidor>(entity =>

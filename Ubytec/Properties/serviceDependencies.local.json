@@ -11,9 +11,9 @@
       "secretStore": "AzureKeyVault",
       "containerName": "postgresql",
       "containerImage": "postgres",
+      "resourceId": null,
       "type": "postgresql.container",
-      "connectionId": "UbytecBase",
-      "dynamicId": null
+      "connectionId": "UbytecBase"
     }
   }
 }

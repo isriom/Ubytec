@@ -7,20 +7,23 @@ namespace Ubytec.Models
     {
         public Afiliado()
         {
+            Comentarios = new HashSet<Comentario>();
             Gerentes = new HashSet<Gerente>();
             Pedidos = new HashSet<Pedido>();
             Productos = new HashSet<Producto>();
             TelefonoAfiliados = new HashSet<TelefonoAfiliado>();
         }
 
-        public string? Nombre { get; set; }
+        public string Nombre { get; set; } = null!;
         public string CedulaJuridica { get; set; } = null!;
-        public string? Distrito { get; set; }
-        public string? Provincia { get; set; }
-        public string? Canton { get; set; }
-        public string? Sinpe { get; set; }
-        public string? Correo { get; set; }
+        public string Distrito { get; set; } = null!;
+        public string Provincia { get; set; } = null!;
+        public string Canton { get; set; } = null!;
+        public string Sinpe { get; set; } = null!;
+        public string Correo { get; set; } = null!;
+        public string Estado { get; set; } = null!;
 
+        public virtual ICollection<Comentario> Comentarios { get; set; }
         public virtual ICollection<Gerente> Gerentes { get; set; }
         public virtual ICollection<Pedido> Pedidos { get; set; }
         public virtual ICollection<Producto> Productos { get; set; }
