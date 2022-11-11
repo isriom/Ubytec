@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "Ubytec"
+  "defaultProject": "Ubytec",
+  "cli": {
+    "analytics": "2d508b64-3242-47d7-b4d1-44d25c485cc3"
+  }
 }

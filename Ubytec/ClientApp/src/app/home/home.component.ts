@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
    * @param snackBar
    */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, public snackBar: MatSnackBar) {
+    //sessionStorage.setItem("Rol", "Afiliado");
     this.http = http;
     this.baseurl = baseUrl;
     if (this.token === undefined) {
