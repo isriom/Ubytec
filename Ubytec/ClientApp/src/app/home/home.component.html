@@ -10,26 +10,26 @@
 
 
         <input class="form-control" formControlName="pass" id="Contraseña" placeholder="Contraseña" />
-          <button type="button" class="btn btn-outline-primary btn-social btn-light" id="Selector" (click)="Select()"  >Repartidor</button>
+          <button type="button" class="btn btn-outline-primary btn-social btn-light" id="Selector" (click)="Select()"  >Trabajador</button>
 
 
         <button class="btn btn-lg btn-primary" id="Sig_in" type="submit">Iniciar Sesion</button>
       </form>
     </div>
     <div style="margin: 1%;">o</div>
-    <div><button class="btn btn-lg btn-primary" id="Sig_in" type="submit">Registrar</button></div>
+    <div><button class="btn btn-lg btn-primary" id="Sign_up" (click)="Register()">Registrar</button></div>
   </div>
 </ng-template>
 <ng-template #elseBlock class="p-3 justify-content-center">
   <ng-template [ngIf]="user==='Afiliado'" class="p-3 justify-content-center">
     <p class="text-capitalize form-text text-decoration-underline " font-size="16">Usuario</p>
-    <p class="text-capitalize form-text text-dark" font-size="16" id="NAME">{{user}}</p>
-    <button (click)="logout()" class="form-floating btn btn-warning" id="Log-Out">SIGN OUT</button>
+    <p class="text-capitalize form-text text-dark" font-size="16" >{{user}}</p>
+    <button (click)="logout()" class="form-floating btn btn-warning" >SIGN OUT</button>
   </ng-template>
   <ng-template [ngIf]="user==='Cliente'" class="p-3 justify-content-center">
     <p class="text-capitalize form-text text-decoration-underline " font-size="16">Usuario</p>
-    <p class="text-capitalize form-text text-dark" font-size="16" id="NAME">{{user}}</p>
-    <button (click)="logout()" class="form-floating btn btn-warning" id="Log-Out">SIGN OUT</button>
+    <p class="text-capitalize form-text text-dark" font-size="16" >{{user}}</p>
+    <button (click)="logout()" class="form-floating btn btn-warning" >SIGN OUT</button>
   </ng-template>
 
   <ng-template [ngIf]="user==='Admin'" class="p-3 justify-content-center">

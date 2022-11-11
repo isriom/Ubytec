@@ -1,4 +1,3 @@
-using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Ubytec.Models;
@@ -8,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add cookie Authenticationas a default politic
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
-    {options.LoginPath = "";
+    {
+        options.LoginPath = "";
         options.AccessDeniedPath = "";
     });
 //Add cors  
@@ -60,6 +60,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
+;
 
 app.Run();

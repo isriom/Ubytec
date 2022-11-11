@@ -78,7 +78,7 @@
           </ul>
 
         </ng-template>
-        <ng-template [ngIf]="rol=== 'Repartidor'">
+        <ng-template [ngIf]="rol=== 'Cliente'">
           <ul class="navbar-nav flex-grow">
             <li
               [routerLinkActiveOptions]="{ exact: true }"
@@ -90,6 +90,11 @@
 
             <li class="nav-item">
               <button (click)="logout()" class="btn btn-link" type="button">LogOut</button>
+            </li>
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['Cliente/Carrito']" class="nav-link text-dark"
+              >Carrito</a
+              >
             </li>
           </ul>
 
