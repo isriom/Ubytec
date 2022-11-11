@@ -16,6 +16,7 @@ import { Router } from "@angular/router";
  * Clase donde se desarrolla las funcionalidades de la pagina de Cliente en la vista Cliente
  */
 export class DealersComponent {
+  op = sessionStorage.getItem("operacion");
   token = sessionStorage.getItem("tokenKey");
   respuesta = {};
   http: HttpClient;
@@ -60,6 +61,7 @@ export class DealersComponent {
    * @constructor metodo relacionado
    */
   async Add_Button() {
+    this.op='1'
     const answer = {
       'Nombre_Completo': (<HTMLInputElement>document.getElementById("Nombre_Completo")).value,
       'Cedula': (<HTMLInputElement>document.getElementById("Cedula")).value,

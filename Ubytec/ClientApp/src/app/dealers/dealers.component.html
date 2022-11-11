@@ -5,10 +5,34 @@
     <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
     <input class="form-control-lg mx-auto element-input" id="{{element.key}}" placeholder="Espacio requerido"
            value="{{element.value}}">
+
   </div>
   <div id="Buttons">
     <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
     <button (click)="Delete_Button()" id="delete">Eliminar</button>
 
+  </div>
+  <div id="Inputs">
+    <ng-template [ngIf]="op== '1'">
+      <li [routerLinkActiveOptions]="{ exact: true }"
+          [routerLinkActive]="['link-active']"
+          class="nav-item">
+        <a class="nav-link text-dark">Ingrese los datos del repartidor</a>
+        <input class="form-control" formControlName="Rname" id="Nombre" placeholder="Nombre" requiredtype="text" value="">
+
+
+        <input class="form-control" formControlName="Rid" id="Cedula" placeholder="Cedula" />
+        <input class="form-control" formControlName="Rdistrict" id="Distrito" placeholder="Distrito" />
+        <input class="form-control" formControlName="Rprovince" id="Provincia" placeholder="Provincia" />
+        <input class="form-control" formControlName="Rcanton" id="Canton" placeholder="Canton" />
+        <input class="form-control" formControlName="Ruser" id="Usuario" placeholder="Usuario" />
+        <input class="form-control" formControlName="Rpass" id="Contraseña" placeholder="Contraseña" />
+        <input class="form-control" formControlName="Ravailable" id="Disponible" placeholder="Disponible" />
+        <input class="form-control" formControlName="Remail" id="Correo" placeholder="Correo" />
+        <input class="form-control" formControlName="Rpkey" id="PK" placeholder="PK" />
+
+      </li>
+
+    </ng-template>
   </div>
 </div>
