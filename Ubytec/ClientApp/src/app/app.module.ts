@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { DealersComponent } from './dealers/dealers.component';
+import { ClientsComponent } from './clients/clients.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CarritoComponent} from "./Carrito/Carrito.component";
@@ -18,6 +19,7 @@ import {MatCardModule} from "@angular/material/card";
     NavMenuComponent,
     HomeComponent,
     DealersComponent,
+    ClientsComponent,
     CarritoComponent
   ],
   imports: [
@@ -33,7 +35,8 @@ import {MatCardModule} from "@angular/material/card";
         path: "Cliente", children: [
           {path: 'Carrito', data: {title: "Carrito"}, component: CarritoComponent}
         ]
-      },{ path: 'admin/Repartidores', data: { title: "Repartidores" }, component: DealersComponent }
+      }, { path: 'admin/Repartidores', data: { title: "Repartidores" }, component: DealersComponent },
+      { path: 'Cliente/Clientes', data: { title: "Clientes" }, component: ClientsComponent }
     ]),
     MatCardModule,
 

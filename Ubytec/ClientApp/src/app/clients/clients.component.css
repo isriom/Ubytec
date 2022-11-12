@@ -64,7 +64,8 @@ Formato de los figura de los botones de la pagina
 Define las caracteristicas que tendran los botones
  */
   #Buttons > button {
-    width: 30%;
+    width: 40%;
+    height: 30%;
     font-size: larger;
   }
 
