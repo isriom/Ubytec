@@ -1,14 +1,14 @@
 <div class="modal-body w-auto h-auto" style="display: flex; margin: 1%; background:#fcdda0; flex-flow: row wrap">
   <mat-card class="card align-content-center"  style="margin: 1%;" *ngFor="let producto of carrito">
     <mat-card-content class="card-body">
-      <img class="card-img placeholder-sm" src="{{producto.imagen}}" alt="{{producto.nombre}}" >
-      <h4 class="card-title text-center">{{producto.nombre}}</h4>
+      <img class="card-img placeholder-sm" src="{{producto.image}}" alt="{{producto.name}}" >
+      <h4 class="card-title text-center">{{producto.name}}</h4>
       <div class="card-body">
-        <p class="card-text text-center">Precio: {{producto.precio}}</p>
+        <p class="card-text text-center">Precio: {{producto.price}}</p>
       </div>
       <div style="display: flex " class="text-center align-content-center card-body justify-content-between">
         <button class="btn border-warning h-25" (click)="decrease(producto)">-</button>
-        <p class="align-content-between justify-content-between">{{producto.cantidad}}</p>
+        <p class="align-content-between justify-content-between">{{producto.amount}}</p>
         <button class="btn border-info h-25" (click)="increment(producto) ">+</button>
       </div>
     </mat-card-content>

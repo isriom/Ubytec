@@ -9,15 +9,15 @@
                type="text" value="">
 
 
-        <input class="form-control" formControlName="pass" id="Contraseña" placeholder="Contraseña" />
+        <input class="form-control" formControlName="pass" id="Contraseña" placeholder="Contraseña" required/>
           <button type="button" class="btn btn-outline-primary btn-social btn-light" id="Selector" (click)="Select()"  >Trabajador</button>
 
 
-        <button class="btn btn-lg btn-primary" id="Sig_in" type="submit">Iniciar Sesion</button>
+        <button [disabled]="!login.valid" class="btn btn-lg btn-primary" id="Sig_in" type="submit">Iniciar Sesion</button>
       </form>
     </div>
     <div style="margin: 1%;">o</div>
-    <div><button class="btn btn-lg btn-primary" id="Sign_up" (click)="Register()">Registrar</button></div>
+    <div><button  class="btn btn-lg btn-primary" id="Sign_up" (click)="Register()">Registrar</button></div>
   </div>
 </ng-template>
 <ng-template #elseBlock class="p-3 justify-content-center">

@@ -64,12 +64,7 @@ export class HomeComponent implements OnInit {
     answer.password = this.login.controls.pass.value;
     answer.role = this.conexion;
     console.log(answer);
-    sessionStorage.setItem("Nombre", <string>(answer.username));
-    sessionStorage.setItem("Token", "True");
-    sessionStorage.setItem("Rol", <string>answer.role)
-    window.location.reload()
-    // let res = await this.service.login(answer);
-
+    let res = await this.service.login(answer);
   }
 
   /**

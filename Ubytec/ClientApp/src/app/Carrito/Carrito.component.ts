@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {APIService, producto} from "../api.service";
+import {HttpClient} from "@angular/common/http";
+import {APIService, product} from "../api.service";
 
 
 @Component({
@@ -10,7 +9,7 @@ import {APIService, producto} from "../api.service";
   styleUrls: ['./Carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
-  carrito: producto[] = []
+  carrito: product[] = []
   total: number = 0;
 
 
@@ -29,13 +28,13 @@ export class CarritoComponent implements OnInit {
   }
 
 
-  increment(producto: producto) {
+  increment(producto: product) {
     this.service.increase(producto);
     this.total = this.service.updateTotal()
 
   }
 
-  decrease(producto: producto) {
+  decrease(producto: product) {
     this.service.decrease(producto);
     this.total = this.service.updateTotal()
 

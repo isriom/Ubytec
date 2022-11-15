@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CarritoComponent} from "./Carrito/Carrito.component";
 import {MatCardModule} from "@angular/material/card";
+import {APIService} from "./api.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import {MatCardModule} from "@angular/material/card";
     MatCardModule,
 
   ],
-  providers: [],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

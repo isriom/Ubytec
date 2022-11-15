@@ -9,7 +9,6 @@ using Ubytec.ViewModels;
 
 namespace Ubytec.Controllers;
 
-
 [ApiController]
 /*
  * Clase Controladora del componente del Login de la Pagina
@@ -32,7 +31,7 @@ public class LoginController : Controller
     [Route("/api/Signin")]
     public async Task<ActionResult> Login(Data.LoginUser data)
     {
-        var rol = await AuthenticateUser(data.Usuario, data.Contraseña);
+        var rol = await AuthenticateUser(data);
         await Console.Out.WriteAsync(JsonSerializer.Serialize(data) + "\n");
         if (rol == "No Found")
         {
@@ -42,7 +41,7 @@ public class LoginController : Controller
 
         var claims = new List<Claim>
         {
-            new(ClaimTypes.Name, data.Usuario),
+            new(ClaimTypes.Name, data.username),
             new(ClaimTypes.Role, rol)
         };
         var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -64,28 +63,34 @@ public class LoginController : Controller
     /**
      * Metodo que realiza la autenticacion del usuario
      */
-    private Task<string> AuthenticateUser(string id, string password)
+    private Task<string> AuthenticateUser(Data.LoginUser user)
     {
         //Debug to access with default user and password delete this in production
-        switch (id)
+        switch (user.role)
         {
-            case "admin" when password == "admin":
-                return Task.FromResult("Trabajador");
-            case "user" when password == "user":
-                return Task.FromResult("Cliente");
+            case "Trabajador":
+                if (user.username == "admin" && user.password == "admin")
+                {
+                    return Task.FromResult("Trabajador");
+                }
+                return Task.FromResult("No Found");
+                
+            case "Cliente":
+                var cuser = _context.Clientes.FirstOrDefault(t => t.Usuario == user.username);
+                return Task.FromResult(cuser?.Contraseña == user.password ? "Cliente" : "No Found");
+
+            case "Afiliado":
+                var auser = _context.Gerentes.FirstOrDefault(t => t.Usuario == user.username);
+                return Task.FromResult(auser?.Contraseña == user.password ? "Afiliado" : "No Found");
             default:
-            {
-                var user = this._context.Clientes
-                    .FirstOrDefault(u => u.Usuario == id && u.Contraseña == password);
-                return user != null ? Task.FromResult("Cliente") : Task.FromResult("No Found");
-                break;
-            }
+                return Task.FromResult("No Found");
         }
     }
 
+
     /**
-     * Metodo que determina la accion al presionar el boton de Log Out
-     */
+ * Metodo que determina la accion al presionar el boton de Log Out
+ */
     [AllowAnonymous]
     [HttpPut]
     [Route("/logout")]
