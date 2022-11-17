@@ -125,6 +125,11 @@ export class APIService {
     this.actualEditor = this._modal.open(ConfirmacionComponent, {animation: true, size: 'sm'});
   }
 
+  /**
+   * Confirm a order
+   * @param Order
+   * clears the shopping cart and redirects to the home page
+   */
   public async confirmar(Order: Order) {
     this.actualEditor?.close()
     console.log(Order)
@@ -138,9 +143,12 @@ export class APIService {
       this.total = 0;
     })
 
-    // window.location.assign(this.BASE_URL)
+    window.location.assign(this.BASE_URL)
   }
 
+  /**
+   * Afiliates are loaded from the database and saved to the local variable: services.afiliados
+   */
   async getAfiliados() {
     const res = this.http.get<string>(this.api + "Client/Afiliados/list", {
       headers: this.httpOptions.headers,
@@ -154,6 +162,12 @@ export class APIService {
 
   }
 
+  /**
+   *
+   * @param afiliate
+   * @constructor
+   * Sets the selected afiliate and saves it to local storage; In case of change od afiliate, the shopping cart is cleared. redirect to the shop.
+   */
   async SelectAfiliate(afiliate: afiliate) {
     if (this.SelectedAfiliate.CedulaJuridica != afiliate.CedulaJuridica) {
       localStorage.removeItem("shoppingCart");
@@ -167,6 +181,10 @@ export class APIService {
     window.location.assign(this.BASE_URL + "Cliente/Tienda")
   }
 
+  /**
+   * Ask the server for the products of the selected afiliate
+   * @param afiliate
+   */
   async getAfiliateProducts(afiliate: afiliate) {
     const res = this.http.get<string>(this.api + "Client/Afiliados/list/" + afiliate.Nombre, {
       headers: this.httpOptions.headers,
@@ -185,6 +203,10 @@ export class APIService {
     });
   }
 
+  /**
+   * Ask the server for the image of a product
+   * @param product
+   */
   async getProductimage(product: afiliateproduct) {
     const res = this.http.get<string>(this.api + "Client/Afiliados/list/" + this.SelectedAfiliate?.Nombre + "/" + product.NombreProducto, {
       headers: this.httpOptions.headers,
@@ -199,12 +221,18 @@ export class APIService {
   }
 }
 
+/**
+ * This class is used to store the information of a init seccion
+ */
 export class Login {
   username: string | undefined;
   password: string | undefined;
   role: string | undefined;
 }
 
+/**
+ * This class is used to store the information of a product, used in the shopping cart
+ */
 export class product {
   name: string | undefined;
   price: number = 0;
@@ -223,6 +251,9 @@ export class product {
 
 }
 
+/**
+ * This class is used to store the information of a Order
+ */
 export class Order {
   ComprobantePago: string = null!;
   Dirreccion: string = null!;
@@ -237,6 +268,9 @@ export class Order {
   }
 }
 
+/**
+ * This class is used to store the information of a product of an afiliate, used in the shop
+ */
 export class afiliateproduct {
 
   public NombreProducto: string = "";
@@ -248,6 +282,9 @@ export class afiliateproduct {
 
 }
 
+/**
+ * This class is used to store the information of an afiliate
+ */
 export class afiliate {
   public Nombre: string = "";
   public CedulaJuridica: string = "";

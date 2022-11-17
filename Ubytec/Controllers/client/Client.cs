@@ -53,14 +53,17 @@ public class Client : Controller
         {
             case "buy":
                 //logica de citas
+                // trnasfomar el json a un objeto especial dado que en el no se encuentra el id del cliente
                 var order = element.Deserialize<ClientData.Order>(options);
+                // revisar que sea valido
                 if (order == null) return BadRequest();
                 if (order.Products.Count == 0) return BadRequest();
-                var orderitemlist = order.Products;
+                // crear el modelo del contexto apartir del objeto especial, este modelo aun no esta incluido en la base de datos
                 var OrderModel = order.ToModel();
                 OrderModel.CedulaCliente = cliente.Cedula;
-                var OrderItemModel = OrderModel.ProductoPedidos;
+                // agregar el modelo al contexto
                 _context.Pedidos.Add(OrderModel);
+                // guardar los cambios del contexto en la base de datos
                 _context.SaveChanges();
                 return Ok();
 
@@ -99,19 +102,22 @@ public class Client : Controller
         {
             case "Afiliados":
                 //logica de Puntos
+                //lista de afiliados validados
                 var listAfiliados = _context.Afiliados.Where(x => x.Estado == "APROBADA").ToList();
-
+                // lista de fotos del producto; id=afiliado, id2=producto
                 if (id != null && id2 != null)
                 {
                     var selectedafiliate = listAfiliados.First(x => x.Nombre == id);
                     var selectedproduct = _context.Productos.First(x =>
                         x.NombreProducto == id2 && x.CedulaJafiliado == selectedafiliate.CedulaJuridica);
+
                     return Json(_context.FotosProductos
                         .Where(x => x.CedulaJafiliado == selectedafiliate.CedulaJuridica &&
                                     x.NombreProducto == selectedproduct.NombreProducto).Select(x => x.Urlfoto)
                         .ToArray());
                 }
 
+                // lista de productos; id=afiliado
                 if (id != null)
                 {
                     var selectedafiliate = listAfiliados.First(x => x.Nombre == id);
@@ -119,7 +125,7 @@ public class Client : Controller
                         options);
                 }
 
-                ;
+                // lista de afiliados
                 return Json(listAfiliados, options);
         }
 
