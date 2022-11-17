@@ -1,0 +1,23 @@
+﻿mat-card{
+  box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+  -webkit-box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+  -moz-box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+}
+.bggrad{
+  background: rgb(131,58,180);
+  background: linear-gradient(176deg, rgba(131,58,180,0.2413340336134454) 0%, rgba(253,29,29,0.2721463585434174) 50%, rgba(252,176,69,0.2329306722689075) 100%);
+}
+button{
+  box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+  -webkit-box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+  -moz-box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+}
+.shadow{
+  box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+  -webkit-box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+  -moz-box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+ }
+.card-header{
+  background: rgb(131,58,180);
+  background: linear-gradient(176deg, rgba(131,58,180,0.2413340336134454) 0%, rgba(253,29,29,0.2721463585434174) 50%, rgba(252,176,69,0.2329306722689075) 100%);
+}

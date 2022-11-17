@@ -1,0 +1,35 @@
+<mat-drawer-container>
+  <mat-drawer-content style=" height: 100%">
+    <div class="bggrad">
+      <h4 class="card-body bggrad2">{{this.service.SelectedAfiliate.Nombre}}</h4>
+      <div class="modal-body w-auto h-auto border border-1" style="display: flex; margin: 1%; flex-flow: row wrap">
+        <mat-card class="card align-content-center shadow" style=";margin: 1%;"
+                  *ngFor="let producto of this.service.SelectedAfiliate.Productos">
+          <mat-card-content class="card-body">
+            <div (click)="this.nothing()" class="card-header bggrad">
+              <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let image of producto.FotosProductos">
+                  <img [src]="image" alt="{{producto.NombreProducto}}" class="d-block w-100">
+                </ng-template>
+              </ngb-carousel>
+            </div>
+            <div>
+              <h4 class="card-title text-center">{{producto.NombreProducto}}</h4>
+              <div class="card-body justify-content-center align-content-sm-center">
+                <p class="card-text text-center">Precio: {{producto.Precio}}</p>
+                <button class="btn card-text text-center border-1 border-warning"
+                        style="position: relative;left: 24.5%;width: 50%;" (click)="addCart(producto)">Comprar
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+      </div>
+    </div>
+  </mat-drawer-content>
+  <mat-drawer mode="side" position="end" style="width: 22%; height: 100%; top: -1.8%" opened>
+    <app-CarritoComponent style="width: 20%"></app-CarritoComponent>
+  </mat-drawer>
+</mat-drawer-container>
+

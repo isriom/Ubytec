@@ -10,29 +10,37 @@
 
 
         <input class="form-control" formControlName="pass" id="Contraseña" placeholder="Contraseña" required/>
-          <button type="button" class="btn btn-outline-primary btn-social btn-light" id="Selector" (click)="Select()"  >Trabajador</button>
+        <button type="button" class="btn btn-outline-primary btn-social btn-light" id="Selector" (click)="Select()">
+          Trabajador
+        </button>
 
 
-        <button [disabled]="!login.valid" class="btn btn-lg btn-primary" id="Sig_in" type="submit">Iniciar Sesion</button>
+        <button [disabled]="!login.valid" class="btn btn-lg btn-primary" id="Sig_in" type="submit">Iniciar Sesion
+        </button>
       </form>
     </div>
     <div style="margin: 1%;">o</div>
-    <div><button  class="btn btn-lg btn-primary" id="Sign_up" (click)="Register()">Registrar</button></div>
+    <div>
+      <button class="btn btn-lg btn-primary" id="Sign_up" (click)="Register()">Registrar</button>
+    </div>
   </div>
 </ng-template>
 <ng-template #elseBlock class="p-3 justify-content-center">
-  <ng-template [ngIf]="user==='Afiliado'" class="p-3 justify-content-center">
+  <ng-template [ngIf]="rol==='Afiliado'" class="p-3 justify-content-center">
     <p class="text-capitalize form-text text-decoration-underline " font-size="16">Usuario</p>
-    <p class="text-capitalize form-text text-dark" font-size="16" >{{user}}</p>
-    <button (click)="logout()" class="form-floating btn btn-warning" >SIGN OUT</button>
+    <p class="text-capitalize form-text text-dark" font-size="16">{{user}}</p>
+    <button (click)="logout()" class="form-floating btn btn-warning">SIGN OUT</button>
   </ng-template>
-  <ng-template [ngIf]="user==='Cliente'" class="p-3 justify-content-center">
-    <p class="text-capitalize form-text text-decoration-underline " font-size="16">Usuario</p>
-    <p class="text-capitalize form-text text-dark" font-size="16" >{{user}}</p>
-    <button (click)="logout()" class="form-floating btn btn-warning" >SIGN OUT</button>
+  <ng-template [ngIf]="rol==='Cliente'" class="p-3 justify-content-center">
+    <div style="display: flex">
+      <div>Place holder</div>
+      <div>
+        <app-SeleccionAfiliadoComponent></app-SeleccionAfiliadoComponent>
+      </div>
+    </div>
   </ng-template>
 
-  <ng-template [ngIf]="user==='Admin'" class="p-3 justify-content-center">
+  <ng-template [ngIf]="rol==='Admin'" class="p-3 justify-content-center">
     <button (click)="logout()" class="form-floating btn btn-warning">SIGN OUT</button>
   </ng-template>
 </ng-template>

@@ -1,0 +1,15 @@
+<div style="
+  background: white;
+  background-image: radial-gradient(black 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px -19px;">
+  <div class="bggrad modal-body w-auto h-auto border border-1" style="display: flex; margin: 1%; flex-flow: row wrap">
+    <mat-card class="card align-content-center shadow" style=";margin: 1%;" *ngFor="let afiliado of this.service.Afiliados">
+      <mat-card-content class="card-body" (click)="service.SelectAfiliate(afiliado)">
+        <div class="card-header bggrad"><img class="card-img placeholder-sm card-header"
+                                             src="https://via.placeholder.com/268x60?text={{afiliado.Nombre}}"
+                                             alt="{{afiliado.Nombre}}"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

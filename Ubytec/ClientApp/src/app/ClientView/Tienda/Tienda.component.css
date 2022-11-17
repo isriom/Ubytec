@@ -1,0 +1,28 @@
+﻿mat-card{
+  box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+  -webkit-box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+  -moz-box-shadow: 7px 6px 9px -4px rgba(245,157,157,0.59);
+}
+.bggrad{
+  background: rgb(131,58,180);
+  background: linear-gradient(176deg, rgba(58, 68, 180, 0.24) 0%,
+  rgba(92, 29, 253, 0.27) 50%,
+  rgba(228, 252, 69, 0.23) 100%);
+}
+.bggrad2{
+  background: rgb(66, 23, 41);
+  background: linear-gradient(176deg, rgba(129, 7, 90, 0.34) 0%,
+  rgba(169, 19, 162, 0.37) 25%,
+  rgba(201, 39, 150, 0.33) 70%);
+  mix-blend-mode: color-dodge;
+}
+button{
+  box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+  -webkit-box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+  -moz-box-shadow: -14px -19px 9px -23px rgba(179,120,120,0.59) inset;
+}
+.shadow{
+  box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+  -webkit-box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+  -moz-box-shadow: 10px 10px 19px -8px rgba(28,24,24,0.75);
+ }

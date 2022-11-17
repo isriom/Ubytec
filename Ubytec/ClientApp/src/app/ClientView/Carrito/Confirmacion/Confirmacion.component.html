@@ -1,0 +1,23 @@
+<div class="bggrad">
+  <div class="modal-body w-auto h-auto border border-1" style="display: flex; margin: 1%; flex-flow: row wrap">
+    <mat-card class="card shadow" style=";margin: 1%;">
+      <mat-card-content class="card-body">
+        <form [formGroup]="order">
+          <div class="card-header">Tarjeta</div>
+          <div class="card-body" >
+            <input class="w-75" formControlName="tarjeta" #tarjeta required></div>
+          <div class="card-header" >CSV</div>
+          <div class="card-body ">
+            <input class="w-75 " formControlName="csv" #CSV required></div>
+          <div class="card-header">Dirreccion</div>
+          <div class="card-body">
+            <input class="w-75 " formControlName="adr" #adr required></div>
+          <div class="card-footer ">{{total}}</div>
+          <div class="card-footer ">
+            <button [disabled]="!order.valid" (click)="Confirmacion()">Confirmar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

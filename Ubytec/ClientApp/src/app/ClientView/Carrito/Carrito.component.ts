@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {APIService, product} from "../api.service";
+import {APIService, product} from "../../api.service";
 
 
 @Component({
@@ -10,10 +10,9 @@ import {APIService, product} from "../api.service";
 })
 export class CarritoComponent implements OnInit {
   carrito: product[] = []
-  total: number = 0;
 
 
-  constructor(public http: HttpClient, private service: APIService) {
+  constructor(public http: HttpClient, public service: APIService) {
     console.log("modal creado")
     this.updateCarrito()
   }
@@ -23,20 +22,27 @@ export class CarritoComponent implements OnInit {
 
   updateCarrito() {
     this.carrito = this.service.getCarrito();
-    this.total = this.service.updateTotal()
-
+    this.service.updateTotal()
   }
 
 
   increment(producto: product) {
     this.service.increase(producto);
-    this.total = this.service.updateTotal()
-
   }
 
   decrease(producto: product) {
     this.service.decrease(producto);
-    this.total = this.service.updateTotal()
+  }
 
+  comprar() {
+    this.service.comprar();
+  }
+
+  impuestos(price: number) {
+  return (price * 0.13).toFixed(2)
+  }
+
+  neto(total: number) {
+  return (total * 1.13).toFixed(2)
   }
 }
