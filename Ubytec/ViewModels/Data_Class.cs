@@ -60,10 +60,10 @@ namespace ClientData
         public Pedido ToModel()
         {
             var order = new Pedido();
-            order.Dirreccion = order.Dirreccion;
-            order.CedulaJafiliado = order.CedulaJafiliado;
+            order.Dirreccion = this.Dirreccion;
+            order.CedulaJafiliado = this.CedulaJafiliado;
             order.EstadoPedido = "Pendiente";
-            order.ComprobantePago = order.ComprobantePago;
+            order.ComprobantePago = this.ComprobantePago;
             var orderProducts = Products.Select(product => product.toModel(order)).ToList();
             order.ProductoPedidos = orderProducts;
             return order;

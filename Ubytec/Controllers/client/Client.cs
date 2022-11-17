@@ -59,7 +59,9 @@ public class Client : Controller
                 var orderitemlist = order.Products;
                 var OrderModel = order.ToModel();
                 OrderModel.CedulaCliente = cliente.Cedula;
-                var OrderItemModel = new List<Models.ProductoPedido>();
+                var OrderItemModel = OrderModel.ProductoPedidos;
+                _context.Pedidos.Add(OrderModel);
+                _context.SaveChanges();
                 return Ok();
 
 
@@ -102,7 +104,8 @@ public class Client : Controller
                 if (id != null && id2 != null)
                 {
                     var selectedafiliate = listAfiliados.First(x => x.Nombre == id);
-                    var selectedproduct = _context.Productos.First(x => x.NombreProducto == id2 && x.CedulaJafiliado == selectedafiliate.CedulaJuridica);
+                    var selectedproduct = _context.Productos.First(x =>
+                        x.NombreProducto == id2 && x.CedulaJafiliado == selectedafiliate.CedulaJuridica);
                     return Json(_context.FotosProductos
                         .Where(x => x.CedulaJafiliado == selectedafiliate.CedulaJuridica &&
                                     x.NombreProducto == selectedproduct.NombreProducto).Select(x => x.Urlfoto)
