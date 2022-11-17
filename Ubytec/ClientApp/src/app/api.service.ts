@@ -1,9 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import {HomeComponent} from "./home/home.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {ConfirmacionComponent} from "./ClientView/Carrito/Confirmacion/Confirmacion.component";
 
 declare global {
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +21,32 @@ export class APIService {
       'withCredentials': 'true'
     })
   };
-  carrito: product[] = [new product("pan", 800,  "https://via.placeholder.com/150"),
-    new product("Jamon", 550,  "https://via.placeholder.com/150"),
-    new product("Huevos", 300,  "https://via.placeholder.com/150")]
+  carrito: product[] = [new product("pan", 800, "https://via.placeholder.com/150"),
+    new product("Jamon", 550, "https://via.placeholder.com/150"),
+    new product("Huevos", 300, "https://via.placeholder.com/150")]
 
   total: number = 0;
+  actualEditor: NgbModalRef | undefined;
+  juridicNo: string = "";
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  Afiliados: afiliate[] = [];
+  SelectedAfiliate: afiliate = new afiliate();
+
+  private BASE_URL: string | URL = "";
+
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, public _modal: NgbModal) {
     this.http = http;
+    this.BASE_URL = baseUrl;
+    if (localStorage.getItem("shoppingCart") != null) {
+      this.carrito = JSON.parse(<string>localStorage.getItem("shoppingCart"));
+    }
+    if (localStorage.getItem("SelectedAfiliate") != null) {
+      this.SelectedAfiliate = JSON.parse(<string>localStorage.getItem("SelectedAfiliate"));
+    }
   }
 
   login(login: Login) {
-    const res = this.http.put<string>(this.api + "Signin", JSON.stringify( login), {
+    const res = this.http.put<string>(this.api + "Signin", JSON.stringify(login), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     });
@@ -64,15 +81,22 @@ export class APIService {
 
   addCarrito(product: product) {
     this.carrito.push(product);
+    this.updateTotal();
+
   }
 
   removeCarrito(product: product) {
     this.carrito.splice(this.carrito.indexOf(product), 1);
+    this.updateTotal();
+
   }
 
   increase(product: product) {
     product.amount++;
+    console.log("increase")
+    console.log(product)
     this.updateTotal();
+    console.log("increase second part")
   }
 
   decrease(product: product) {
@@ -85,14 +109,94 @@ export class APIService {
 
   }
 
-  updateTotal() {
+  public updateTotal() {
+    localStorage.setItem("shoppingCart", JSON.stringify(this.carrito));
+    console.log("update")
     this.total = 0;
-    for (const carritoKey in this.carrito) {
-      this.total += this.carrito[carritoKey].amount * <number>this.carrito[carritoKey][`price`];
-    }
+    this.carrito.forEach(value => this.total += value.amount * value.price)
     return this.total;
   }
 
+  public comprar() {
+
+    if (this.actualEditor != undefined) {
+      this.actualEditor.close()
+    }
+    this.actualEditor = this._modal.open(ConfirmacionComponent, {animation: true, size: 'sm'});
+  }
+
+  public async confirmar(Order: Order) {
+    this.actualEditor?.close()
+    console.log(Order)
+    const res = this.http.put<string>(this.api + "Client/buy/add", JSON.stringify(Order), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
+    await res.subscribe(result => {
+      this.juridicNo = "";
+      this.carrito = []
+      this.total = 0;
+    })
+
+    // window.location.assign(this.BASE_URL)
+  }
+
+  async getAfiliados() {
+    const res = this.http.get<string>(this.api + "Client/Afiliados/list", {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
+    await res.subscribe(result => {
+      this.Afiliados = <afiliate[]><unknown>(result);
+    }, error => {
+      console.error(error)
+    });
+
+  }
+
+  async SelectAfiliate(afiliate: afiliate) {
+    if (this.SelectedAfiliate.CedulaJuridica != afiliate.CedulaJuridica) {
+      localStorage.removeItem("shoppingCart");
+    }
+    this.SelectedAfiliate = afiliate;
+    await this.getAfiliateProducts(this.SelectedAfiliate);
+    await this.SelectedAfiliate.Productos.forEach((value => {
+      this.getProductimage(value);
+    }))
+    localStorage.setItem("SelectedAfiliate", JSON.stringify(afiliate));
+    window.location.assign(this.BASE_URL + "Cliente/Tienda")
+  }
+
+  async getAfiliateProducts(afiliate: afiliate) {
+    const res = this.http.get<string>(this.api + "Client/Afiliados/list/" + afiliate.Nombre, {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
+    await res.subscribe(result => {
+      var products: afiliateproduct[] = <afiliateproduct[]><unknown>(result);
+      products.forEach((value => {
+        this.getProductimage(value)
+      }))
+      afiliate.Productos = products;
+
+      return products;
+    }, error => {
+      console.error(error)
+    });
+  }
+
+  async getProductimage(product: afiliateproduct) {
+    const res = this.http.get<string>(this.api + "Client/Afiliados/list/" + this.SelectedAfiliate?.Nombre + "/" + product.NombreProducto, {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
+    await res.subscribe(result => {
+      console.log(result)
+      product.FotosProductos = <string[]><unknown>(result);
+    }, error => {
+      console.error(error)
+    });
+  }
 }
 
 export class Login {
@@ -103,7 +207,7 @@ export class Login {
 
 export class product {
   name: string | undefined;
-  price: number | undefined;
+  price: number = 0;
   amount: number = 1;
   image: string | undefined;
 
@@ -119,4 +223,42 @@ export class product {
 
 }
 
+export class Order {
+  ComprobantePago: string = null!;
+  Dirreccion: string = null!;
+  CedulaJafiliado: string = null!;
+  Products: product[] = [];
+
+  constructor(ComprobantePago: string, Dirreccion: string, service: APIService) {
+    this.ComprobantePago = ComprobantePago;
+    this.Dirreccion = Dirreccion;
+    this.CedulaJafiliado = service.SelectedAfiliate.CedulaJuridica;
+    this.Products = service.carrito;
+  }
+}
+
+export class afiliateproduct {
+
+  public NombreProducto: string = "";
+  public CedulaJafiliado: string = "";
+  public Categoria: string = ""
+  public Precio: number = 0
+  public FotosProductos: string[] = [];
+
+
+}
+
+export class afiliate {
+  public Nombre: string = "";
+  public CedulaJuridica: string = "";
+  public Distrito: string = "";
+  public Provincia: string = "";
+  public Canton: string = "";
+  public Sinpe: string = "";
+  public Correo: string = "";
+  public Estado: string = "";
+  public Productos: afiliateproduct[] = [];
+
+
+}
 
