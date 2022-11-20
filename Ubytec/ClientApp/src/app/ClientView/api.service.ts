@@ -1,8 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
-import {HomeComponent} from "./home/home.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
-import {ConfirmacionComponent} from "./ClientView/Carrito/Confirmacion/Confirmacion.component";
+import {ConfirmacionComponent} from "./Carrito/Confirmacion/Confirmacion.component";
 
 declare global {
 }
@@ -219,6 +218,8 @@ export class APIService {
       console.error(error)
     });
   }
+
+
 }
 
 /**

@@ -1,0 +1,24 @@
+<div>
+  <div *ngFor="let data of Adminservice.informe">
+    <div>
+      <h4>{{data[0].Cliente}}</h4>
+      <table class="blueTable">
+        <tr >
+          <th *ngFor="let column of displayedColumns">{{column}}</th>
+        </tr>
+        <tr *ngFor="let venta of data">
+          <td>{{venta.Nombre}}</td>
+          <td>{{venta.Count}}</td>
+          <td>{{venta.Repartidor}}</td>
+          <td>{{venta.Precio}}</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{this.totalContador(data)}}</td>
+          <td>-</td>
+          <td>{{this.totalPrecio(data)}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

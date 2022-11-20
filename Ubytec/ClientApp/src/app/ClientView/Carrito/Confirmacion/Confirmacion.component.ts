@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChildren} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {APIService, Order} from "../../../api.service";
+import {APIService, Order} from "../../api.service";
 import {Md5} from "ts-md5";
 import {FormControl, FormGroup} from "@angular/forms";
 

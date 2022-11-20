@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {afiliate, afiliateproduct, APIService, product} from "../../api.service";
+import {afiliate, afiliateproduct, APIService, product} from "../api.service";
 
 
 @Component({

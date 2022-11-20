@@ -48,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\AdminView\ConsolidadoVentas" />
     <Folder Include="Models\" />
   </ItemGroup>
 

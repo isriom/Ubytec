@@ -19,6 +19,7 @@ namespace Ubytec.Models
         public virtual DbSet<Afiliado> Afiliados { get; set; } = null!;
         public virtual DbSet<Cliente> Clientes { get; set; } = null!;
         public virtual DbSet<Comentario> Comentarios { get; set; } = null!;
+        public virtual DbSet<ConsolidadoVenta> ConsolidadoVentas { get; set; } = null!;
         public virtual DbSet<FotosProducto> FotosProductos { get; set; } = null!;
         public virtual DbSet<Gerente> Gerentes { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
@@ -35,7 +36,7 @@ namespace Ubytec.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=ubytec.postgres.database.azure.com;Database=ubytec;Username=ubytec@ubytec;Password=CE3110.2022.2;Ssl Mode=Prefer;");
+                optionsBuilder.UseNpgsql("Host=ubytec.postgres.database.azure.com;Database=ubytec;Username=ubytec@ubytec;Password=CE3110.2022.2");
             }
         }
 
@@ -76,6 +77,21 @@ namespace Ubytec.Models
                     .HasForeignKey(d => d.CedulaJafiliado)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("Comentario_CedulaJAfiliado_fkey");
+            });
+
+            modelBuilder.Entity<ConsolidadoVenta>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("ConsolidadoVentas");
+
+                entity.Property(e => e.Cliente).HasColumnName("cliente");
+
+                entity.Property(e => e.Count).HasColumnName("count");
+
+                entity.Property(e => e.Precio).HasColumnName("precio");
+
+                entity.Property(e => e.Repartidor).HasColumnName("repartidor");
             });
 
             modelBuilder.Entity<FotosProducto>(entity =>
