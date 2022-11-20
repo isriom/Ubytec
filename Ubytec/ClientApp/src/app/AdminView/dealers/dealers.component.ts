@@ -35,6 +35,7 @@ export class DealersComponent {
    * @param baseUrl variable para manejar la direccion de la pagina
    */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.op = '0';
     this.http = http;
     this.baseurl = baseUrl;
     //this.Obtener_Clientes();
@@ -99,7 +100,10 @@ export class DealersComponent {
    * @constructor
    */
   async Delete_Button() {
-
+    this.op = '2'
+  }
+  async Edit_Button() {
+    this.op = '3'
   }
 }
 

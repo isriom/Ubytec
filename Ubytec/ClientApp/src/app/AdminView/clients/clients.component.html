@@ -7,53 +7,57 @@
            value="{{element.value}}">
 
   </div>
-  <div id="Buttons">
-    <button (click)="Add_Button()" id="edit">Editar mis datos</button>
-    <button (click)="Delete_Button()" id="delete">Eliminar mi cuenta</button>
+  <ng-template [ngIf]="opC== '0'">
+    <div id="Buttons">
+      <button (click)="Edit_Button()" id="edit">Editar mis datos</button>
+      <button (click)="Delete_Button()" id="delete">Eliminar mi cuenta</button>
 
 
-  </div>
+    </div>
+  </ng-template>
   <div id="Inputs">
     <ng-template [ngIf]="opC== '1'">
-      <li [routerLinkActiveOptions]="{ exact: true }"
-          [routerLinkActive]="['link-active']"
-          class="nav-item">
-        <a class="nav-link text-dark">Mi Informacion</a>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-md-3">
-              <div class="form-group two-fields">
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rname" id="Nombre" placeholder="Nombre" requiredtype="text" value="">
-                  <input class="form-control" formControlName="Rlastname" id="Apellidos" placeholder="Apellidos" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rid" id="Cedula" placeholder="Cedula">
-                  <input class="form-control" formControlName="Rdistrict" id="Distrito" placeholder="Distrito" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rprovince" id="Provincia" placeholder="Provincia" />
-                  <input class="form-control" formControlName="Rcanton" id="Canton" placeholder="Canton" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Ruser" id="Usuario" placeholder="Usuario" />
-                  <input class="form-control" formControlName="Rpass" id="Contraseña" placeholder="Contraseña" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rbirthday" id="FechaNacimiento" placeholder="Fecha de nacimiento" />
-                  <input class="form-control" formControlName="Remail" id="Correo" placeholder="Correo" />
-                </div>
+      <div id="Buttons">
+        <button (click)="Edit_Button()" id="edit">Editar mis datos</button>
+        <button (click)="Delete_Button()" id="delete">Eliminar mi cuenta</button>
+
+
+      </div>
+
+      <a class="nav-link text-dark">Mi Informacion</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="Cname" id="Nombre" placeholder="Nombre" requiredtype="text" value="">
+                <input class="form-control" formControlName="Clastname" id="Apellidos" placeholder="Apellidos" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cid" id="Cedula" placeholder="Cedula">
+                <input class="form-control" formControlName="Cdistrict" id="Distrito" placeholder="Distrito" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cprovince" id="Provincia" placeholder="Provincia" />
+                <input class="form-control" formControlName="Ccanton" id="Canton" placeholder="Canton" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cuser" id="Usuario" placeholder="Usuario" />
+                <input class="form-control" formControlName="Cpass" id="Contraseña" placeholder="Contraseña" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cbirthday" id="FechaNacimiento" placeholder="Fecha de nacimiento" />
+                <input class="form-control" formControlName="Cemail" id="Correo" placeholder="Correo" />
               </div>
             </div>
           </div>
         </div>
-        <div id="Buttons">
-          <button (click)="Add_Button()" class="form-floating" id="save">Guardar</button>
-          
+      </div>
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="save">Guardar</button>
 
-        </div>
 
-      </li>
+      </div>
 
     </ng-template>
   </div>
