@@ -31,7 +31,7 @@
   margin-bottom: auto;
   font-weight: bold;
   color: #FFFFFF;
-  background-color: #11418f;
+  background-color: #0caecf;
 }
 
 /**
@@ -79,7 +79,7 @@ button {
   color: #FFFFFF;
   border-radius: 4px;
   gap: 1px;
-  background-color: #11418f;
+  background-color: #0caecf;
   border-color: #000000;
   border-style: dot-dash;
 }

@@ -7,53 +7,144 @@
            value="{{element.value}}">
 
   </div>
-  <div id="Buttons" >
-    <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
-    <button (click)="Delete_Button()" id="delete">Eliminar</button>
-    <button (click)="Delete_Button()" id="edit">Editar</button>
-
-  </div>
+  <ng-template [ngIf]="op== '0'">
+    <div id="Buttons">
+      <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
+      <button (click)="Delete_Button()" id="delete">Eliminar</button>
+      <button (click)="Edit_Button()" id="edit">Editar</button>
+    </div>
+  </ng-template>
+  
   <div id="Inputs">
     <ng-template [ngIf]="op== '1'">
-      <li [routerLinkActiveOptions]="{ exact: true }"
-          [routerLinkActive]="['link-active']"
-          class="nav-item">
-        <a class="nav-link text-dark">Ingrese los datos del repartidor</a>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-md-3">
-              <div class="form-group two-fields">
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rname" id="Nombre" placeholder="Nombre" requiredtype="text" value="">
-                  <input class="form-control" formControlName="Rpkey" id="PK" placeholder="PK" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rid" id="Cedula" placeholder="Cedula">
-                  <input class="form-control" formControlName="Rdistrict" id="Distrito" placeholder="Distrito" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Rprovince" id="Provincia" placeholder="Provincia" />
-                  <input class="form-control" formControlName="Rcanton" id="Canton" placeholder="Canton" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Ruser" id="Usuario" placeholder="Usuario" />
-                  <input class="form-control" formControlName="Rpass" id="Contraseña" placeholder="Contraseña" />
-                </div>
-                <div class="input-group">
-                  <input class="form-control" formControlName="Ravailable" id="Disponible" placeholder="Disponibilidad" />
-                  <input class="form-control" formControlName="Remail" id="Correo" placeholder="Correo" />
-                </div>
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
+        <button (click)="Delete_Button()" id="delete">Eliminar</button>
+        <button (click)="Edit_Button()" id="edit">Editar</button>
+      </div>
+
+      <a class="nav-link text-dark">Ingrese los datos del repartidor</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="Rname" id="Nombre" placeholder="Nombre" requiredtype="text" value="">
+
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Rid" id="Cedula" placeholder="Cedula">
+                <input class="form-control" formControlName="Rdistrict" id="Distrito" placeholder="Distrito" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Rprovince" id="Provincia" placeholder="Provincia" />
+                <input class="form-control" formControlName="Rcanton" id="Canton" placeholder="Canton" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Ruser" id="Usuario" placeholder="Usuario" />
+                <input class="form-control" formControlName="Rpass" id="Contraseña" placeholder="Contraseña" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Ravailable" id="Disponible" placeholder="Disponibilidad" />
+                <input class="form-control" formControlName="Remail" id="Correo" placeholder="Correo" />
               </div>
             </div>
           </div>
         </div>
-        <div id="Buttons">
-          <button (click)="Add_Button()" class="form-floating" id="save">Guardar</button>
+      </div>
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="save">Guardar</button>
 
+
+      </div>
+
+    </ng-template>
+    <ng-template [ngIf]="op== '2'">
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
+        <button (click)="Delete_Button()" id="delete">Eliminar</button>
+        <button (click)="Edit_Button()" id="edit">Editar</button>
+      </div>
+
+      <a class="nav-link text-dark">Ingrese el numero de identificación del Repartidor</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="RDeleteId" id="CedulaEliminar" placeholder="Cedula de Identidad" requiredtype="text" value="">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="Rdelete">Confirmar Eliminación</button>
+
+
+      </div>
+
+    </ng-template>
+    <ng-template [ngIf]="op== '3'">
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="add">Agregar</button>
+        <button (click)="Delete_Button()" id="delete">Eliminar</button>
+        <button (click)="Edit_Button()" id="edit">Editar</button>
+      </div>
+
+      <a class="nav-link text-dark">Ingrese el numero de identificación del Repartidor</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="REditId" id="CedulaEditar" placeholder="Cedula de Identidad" requiredtype="text" value="">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div id="Buttons">
+          <button (click)="Add_Button()" class="form-floating" id="search">Buscar</button>
 
         </div>
+      </div>
+      
 
-      </li>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+
+              <div class="input-group">
+                <input class="form-control" formControlName="REditName" id="NombreEditar" placeholder="Nombre">
+                <input class="form-control" formControlName="REditDistrict" id="DistritoEditar" placeholder="Distrito" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="REditProvince" id="ProvinciaEditar" placeholder="Provincia" />
+                <input class="form-control" formControlName="REditCanton" id="CantonEditar" placeholder="Canton" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="REditUser" id="UsuarioEditar" placeholder="Usuario" />
+                <input class="form-control" formControlName="REditPass" id="ContraseñaEditar" placeholder="Contraseña" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="REditAvailable" id="DisponibleEditar" placeholder="Disponibilidad" />
+                <input class="form-control" formControlName="REditEmail" id="CorreoEditar" placeholder="Correo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Buttons">
+        <button (click)="Add_Button()" class="form-floating" id="Redit">Guardar Cambios</button>
+
+
+      </div>
 
     </ng-template>
   </div>
