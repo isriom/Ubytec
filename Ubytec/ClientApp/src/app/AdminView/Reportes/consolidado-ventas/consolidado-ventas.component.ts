@@ -10,9 +10,9 @@ import {AdminService, ConsolidadoVenta} from "../../admin.service";
 })
 export class ConsolidadoVentasComponent implements OnInit {
   displayedColumns: string[] = ["Nombre Afiliado", "Count", "Repartidor", "Precio",];
-
+  data:ConsolidadoVenta[][] | null=[]
   constructor(public http: HttpClient, public Adminservice: AdminService) {
-    Adminservice.getConsolidadoVentas();
+   this.data= Adminservice.getConsolidadoVentas();
   }
 
   ngOnInit(): void {

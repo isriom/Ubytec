@@ -66,6 +66,7 @@ namespace ClientData
             order.ComprobantePago = this.ComprobantePago;
             var orderProducts = Products.Select(product => product.toModel(order)).ToList();
             order.ProductoPedidos = orderProducts;
+            order.Monto= this.Monto;
             return order;
         }
     }

@@ -60,6 +60,16 @@
                 >Consolidado Ventas</a
                 >
               </li>
+              <li [routerLinkActive]="['link-active']" class="nav-item">
+                <a [routerLink]="['Admin/RepartidoresPago']" class="nav-link text-dark"
+                >Pago Repartidores</a
+                >
+              </li>
+              <li [routerLinkActive]="['link-active']" class="nav-item">
+                <a [routerLink]="['Admin/VentasAfiliado']" class="nav-link text-dark"
+                >Ventas Afiliados</a
+                >
+              </li>
               <li class="nav-item">
                 <button (click)="logout()" class="text-dark">LogOut</button>
               </li>

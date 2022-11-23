@@ -1,0 +1,26 @@
+<div>
+  <div *ngFor="let data of Adminservice.dataRepartidoresPago">
+    <div>
+      <h4>{{data[0].Repartidor}}</h4>
+      <table class="blueTable">
+        <tr >
+          <th *ngFor="let column of displayedColumns">{{column}}</th>
+        </tr>
+        <tr *ngFor="let venta of data">
+          <td>{{venta.Afiliado}}</td>
+          <td>{{venta.Count}}</td>
+          <td>{{venta.Total}}</td>
+          <td>{{venta.Ganancias}}</td>
+          <td>{{venta.Pago}}</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{this.totalContador(data)}}</td>
+          <td>{{this.total(data)}}</td>
+          <td>{{this.totalGanancia(data)}}</td>
+          <td>{{this.totalPago(data)}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
         {
             //Allow exchange betwen proxy, real server and web browser
             policy.WithOrigins("https://localhost:44460", "https://localhost:40463", "https://localhost:44366",
-                "https://localhost:33863").AllowCredentials();
+                "https://localhost:33863","https://localhost:44466").AllowCredentials();
             policy.WithExposedHeaders("*");
             policy.AllowAnyHeader();
             policy.AllowAnyMethod();

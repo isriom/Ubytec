@@ -75,8 +75,14 @@ public class Admin : Controller
         switch (web)
         {
             case "ConsolidadoVentas":
-                return Json(_context.ConsolidadoVentas.ToList().GroupBy(x=>x.Cliente), options);
-                
+                return Json(_context.ConsolidadoVentas.ToList().GroupBy(x => x.Cliente), options);
+            
+            case "ReporteRepartidor":
+                return Json(_context.RepartidoresPagos.ToList().GroupBy(x => x.Repartidor), options);
+            
+            case "VentasAfiliado":
+                return Json(_context.VentasAfiliados.ToList().GroupBy(x => x.Afiliado), options);
+            
             case "Afiliados":
                 //logica de Puntos
                 //lista de afiliados validados

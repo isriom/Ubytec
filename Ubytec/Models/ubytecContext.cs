@@ -26,10 +26,12 @@ namespace Ubytec.Models
         public virtual DbSet<Producto> Productos { get; set; } = null!;
         public virtual DbSet<ProductoPedido> ProductoPedidos { get; set; } = null!;
         public virtual DbSet<Repartidor> Repartidors { get; set; } = null!;
+        public virtual DbSet<RepartidoresPago> RepartidoresPagos { get; set; } = null!;
         public virtual DbSet<TelefonoAfiliado> TelefonoAfiliados { get; set; } = null!;
         public virtual DbSet<TelefonoCliente> TelefonoClientes { get; set; } = null!;
         public virtual DbSet<TelefonoGerente> TelefonoGerentes { get; set; } = null!;
         public virtual DbSet<TelefonoRepartidor> TelefonoRepartidors { get; set; } = null!;
+        public virtual DbSet<VentasAfiliado> VentasAfiliados { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -217,6 +219,17 @@ namespace Ubytec.Models
                 entity.ToTable("Repartidor");
             });
 
+            modelBuilder.Entity<RepartidoresPago>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("RepartidoresPago");
+
+                entity.Property(e => e.Afiliado).HasColumnName("afiliado");
+
+                entity.Property(e => e.Count).HasColumnName("count");
+            });
+
             modelBuilder.Entity<TelefonoAfiliado>(entity =>
             {
                 entity.HasKey(e => new { e.CedulaJuridica, e.Telefono })
@@ -271,6 +284,15 @@ namespace Ubytec.Models
                     .HasForeignKey(d => d.CedulaRepartidor)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("TelefonoRepartidor_CedulaRepartidor_fkey");
+            });
+
+            modelBuilder.Entity<VentasAfiliado>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VentasAfiliado");
+
+                entity.Property(e => e.Sum).HasColumnName("sum");
             });
 
             OnModelCreatingPartial(modelBuilder);

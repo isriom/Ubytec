@@ -19,11 +19,11 @@ import {TiendaComponent} from "./ClientView/Tienda/Tienda.component";
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  ConsolidadoVentasComponent
-} from './AdminView/ConsolidadoVentas/consolidado-ventas/consolidado-ventas.component';
-import {AdminService} from "./AdminView/admin.service";
+import {ConsolidadoVentasComponent} from './AdminView/Reportes/consolidado-ventas/consolidado-ventas.component';
+import {AdminService, VentasAfiliado} from "./AdminView/admin.service";
 import {MatTableModule} from "@angular/material/table";
+import {RepartidoresPagoComponent} from "./AdminView/Reportes/Repartidores-Pago/Repartidores-Pago.component";
+import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Ventas-Afiliado.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import {MatTableModule} from "@angular/material/table";
     ConfirmacionComponent,
     SeleccionAfiliadoComponent,
     TiendaComponent,
-    ConsolidadoVentasComponent
+    ConsolidadoVentasComponent,
+    RepartidoresPagoComponent,
+    VentasAfiliadoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -57,7 +59,9 @@ import {MatTableModule} from "@angular/material/table";
       }, {
         path: "Admin", children: [
           {path: 'Dealers', data: {title: "Dealers"}, component: DealersComponent},
-          {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent}
+          {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent},
+          {path: 'RepartidoresPago', data: {title: "RepartidoresPago"}, component: RepartidoresPagoComponent},
+          {path: 'VentasAfiliado', data: {title: "RepartidoresPago"}, component: VentasAfiliadoComponent}
         ]
       },
     ]),
