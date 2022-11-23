@@ -1,0 +1,205 @@
+<div class="portfolio-item mx-auto" id="centraldiv">
+  <div id="title">Gestion de Administrador del Comercio Afiliado</div>
+  <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3">
+    <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
+    <input class="form-control-lg mx-auto element-input" id="{{element.key}}" placeholder="E"
+           value="{{element.value}}">
+
+  </div>
+  <ng-template [ngIf]="SolR== 'I'">
+    <div id="Buttons">
+      <button (click)="Add_Button()" id="IAgregar">Registrar un Administrador</button>
+      <button (click)="Edit_Button()" id="IEditar"> Editar un Administrador </button>
+      <button (click)="Delete_Button()" id="IEliminar">Eliminar un Administrador</button>
+
+    </div>
+
+  </ng-template>
+  <div id="Inputs">
+    <ng-template [ngIf]="SolR== 'RG'">
+      <div id="RButtons">
+        <button (click)="Edit_Button()" id="RGEditar"> Editar un Administrador </button>
+        <button (click)="Delete_Button()" id="RGEliminar">Eliminar un Administrador</button>
+      </div>
+
+      <a class="nav-link text-dark">Informacion del Administrador del Comercio</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="CGid" id="RGCedulaJ" placeholder="Cedula Juridica del Afiliado">
+                <input class="form-control" formControlName="Cuser" id="RGUsuario" placeholder="Usuario" />
+                <input class="form-control" formControlName="CGname" id="RGNombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cprovince" id="RGProvincia" placeholder="Provincia" />
+                <input class="form-control" formControlName="Cdistrict" id="RGDistrito" placeholder="Distrito" />
+                <input class="form-control" formControlName="Ccanton" id="RGCanton" placeholder="Canton" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="RButtons">
+        <button (click)="Save_G_Button()" class="form-floating" id="RGsave">Guardar Administrador</button>
+      </div>
+
+      <a class="nav-link text-dark">Telefono del Administrador del Comercio</a>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+              <form action="#" class="border p-3 form">
+                <input class="form-control" formControlName="CATelefono" id="RGTelefono" placeholder="Telefono" >
+              </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="RButtons">
+        <button (click)="Save_TG_Button()" class="form-floating" id="TRGsave">Guardar Telefono</button>
+      </div>
+
+
+
+    </ng-template>
+
+    <ng-template [ngIf]="SolR== 'EG'">
+      <div id="EButtons">
+        <button (click)="Add_Button()" id="EGAgregar">Registrar un Administrador</button>
+        <button (click)="Delete_Button()" id="EGEliminar">Eliminar un Administrador</button>
+      </div>
+
+      <a class="nav-link text-dark">Informacion del Administrador del Comercio</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <a class="nav-link text-dark">Informacion No Editable </a>
+                <input class="form-control" formControlName="Cuser" id="EGUsuario" placeholder="Usuario" />
+                <input class="form-control" formControlName="CGid" id="EGCedulaJ" placeholder="Cedula Juridica">
+
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="CGname" id="EGNombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
+                <input class="form-control" formControlName="CGid" id="EGContrasena" placeholder="Contraseña" />
+
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cprovince" id="EGProvincia" placeholder="Provincia" />
+                <input class="form-control" formControlName="Cdistrict" id="EGDistrito" placeholder="Distrito" />
+                <input class="form-control" formControlName="Ccanton" id="EGCanton" placeholder="Canton" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="EButtons">
+        <button (click)="Edit_G_Button()" class="form-floating" id="EGsave">Actualizar Datos</button>
+      </div>
+
+      <a class="nav-link text-dark">Telefonos del Administrador del Comercio</a>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+              <input class="form-control" formControlName="CATelefono" id="EGTelefono" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="EButtons">
+        <button (click)="Edit_TG_Button()" class="form-floating" id="TEGsave">Actualizar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="EGTelefono1" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="EButtons">
+        <button (click)="Edit_TG_Button()" class="form-floating" id="TEGsave1">Actualizar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="EGTelefono2" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="EButtons">
+        <button (click)="Edit_TG_Button()" class="form-floating" id="TEGsave2">Actualizar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="EGTelefono3" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="EButtons">
+        <button (click)="Edit_TG_Button()" class="form-floating" id="TEGsave3">Actualizar Telefono</button>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="SolR== 'DG'">
+      <div id="DButtons">
+        <button (click)="Add_Button()" id="DGAgregar">Registrar un Administrador</button>
+        <button (click)="Edit_Button()" id="DGEditar"> Editar un Administrador </button>
+      </div>
+
+
+      <a class="nav-link text-dark">Telefonos del Administrador del Comercio</a>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="DGTelefono" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="DButtons">
+        <button (click)="Delete_TG_Button()" class="form-floating" id="TDGsave">Eliminar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="DGTelefono1" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="DButtons">
+        <button (click)="Delete_TG_Button()" class="form-floating" id="TDGsave1">Eliminar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="DGTelefono2" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="DButtons">
+        <button (click)="Delete_TG_Button()" class="form-floating" id="TDGsave2">Eliminar Telefono</button>
+      </div>
+      <div class="container">
+        <div class="form-group two-fields">
+          <div class="input">
+            <input class="form-control" formControlName="CATelefono" id="DGTelefono3" placeholder="Telefono" >
+          </div>
+        </div>
+      </div>
+      <div id="DButtons">
+        <button (click)="Delete_TG_Button()" class="form-floating" id="TDGsave3">Eliminar Telefono</button>
+      </div>
+
+      <div id="DButtons">
+        <button (click)="Delete_G_Button()" class="form-floating" id="DGsave">Eliminar Administrador</button>
+      </div>
+
+    </ng-template>
+
+
+
+  </div>
+</div>

@@ -1,0 +1,115 @@
+
+<div class="portfolio-item mx-auto" id="centraldiv">
+  <div id="title">Solicitud de Afiliacion</div>
+  <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3">
+    <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
+    <input class="form-control-lg mx-auto element-input" id="{{element.key}}" placeholder="E"
+           value="{{element.value}}">
+
+
+
+  </div>
+  <ng-template [ngIf]="SolR== 'I'">
+    <div id="Buttons">
+      <button (click)="Afiliado_Button()" class="form-floating" id="Afiliado">Registrar un Afiliado</button>
+    </div>
+  </ng-template>
+
+  <div id="Inputs">
+    <ng-template [ngIf]="SolR== 'A'">
+      <div id="Buttons">
+        <button (click)="Gerente_Button()" id="Gerente">Registrar un Administrador</button>
+      </div>
+
+      <a class="nav-link text-dark">Informacion del Afiliado</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="CAname" id="ANombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
+                <input class="form-control" formControlName="CACJ" id="ACedulaJ" placeholder="Cédula Jurídica" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="CAProvincia" id="AProvincia" placeholder="Provincia">
+                <input class="form-control" formControlName="CAcanton" id="ACanton" placeholder="Cantón" />
+                <input class="form-control" formControlName="CAdistrict" id="ADistrito" placeholder="Distrito" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="CASinpe" id="ASinpe" placeholder="Número de SINPE" />
+                <input class="form-control" formControlName="CAemail" id="ACorreo" placeholder="Correo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="Buttons">
+        <button (click)="Save_A_Button()" class="form-floating" id="Asave">Guardar Afiliado</button>
+      </div>
+
+      <a class="nav-link text-dark">Telefono del Afiliado</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+              <div class="input-group">
+                <input class="form-control" formControlName="CATelefono" id="ATelefono" placeholder="Telefono" >
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="Buttons">
+        <button (click)="Save_TA_Button()" class="form-floating" id="TAsave">Guardar Telefono</button>
+      </div>
+
+
+
+
+    </ng-template>
+    <ng-template [ngIf]="SolR== 'G'">
+      <a class="nav-link text-dark">Informacion del Administrador del Comercio</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <input class="form-control" formControlName="CGname" id="GNombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
+                <input class="form-control" formControlName="CGid" id="GCedulaJ" placeholder="Cédula Jurídica del Afiliado">
+                <input class="form-control" formControlName="Cuser" id="GUsuario" placeholder="Usuario" />
+              </div>
+              <div class="input-group">
+                <input class="form-control" formControlName="Cprovince" id="GProvincia" placeholder="Provincia" />
+                <input class="form-control" formControlName="Cdistrict" id="GDistrito" placeholder="Distrito" />
+                <input class="form-control" formControlName="Ccanton" id="GCanton" placeholder="Cantón" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="Buttons">
+        <button (click)="Save_G_Button()" class="form-floating" id="save">Guardar Administrador</button>
+      </div>
+
+      <a class="nav-link text-dark">Agregue los teléfonos del Administrador del Comercio</a>
+
+      <a class="nav-link text-dark">Teléfono del Administrador del Comercio</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="input-group">
+              <input class="form-control" formControlName="CATelefono" id="GTelefono" placeholder="Telefono" >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Buttons">
+        <button (click)="Save_TG_Button()" class="form-floating" id="TGsave">Guardar Telefono</button>
+      </div>
+
+
+
+    </ng-template>
+  </div>
+</div>
