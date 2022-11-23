@@ -70,10 +70,12 @@ public class Client : Controller
 
             case "Direccion":
                 //logica de Dirreccion
+                
                 return Ok();
 
             case "Telefono":
                 //logica de Telefono
+                var tel = element.Deserialize<TelefonoCliente>(options);
                 return Ok();
         }
 

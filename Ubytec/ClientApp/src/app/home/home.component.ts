@@ -98,5 +98,9 @@ export class HomeComponent implements OnInit {
 
   Register() {
 
+    if (this.conexion == "Afiliado") {
+      window.location.assign(this.baseurl + "Afiliado/Solicitud")
+    }
+
   }
 }

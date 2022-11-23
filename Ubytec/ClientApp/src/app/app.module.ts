@@ -22,6 +22,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ConsolidadoVentasComponent} from './AdminView/Reportes/consolidado-ventas/consolidado-ventas.component';
 import {AdminService, VentasAfiliado} from "./AdminView/admin.service";
 import {MatTableModule} from "@angular/material/table";
+import {SAfiliacionComponent} from "./SAfiliado/SAfiliacion.component";
+import {SAGerenteComponent} from "./Afiliado View/SAGerente/SAGerente.component";
+import {GAfiliadoComponent} from "./AdminView/GAfiliado/GAfiliado.component";
+import {GAGerenteComponent} from "./AdminView/GAGerente/GAGerente.component";
 import {RepartidoresPagoComponent} from "./AdminView/Reportes/Repartidores-Pago/Repartidores-Pago.component";
 import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Ventas-Afiliado.component";
 
@@ -37,6 +41,11 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
     SeleccionAfiliadoComponent,
     TiendaComponent,
     ConsolidadoVentasComponent,
+    SAfiliacionComponent,
+    SAGerenteComponent,
+    GAfiliadoComponent,
+    GAGerenteComponent,
+    ConsolidadoVentasComponent,
     RepartidoresPagoComponent,
     VentasAfiliadoComponent,
   ],
@@ -49,7 +58,8 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
     MatSnackBarModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent, pathMatch: 'full'},
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+
       {
         path: "Cliente", children: [
           {path: 'Carrito', data: {title: "Carrito"}, component: CarritoComponent},
@@ -60,10 +70,19 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
         path: "Admin", children: [
           {path: 'Dealers', data: {title: "Dealers"}, component: DealersComponent},
           {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent},
+          {path: 'Afiliado', data: {title: "Gestion Afiliado"}, component: ConsolidadoVentasComponent},
+          {path: 'Gerente', data: {title: "Gestion Gerente"}, component: ConsolidadoVentasComponent},
+          {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent},
           {path: 'RepartidoresPago', data: {title: "RepartidoresPago"}, component: RepartidoresPagoComponent},
           {path: 'VentasAfiliado', data: {title: "RepartidoresPago"}, component: VentasAfiliadoComponent}
         ]
-      },
+      },{
+        path: "Afiliado", children: [
+          { path: 'Administrador', data: { title: "GestionAdministrador" }, component: SAGerenteComponent },
+          { path: 'Solicitud', data: { title: "Solicitud de Afiliado" }, component: SAfiliacionComponent },
+
+        ]
+      }
     ]),
     MatCardModule,
     NgbCarouselModule,

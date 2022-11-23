@@ -45,18 +45,26 @@ public class Afiliado : Controller
     [Route("api/[controller]/{web}/add")]
     public ActionResult Register([FromBody] JsonElement element, string web)
     {
+        //logica para insertar en la base de datos 
+        var administrador = _context.Gerentes.First(administrador => administrador.Usuario == HttpContext.User.Identity.Name);
+        
         switch (web)
         {
-            case "buy":
+            case "Administrador":
+                //logica para crear un admin
+                var Admin = element.Deserialize<Gerente>(options);
+                _context.Gerentes.Add(Admin);
+                _context.SaveChanges();
                 return Ok();
+                
 
-
-            case "Direccion":
-                //logica de Dirreccion
-                return Ok();
-
-            case "Telefono":
+            case "TelefonoG":
                 //logica de Telefono
+                var tel = element.Deserialize<TelefonoGerente>(options);
+                _context.TelefonoGerentes.Add(tel);
+                _context.SaveChanges();
+                
+                
                 return Ok();
         }
 
@@ -125,6 +133,14 @@ public class Afiliado : Controller
 
                 // lista de afiliados
                 return Json(listAfiliados, options);
+            
+            case "TelefonoG":
+                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name).ToList();
+                return Json(listaTelG, options);
+            case "Administrador":
+                var Admin = _context.Gerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name);
+                return Json(Admin, options);
+           
         }
 
         return Json("No se encontro la lista", options);
@@ -139,20 +155,32 @@ public class Afiliado : Controller
     public ActionResult Update([FromBody] JsonElement element, string web)
     {
         Console.Out.Write("update: ");
-        /*
+        
         switch (web)
         {
-            case "RCitas":
-                //logica de citas
-                var updater = element.Deserialize<AdminData.CitaElement>();
-                var cita = _context.Cita.Find(updater.placa, updater.fecha, updater.sucursal);
-                updater.cedula = cita.Cedula;
-                updater.nombre = cita.Nombre;
-                updater.monto = (int)cita.Monto;
-                updater.iva = (int)cita.Iva;
+            case "Administrador":
+                //logica para actualizar un admin
+                var updateAdmin = element.Deserialize<Gerente>();
+                var Admin = _context.Gerentes.Find(updateAdmin.Usuario);
+                Admin.NombreCompleto = updateAdmin.NombreCompleto;
+                Admin.Contraseña = updateAdmin.Contraseña;
+                Admin.Provincia = updateAdmin.Provincia;
+                Admin.Canton = updateAdmin.Canton;
+                Admin.Distrito = updateAdmin.Distrito;
                 _context.SaveChanges();
-                updater.UpdateModel(cita);
                 return Ok();
+            
+            case "TelefonoG":
+                //logica de Telefono
+                var updateTel = element.Deserialize<TelefonoGerente>();
+                var tel = _context.TelefonoGerentes.Find(updateTel.Telefono);
+                tel.Telefono = updateTel.Telefono;
+                tel.Usuario = updateTel.Usuario;
+                _context.SaveChanges();
+                return Ok();
+
+
+            /*
             case "RAdmines":
                 //logica de Admines
                 var update = element.Deserialize<AdminData.AdmineElement>();
@@ -167,8 +195,9 @@ public class Afiliado : Controller
                 updateAdmine.UpdateModel(Admine1);
                 _context.SaveChanges();
                 return Ok();
+                */
         }
-        */
+        
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
 
         return new AcceptedResult();
@@ -210,4 +239,44 @@ public class Afiliado : Controller
         */
         return new OkResult();
     }
+
+    [HttpPut]
+    [Route("api/[controller]/{web1}/solicitud")]
+    [AllowAnonymous]
+    public ActionResult Solicitud([FromBody] JsonElement element, string web)
+    {
+        switch (web)
+        {
+            case "Afiliado":
+                //logica para crear un afiliado
+                var newAfil = element.Deserialize<Models.Afiliado>(options);   
+                _context.Afiliados.Add(newAfil);
+                _context.SaveChanges();
+                return Ok();
+
+
+            case "Admin":
+                //logica para crear un admin
+                var newAdmin = element.Deserialize<Gerente>(options);
+                _context.Gerentes.Add(newAdmin);
+                _context.SaveChanges();
+                return Ok();
+            
+            case "TelefonoA":
+                //logica de Telefono Afiliado
+                var telA = element.Deserialize<TelefonoAfiliado>(options);
+                _context.TelefonoAfiliados.Add(telA);
+                _context.SaveChanges();
+                return Ok();
+
+            case "TelefonoG":
+                //logica de Telefono del Administrador
+                var tel = element.Deserialize<TelefonoGerente>(options);
+                _context.TelefonoGerentes.Add(tel);
+                _context.SaveChanges();
+                return Ok();
+        }
+        return Ok();
+    }
 }
+

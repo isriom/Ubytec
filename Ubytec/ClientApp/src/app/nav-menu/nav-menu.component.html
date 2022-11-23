@@ -87,6 +87,12 @@
               <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
             </li>
 
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['Afiliado/Administrador']" class="nav-link text-dark"
+              >Gestion Admin</a
+              >
+            </li>
+
             <li class="nav-item">
               <button (click)="logout()" class="btn btn-link" type="button">LogOut</button>
             </li>
