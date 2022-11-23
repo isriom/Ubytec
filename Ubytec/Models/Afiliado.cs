@@ -13,6 +13,7 @@ namespace Ubytec.Models
             Productos = new HashSet<Producto>();
             TelefonoAfiliados = new HashSet<TelefonoAfiliado>();
         }
+        
 
         public string Nombre { get; set; } = null!;
         public string CedulaJuridica { get; set; } = null!;

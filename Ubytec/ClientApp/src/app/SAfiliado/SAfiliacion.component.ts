@@ -74,9 +74,9 @@ export class SAfiliacionComponent {
    * @constructor
    */
   async Save_A_Button() {
-    const answer = {
+    const answer:afiliado = {
       Nombre: (<HTMLInputElement>document.getElementById("ANombreCompleto")).value,
-      CedulaJurifica: (<HTMLInputElement>document.getElementById("ACedulaJ")).value,
+      CedulaJuridica: (<HTMLInputElement>document.getElementById("ACedulaJ")).value,
       Distrito: (<HTMLInputElement>document.getElementById("ADistrito")).value,
       Provincia: (<HTMLInputElement>document.getElementById("AProvincia")).value,
       Canton: (<HTMLInputElement>document.getElementById("ACanton")).value,
@@ -85,7 +85,7 @@ export class SAfiliacionComponent {
       Estado: "PENDIENTE"
     };
 
-    console.log(this.respuesta);
+    console.log(JSON.stringify(answer));
     console.log(answer);
     let res = await this.http.put("https://localhost:7183/api/Afiliado/Afiliado/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
@@ -187,4 +187,14 @@ export class SAfiliacionComponent {
     }, error => console.error(error));
     console.log(res)
   }
+}
+export class afiliado {
+public Nombre: string="";
+public CedulaJuridica: string="";
+public Distrito: string="";
+public Provincia: string="";
+public Canton: string="";
+public Sinpe: string="";
+public Correo: string="";
+public Estado: string="";
 }

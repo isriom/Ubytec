@@ -10,14 +10,14 @@
 
   </div>
   <ng-template [ngIf]="SolR== 'I'">
-    <div id="Buttons">
+    <div class="Buttons">
       <button (click)="Afiliado_Button()" class="form-floating" id="Afiliado">Registrar un Afiliado</button>
     </div>
   </ng-template>
 
   <div id="Inputs">
     <ng-template [ngIf]="SolR== 'A'">
-      <div id="Buttons">
+      <div class="Buttons">
         <button (click)="Gerente_Button()" id="Gerente">Registrar un Administrador</button>
       </div>
 
@@ -27,17 +27,17 @@
           <div class="col-xs-12 col-md-3">
             <div class="form-group two-fields">
               <div class="input-group">
-                <input class="form-control" formControlName="CAname" id="ANombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
-                <input class="form-control" formControlName="CACJ" id="ACedulaJ" placeholder="Cédula Jurídica" />
+                <input class="form-control"  id="ANombreCompleto" placeholder="Nombre Completo" required type="text" value="">
+                <input class="form-control"  id="ACedulaJ" placeholder="Cédula Jurídica" />
               </div>
               <div class="input-group">
-                <input class="form-control" formControlName="CAProvincia" id="AProvincia" placeholder="Provincia">
-                <input class="form-control" formControlName="CAcanton" id="ACanton" placeholder="Cantón" />
-                <input class="form-control" formControlName="CAdistrict" id="ADistrito" placeholder="Distrito" />
+                <input class="form-control"  id="AProvincia" placeholder="Provincia">
+                <input class="form-control" id="ACanton" placeholder="Cantón" />
+                <input class="form-control"  id="ADistrito" placeholder="Distrito" />
               </div>
               <div class="input-group">
-                <input class="form-control" formControlName="CASinpe" id="ASinpe" placeholder="Número de SINPE" />
-                <input class="form-control" formControlName="CAemail" id="ACorreo" placeholder="Correo" />
+                <input class="form-control" id="ASinpe" placeholder="Número de SINPE" />
+                <input class="form-control"  id="ACorreo" placeholder="Correo" />
               </div>
             </div>
           </div>
@@ -53,13 +53,13 @@
         <div class="row">
           <div class="col-xs-12 col-md-3">
               <div class="input-group">
-                <input class="form-control" formControlName="CATelefono" id="ATelefono" placeholder="Telefono" >
+                <input class="form-control" id="ATelefono" placeholder="Telefono" >
               </div>
           </div>
         </div>
       </div>
 
-      <div id="Buttons">
+      <div class="Buttons">
         <button (click)="Save_TA_Button()" class="form-floating" id="TAsave">Guardar Telefono</button>
       </div>
 
@@ -74,21 +74,21 @@
           <div class="col-xs-12 col-md-3">
             <div class="form-group two-fields">
               <div class="input-group">
-                <input class="form-control" formControlName="CGname" id="GNombreCompleto" placeholder="Nombre Completo" requiredtype="text" value="">
-                <input class="form-control" formControlName="CGid" id="GCedulaJ" placeholder="Cédula Jurídica del Afiliado">
-                <input class="form-control" formControlName="Cuser" id="GUsuario" placeholder="Usuario" />
+                <input class="form-control" id="GNombreCompleto" placeholder="Nombre Completo" required type="text" value="">
+                <input class="form-control"  id="GCedulaJ" placeholder="Cédula Jurídica del Afiliado">
+                <input class="form-control" id="GUsuario" placeholder="Usuario" />
               </div>
               <div class="input-group">
-                <input class="form-control" formControlName="Cprovince" id="GProvincia" placeholder="Provincia" />
-                <input class="form-control" formControlName="Cdistrict" id="GDistrito" placeholder="Distrito" />
-                <input class="form-control" formControlName="Ccanton" id="GCanton" placeholder="Cantón" />
+                <input class="form-control"  id="GProvincia" placeholder="Provincia" />
+                <input class="form-control"  id="GDistrito" placeholder="Distrito" />
+                <input class="form-control"  id="GCanton" placeholder="Cantón" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="Buttons">
+      <div class="Buttons">
         <button (click)="Save_G_Button()" class="form-floating" id="save">Guardar Administrador</button>
       </div>
 
@@ -99,12 +99,12 @@
         <div class="row">
           <div class="col-xs-12 col-md-3">
             <div class="input-group">
-              <input class="form-control" formControlName="CATelefono" id="GTelefono" placeholder="Telefono" >
+              <input class="form-control"  id="GTelefono" placeholder="Telefono" >
             </div>
           </div>
         </div>
       </div>
-      <div id="Buttons">
+      <div class="Buttons">
         <button (click)="Save_TG_Button()" class="form-floating" id="TGsave">Guardar Telefono</button>
       </div>
 

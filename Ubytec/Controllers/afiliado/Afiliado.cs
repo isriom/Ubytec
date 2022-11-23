@@ -241,7 +241,7 @@ public class Afiliado : Controller
     }
 
     [HttpPut]
-    [Route("api/[controller]/{web1}/solicitud")]
+    [Route("api/[controller]/{web}/solicitud")]
     [AllowAnonymous]
     public ActionResult Solicitud([FromBody] JsonElement element, string web)
     {

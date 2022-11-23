@@ -38,7 +38,7 @@
 /**
 Formato de los figura de los botones de la pagina
  */
-#Buttons {
+.Buttons {
   display: flex;
   margin: 5%;
   flex-direction: row;
