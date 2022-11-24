@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from "@angular/router";
+import {Component, Inject} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 
 
@@ -21,6 +21,7 @@ export class GAGerenteComponent {
   token = sessionStorage.getItem("tokenKey");
   user = sessionStorage.getItem("Nombre")
   respuesta = {};
+  TelefonosG: telefonoG[] = [];
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
@@ -46,6 +47,7 @@ export class GAGerenteComponent {
     this.baseurl = baseUrl;
     console.log(this.user)
   }
+
   /*
   ----------------------------------METODOS DE GESTION DE ADMIN----------------------------------
    */
@@ -56,6 +58,7 @@ export class GAGerenteComponent {
   async Add_Button() {
     this.SolR = 'RG'
   }
+
   /**
    * Metodo donde se define la funcion del boton EDIT
    * @constructor
@@ -63,6 +66,7 @@ export class GAGerenteComponent {
   async Edit_Button() {
     this.SolR = 'EG'
   }
+
   /**
    * Metodo donde se define la funcion del boton DELETE
    * @constructor
@@ -70,8 +74,6 @@ export class GAGerenteComponent {
   async Delete_Button() {
     this.SolR = 'DG'
   }
-
-
 
 
   /*
@@ -83,7 +85,7 @@ export class GAGerenteComponent {
    * @constructor
    */
   async Save_G_Button() {
-    const answer:administrador = {
+    const answer: administrador = {
       Usuario: (<HTMLInputElement>document.getElementById("RGUsuario")).value,
       NombreCompleto: (<HTMLInputElement>document.getElementById("RGNombreCompleto")).value,
       Distrito: (<HTMLInputElement>document.getElementById("RGDistrito")).value,
@@ -172,11 +174,11 @@ export class GAGerenteComponent {
     )
 
     const NombreCompleto = (<HTMLInputElement>document.getElementById("EGNombreCompleto"))
-    const Distrito =  (<HTMLInputElement>document.getElementById("EGDistrito"))
+    const Distrito = (<HTMLInputElement>document.getElementById("EGDistrito"))
     const Provincia = (<HTMLInputElement>document.getElementById("EGProvincia"))
     const Canton = (<HTMLInputElement>document.getElementById("EGCanton"))
     const Contraseña = (<HTMLInputElement>document.getElementById("EGContrasena"))
-    const CedulaJuridica =(<HTMLInputElement>document.getElementById("EGCedulaJ"))
+    const CedulaJuridica = (<HTMLInputElement>document.getElementById("EGCedulaJ"))
 
     res.subscribe(result => {
       this.respuesta = result;
@@ -194,8 +196,8 @@ export class GAGerenteComponent {
     CedulaJuridica.value = "CedulaJuridica";
 
 
-
   }
+
   /**
    * Metodo para obtener el telefono de un gerente
    * @constructor
@@ -207,7 +209,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoG/list", JSON.stringify(answer), {
+    let res = await this.http.get<telefonoG[]>("https://localhost:7183/api/Admin/TelefonoG/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -215,16 +217,14 @@ export class GAGerenteComponent {
     const telG = <HTMLInputElement>document.getElementById("EGTelefono")
 
     res.subscribe(result => {
-      this.respuesta = result;
+      this.TelefonosG = result;
       // Parser result para obtener los datos y hacer un ciclo para recorrer la lista
-
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(res)
     // Telefonos recopilados
     telG.value = "2665213"
-
 
 
   }
@@ -263,6 +263,7 @@ export class GAGerenteComponent {
     console.log(res)
 
   }
+
   /**
    * Metodo donde se define la funcion del boton SAVE para el telefono del gerente cuando esta en Editar su Perfil
    * @constructor
@@ -303,13 +304,13 @@ export class GAGerenteComponent {
    */
   //Este no funciona
   async Delete_G_Button() {
-    const Usuario= (<HTMLInputElement>document.getElementById("EGUsuario")).value;
+    const Usuario = (<HTMLInputElement>document.getElementById("EGUsuario")).value;
     const NombreCompleto = (<HTMLInputElement>document.getElementById("EGNombreCompleto")).value;
-    const Distrito =  (<HTMLInputElement>document.getElementById("EGDistrito")).value;
+    const Distrito = (<HTMLInputElement>document.getElementById("EGDistrito")).value;
     const Provincia = (<HTMLInputElement>document.getElementById("EGProvincia")).value;
     const Canton = (<HTMLInputElement>document.getElementById("EGCanton")).value;
     const Contraseña = (<HTMLInputElement>document.getElementById("EGContrasena")).value;
-    const CedulaJuridica =(<HTMLInputElement>document.getElementById("EGCedulaJ")).value;
+    const CedulaJuridica = (<HTMLInputElement>document.getElementById("EGCedulaJ")).value;
     const key: string[] = [Usuario, NombreCompleto, Distrito, Provincia, Canton, Contraseña, CedulaJuridica];
     console.log(key)
     console.log("Administrador eliminado: " + (key[0]))
@@ -344,10 +345,8 @@ export class GAGerenteComponent {
    * Metodo donde se define la funcion del boton Eliminar los telefonos del gerente
    * @constructor
    */
-  async Delete_TG_Button() {
-    const Usuario= (<HTMLInputElement>document.getElementById("EGUsuario")).value;
-    const Telefono= (<HTMLInputElement>document.getElementById("EGTelefono")).value;
-    const key: string[] = [Usuario,Telefono];
+  async Delete_TG_Button(Usuario: string, Telefono: string) {
+    const key: string[] = [Usuario, Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
     let res = await this.http.delete("https://localhost:7183/api/Admin/TelefonoG/delete", {
@@ -358,26 +357,31 @@ export class GAGerenteComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
-
+      this.get_dataEditar();
     }, error => console.error(error));
     //Clear
     const TelefonoG = (<HTMLInputElement>document.getElementById("EGTelefono"))
     TelefonoG.value = "";
+    this.get_dataEditar();
   }
 
+  get_dataEditar() {
+    this.Get_TG();
+  }
 }
 
 export class administrador {
-  public Usuario: string="";
-  public NombreCompleto: string="";
-  public Distrito: string="";
-  public Provincia: string="";
-  public Canton: string="";
-  public Contraseña: string="";
-  public CedulaJuridica: string="";
+  public Usuario: string = "";
+  public NombreCompleto: string = "";
+  public Distrito: string = "";
+  public Provincia: string = "";
+  public Canton: string = "";
+  public Contraseña: string = "";
+  public CedulaJuridica: string = "";
 
 }
+
 export class telefonoG {
-  public Usuario: string="";
-  public Telefono: string="";
+  public Usuario: string = "";
+  public Telefono: string = "";
 }
