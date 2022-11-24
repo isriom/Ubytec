@@ -1,10 +1,19 @@
 using System.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Ubytec.Models;
+using Ubytec.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDBSettings"));
+builder.Services.AddSingleton<ComentarioService>();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
 // Add cookie Authenticationas a default politic
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
