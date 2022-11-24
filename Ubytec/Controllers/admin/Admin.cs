@@ -61,28 +61,28 @@ public class Admin : Controller
             case "Telefono":
                 //logica de Telefono
                 return Ok();
-            
+
             case "Administrador":
                 //logica para crear un admin
                 var Admin = element.Deserialize<Gerente>(options);
                 _context.Gerentes.Add(Admin);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoG":
                 //logica de Telefono
                 var tel = element.Deserialize<TelefonoGerente>(options);
                 _context.TelefonoGerentes.Add(tel);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "Afiliado":
                 //logica para crear un admin
                 var Afil = element.Deserialize<Afiliado>(options);
                 _context.Afiliados.Add(Afil);
                 _context.SaveChanges();
                 return Ok();
-                
+
 
             case "TelefonoA":
                 //logica de Telefono
@@ -113,13 +113,13 @@ public class Admin : Controller
         {
             case "ConsolidadoVentas":
                 return Json(_context.ConsolidadoVentas.ToList().GroupBy(x => x.Cliente), options);
-            
+
             case "ReporteRepartidor":
                 return Json(_context.RepartidoresPagos.ToList().GroupBy(x => x.Repartidor), options);
-            
+
             case "VentasAfiliado":
                 return Json(_context.VentasAfiliados.ToList().GroupBy(x => x.Afiliado), options);
-            
+
             case "Afiliados":
                 //logica de Puntos
                 //lista de afiliados validados
@@ -147,13 +147,13 @@ public class Admin : Controller
 
                 // lista de afiliados
                 return Json(listAfiliados, options);
-            
+
             case "TelefonoG":
-                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name).ToList();
+                var listaTelG = _context.TelefonoGerentes.Where(x => x.Usuario == id).ToList();
                 return Json(listaTelG, options);
-            
+
             case "Administrador":
-                var Admin = _context.Gerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name).ToList();
+                var Admin = _context.Gerentes.Where(x => x.Usuario == HttpContext.User.Identity.Name).ToList();
                 return Json(Admin, options);
 
             
@@ -184,7 +184,7 @@ public class Admin : Controller
                 Admin.Distrito = updateAdmin.Distrito;
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoG":
                 //logica de actualizacion de Telefono
                 var updateTel = element.Deserialize<TelefonoGerente>();
@@ -208,7 +208,7 @@ public class Admin : Controller
                 return Ok();
 
         }
-        
+
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
 
         return new AcceptedResult();
@@ -232,30 +232,29 @@ public class Admin : Controller
                 _context.Gerentes.Remove(todeleteadmin);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoG":
                 //logica de borrar un telefono
                 var deletetel = _context.TelefonoGerentes.Find(element);
                 _context.TelefonoGerentes.Remove(deletetel);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "Afiliado":
                 //logica para borrar un admin
                 var todeleteafil = _context.Afiliados.Find(element);
                 _context.Afiliados.Remove(todeleteafil);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoA":
                 //logica de borrar un telefono
                 var deletetelA = _context.TelefonoAfiliados.Find(element);
                 _context.TelefonoAfiliados.Remove(deletetelA);
                 _context.SaveChanges();
                 return Ok();
-            
         }
-        
+
         return new OkResult();
     }
 }
