@@ -61,37 +61,38 @@ export class DealersComponent {
    * Metodo donde se definen las acciones a realizar al clickear el boton de ADD
    * @constructor metodo relacionado
    */
-  async Add_Button() {
-    this.op='1'
-    const answer = {
-      'Nombre_Completo': (<HTMLInputElement>document.getElementById("Nombre_Completo")).value,
-      'Cedula': (<HTMLInputElement>document.getElementById("Cedula")).value,
-      'Telefono_1': (<HTMLInputElement>document.getElementById("Telefono_1")).value,
-      'Telefono_2': (<HTMLInputElement>document.getElementById("Telefono_2")).value,
-      'Correo_electronico': (<HTMLInputElement>document.getElementById("Correo_electronico")).value,
-      'Direccion_1': (<HTMLInputElement>document.getElementById("Direccion_1")).value,
-      'Direccion_2': (<HTMLInputElement>document.getElementById("Direccion_2")).value,
-      'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
-      'Password': (<HTMLInputElement>document.getElementById("Password")).value
+  async Add_Button2() {
+    
+    const answer: repartidor = {
+      NombreCompleto: (<HTMLInputElement>document.getElementById("Nombre")).value,
+      Cedula: (<HTMLInputElement>document.getElementById("Cedula")).value,
+      Distrito: (<HTMLInputElement>document.getElementById("Distrito")).value,
+      Provincia: (<HTMLInputElement>document.getElementById("Provincia")).value,
+      Canton: (<HTMLInputElement>document.getElementById("Canton")).value,
+      Usuario: (<HTMLInputElement>document.getElementById("Usuario")).value,
+      Contraseña: (<HTMLInputElement>document.getElementById("Contraseña")).value,
+      Disponible: (<HTMLInputElement>document.getElementById("Disponible")).value,
+      Correo: (<HTMLInputElement>document.getElementById("Correo")).value
     };
-    if (answer.Usuario !== sessionStorage.getItem("Nombre")) {
-      //Popup.open("ERROR MODIFICANDO LOS DATOS", "No es posible modificar el usuario ni el numero de cedula desde aqui, por favor contacte con MecaTEC", "Cerrar");
-      return
-    }
-    console.log(this.respuesta);
+   
+    console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7143/GClientes/post", JSON.stringify(answer), {
+    let res = await this.http.put("https://localhost:7183/api/Admin/Repartidor/add", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
     res.subscribe(result => {
-      //Popup.open("Datos Modificados", "Se han modificado los datos", "Cerrar");
-
-      this.Obtener_Clientes();
+      this.respuesta = result;
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(res)
+
+  }
+
+  async Add_Button() {
+    this.op = '1'
+    
 
   }
 
@@ -105,5 +106,16 @@ export class DealersComponent {
   async Edit_Button() {
     this.op = '3'
   }
+}
+export class repartidor {
+  public NombreCompleto: string = "";
+  public Cedula: string = "";
+  public Distrito: string = "";
+  public Provincia: string = "";
+  public Canton: string = "";
+  public Usuario: string = "";
+  public Contraseña: string = "";
+  public Disponible: string = "";
+  public Correo: string = "";
 }
 

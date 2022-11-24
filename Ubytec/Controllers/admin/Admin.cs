@@ -42,7 +42,10 @@ public class Admin : Controller
     {
         switch (web)
         {
-            case "buy":
+            case "Repartidor":
+                var Rep = element.Deserialize<Repartidor>(options);
+                _context.Repartidors.Add(Rep);
+                _context.SaveChanges();
                 return Ok();
 
 
