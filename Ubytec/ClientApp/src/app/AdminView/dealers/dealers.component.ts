@@ -89,6 +89,8 @@ export class DealersComponent {
     }, error => console.error(error));
     console.log(res)
 
+
+
   }
 
   async Add_Button() {
@@ -107,6 +109,74 @@ export class DealersComponent {
 
   async Edit_Button() {
     this.op = '3'
+  }
+
+  async Edit_Button2() {
+    const answer: repartidor = {
+      NombreCompleto: (<HTMLInputElement>document.getElementById("NombreEditar")).value,
+      Cedula: (<HTMLInputElement>document.getElementById("CedulaEditar")).value,
+      Distrito: (<HTMLInputElement>document.getElementById("DistritoEditar")).value,
+      Provincia: (<HTMLInputElement>document.getElementById("ProvinciaEditar")).value,
+      Canton: (<HTMLInputElement>document.getElementById("CantonEditar")).value,
+      Usuario: (<HTMLInputElement>document.getElementById("UsuarioEditar")).value,
+      Contraseña: (<HTMLInputElement>document.getElementById("ContraseñaEditar")).value,
+      Disponible: true,
+      Correo: (<HTMLInputElement>document.getElementById("CorreoEditar")).value
+    };
+
+    console.log(JSON.stringify(answer));
+    console.log(answer);
+    let res = await this.http.post("https://localhost:7183/api/Admin/Repartidor/update", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    })
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+
+    }, error => console.error(error));
+    console.log(res)
+    /*
+    const answer = {
+      Usuario: (<HTMLInputElement>document.getElementById("CedulaEditar")).value,
+    };
+
+    console.log(JSON.stringify(answer));
+    console.log(answer);
+    let res = await this.http.put("https://localhost:7183/api/Admin/Repartidor/list", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    }
+    )
+   
+    const NombreCompleto = (<HTMLInputElement>document.getElementById("NombreEditar"))
+    const Distrito = (<HTMLInputElement>document.getElementById("DistritoEditar"))
+    const Provincia = (<HTMLInputElement>document.getElementById("ProvinciaEditar"))
+    const Canton = (<HTMLInputElement>document.getElementById("CantonEditar"))
+    const Usuario = (<HTMLInputElement>document.getElementById("UsuarioEditar"))
+    const Contraseña = (<HTMLInputElement>document.getElementById("ContraseñaEditar"))
+    const Disponible = (<HTMLInputElement>document.getElementById("DisponibleEditar"))
+    const Correo = (<HTMLInputElement>document.getElementById("CorreoEditar"))
+
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+      // Parser result para obtener los datos
+    }, error => console.error(error));
+    console.log(res)
+
+    // Asignar los valores de la consulta indicada
+    NombreCompleto.value = "NombreCompleto";
+    Distrito.value = "Distrito";
+    Provincia.value = "Provincia";
+    Canton.value = "Canton";
+    Usuario.value = "Usuario"
+    Contraseña.value = "Contraseña";
+    Disponible.value = "Disponible"
+    Correo.value = "Correo";
+    */
+
+
   }
 }
 
