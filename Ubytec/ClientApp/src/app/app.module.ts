@@ -28,6 +28,10 @@ import {GAfiliadoComponent} from "./AdminView/GAfiliado/GAfiliado.component";
 import {GAGerenteComponent} from "./AdminView/GAGerente/GAGerente.component";
 import {RepartidoresPagoComponent} from "./AdminView/Reportes/Repartidores-Pago/Repartidores-Pago.component";
 import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Ventas-Afiliado.component";
+import {AsignarRepartidorComponent} from "./Afiliado View/Asignar Repartidor/AsignarRepartidor.component";
+import {AfiliadoService} from "./Afiliado View/Afiliado.service";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -48,6 +52,7 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
     ConsolidadoVentasComponent,
     RepartidoresPagoComponent,
     VentasAfiliadoComponent,
+    AsignarRepartidorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -58,7 +63,7 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
     MatSnackBarModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      {path: '', component: HomeComponent, pathMatch: 'full'},
 
       {
         path: "Cliente", children: [
@@ -76,10 +81,11 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
           {path: 'RepartidoresPago', data: {title: "RepartidoresPago"}, component: RepartidoresPagoComponent},
           {path: 'VentasAfiliado', data: {title: "RepartidoresPago"}, component: VentasAfiliadoComponent}
         ]
-      },{
+      }, {
         path: "Afiliado", children: [
-          { path: 'Administrador', data: { title: "GestionAdministrador" }, component: SAGerenteComponent },
-          { path: 'Solicitud', data: { title: "Solicitud de Afiliado" }, component: SAfiliacionComponent },
+          {path: 'Administrador', data: {title: "GestionAdministrador"}, component: SAGerenteComponent},
+          {path: 'Solicitud', data: {title: "Solicitud de Afiliado"}, component: SAfiliacionComponent},
+          {path: 'Repartidor', data: {title: "Asignar Repartidor"}, component: AsignarRepartidorComponent},
 
         ]
       }
@@ -89,9 +95,11 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
     MatSidenavModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatExpansionModule,
+    MatCheckboxModule,
 
   ],
-  providers: [APIService, AdminService],
+  providers: [APIService, AdminService, AfiliadoService],
   bootstrap: [AppComponent]
 })
 

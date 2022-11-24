@@ -1,0 +1,43 @@
+<div>
+  <div *ngIf="AfiliadoService.order.length==0">En este momento no hay pedidos en la aplicacion para asignar</div>
+  <div *ngFor="let pedidos of AfiliadoService.order">
+    <h2>{{pedidos[0].EstadoPedido}}</h2>
+  <mat-accordion >
+    <mat-expansion-panel style="border-style: solid; margin-top: 1px" *ngFor="let data of pedidos">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 class="h4">{{data.Id}}</h2>
+        </mat-panel-title>
+        <button class="btn btn-primary" *ngIf="data.EstadoPedido=='PENDIENTE'" style="position: relative; left: -1%; height: 50%" (click)="assign(data)">Asignar
+          Repartidor
+        </button>
+        <mat-panel-description>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Ubicacion: {{data.Dirreccion}}</p>
+      <p>Comprobante de Pago: {{data.ComprobantePago}}</p>
+      <div *ngFor="let product of data.Products" style="display: flex; flex-direction: column">
+        <table class="blueTable">
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Empacado</th>
+          </tr>
+          <tr>
+            <td>
+              {{product.NombreProducto}}
+            </td>
+            <td>
+              {{product.Cantidad}}
+            </td>
+            <td>
+            <mat-checkbox></mat-checkbox>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </div>
+</div>

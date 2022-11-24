@@ -1,8 +1,10 @@
-﻿using System.Text.Json;
+﻿using System.Data;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using GlobalData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Ubytec.Models;
 
@@ -34,7 +36,7 @@ public class Afiliado : Controller
         _context = context;
         _psqlConnection =
             new NpgsqlConnection(
-                "Host=ubytec.postgres.database.azure.com;Database=ubytec;Username=ubytec@ubytec;Password=CE3110.2022.2");
+                "Host=ubytec.postgres.database.azure.com;Port=5432;Database=ubytec;Username=ubytec@ubytec;Password=CE3110.2022.2");
     }
 
     /**
@@ -46,8 +48,9 @@ public class Afiliado : Controller
     public ActionResult Register([FromBody] JsonElement element, string web)
     {
         //logica para insertar en la base de datos 
-        var administrador = _context.Gerentes.First(administrador => administrador.Usuario == HttpContext.User.Identity.Name);
-        
+        var administrador =
+            _context.Gerentes.First(administrador => administrador.Usuario == HttpContext.User.Identity.Name);
+
         switch (web)
         {
             case "Administrador":
@@ -56,15 +59,15 @@ public class Afiliado : Controller
                 _context.Gerentes.Add(Admin);
                 _context.SaveChanges();
                 return Ok();
-                
+
 
             case "TelefonoG":
                 //logica de Telefono
                 var tel = element.Deserialize<TelefonoGerente>(options);
                 _context.TelefonoGerentes.Add(tel);
                 _context.SaveChanges();
-                
-                
+
+
                 return Ok();
         }
 
@@ -75,16 +78,14 @@ public class Afiliado : Controller
 
     [HttpPut]
     [Route("api/[controller]/{web}/Asignar/{id}")]
-    public ActionResult Asignar(string id)
+    public ActionResult Asignar([FromBody] JsonElement element, string id, string? web)
     {
         if (id == "") return new BadRequestResult();
         this._psqlConnection.Open();
-        var procedure = new NpgsqlCommand("CALL AsignarRepartidorProcedure ($1)", _psqlConnection)
-        {
-            Parameters = { new NpgsqlParameter { Value = id } }
-        };
-        procedure.CommandType = System.Data.CommandType.StoredProcedure;
+        var procedure = new NpgsqlCommand("CALL public.asignarrepartidorprocedure('"+id+"');", _psqlConnection);
+        procedure.CommandType = CommandType.Text;
         procedure.ExecuteNonQuery();
+        this._psqlConnection.Close();
 
         return new OkResult();
     }
@@ -100,9 +101,21 @@ public class Afiliado : Controller
     [Route("api/[controller]/{web}/list/{id}/{id2}/{id3}")]
     public ActionResult Consult(string web, string? id, string? id2, string? id3)
     {
+        var Admin = _context.Gerentes.Where(x => x.Usuario == HttpContext.User.Identity.Name);
         //Logica para obtener la lista
         switch (web)
         {
+            case "Pedidos":
+                var Pedidos = _context.Pedidos.Where(x =>
+                    x.CedulaJafiliado == Admin.First().CedulaJuridica).ToList().GroupBy(x => x.EstadoPedido).Reverse();
+                return Json(Pedidos, serializerSettings: options);
+
+            case "ProductosPedido":
+                var PedidosToSearch = _context.Pedidos.Include(x => x.ProductoPedidos)
+                    .FirstOrDefault(x => x.CedulaJafiliado == Admin.First().CedulaJuridica && x.ComprobantePago == id);
+                var ProductoPedidos = PedidosToSearch?.ProductoPedidos.ToList();
+                return Json(ProductoPedidos, options);
+
             case "ConsolidadoVentas":
                 return Json(_context.ConsolidadoVentas.ToList().GroupBy(x => x.Cliente), options);
 
@@ -133,14 +146,15 @@ public class Afiliado : Controller
 
                 // lista de afiliados
                 return Json(listAfiliados, options);
-            
+
             case "TelefonoG":
-                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name).ToList();
+                var listaTelG = _context.TelefonoGerentes.Where(x => x.Usuario == HttpContext.User.Identity.Name)
+                    .ToList();
                 return Json(listaTelG, options);
             case "Administrador":
-                var Admin = _context.Gerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name);
-                return Json(Admin, options);
-           
+                var Administradores = _context.Gerentes.Where(x => x.CedulaJuridica == Admin.First().CedulaJuridica)
+                    .ToList();
+                return Json(Administradores, options);
         }
 
         return Json("No se encontro la lista", options);
@@ -155,7 +169,7 @@ public class Afiliado : Controller
     public ActionResult Update([FromBody] JsonElement element, string web)
     {
         Console.Out.Write("update: ");
-        
+
         switch (web)
         {
             case "Administrador":
@@ -169,7 +183,7 @@ public class Afiliado : Controller
                 Admin.Distrito = updateAdmin.Distrito;
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoG":
                 //logica de Telefono
                 var updateTel = element.Deserialize<TelefonoGerente>();
@@ -197,7 +211,7 @@ public class Afiliado : Controller
                 return Ok();
                 */
         }
-        
+
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
 
         return new AcceptedResult();
@@ -249,7 +263,7 @@ public class Afiliado : Controller
         {
             case "Afiliado":
                 //logica para crear un afiliado
-                var newAfil = element.Deserialize<Models.Afiliado>(options);   
+                var newAfil = element.Deserialize<Models.Afiliado>(options);
                 _context.Afiliados.Add(newAfil);
                 _context.SaveChanges();
                 return Ok();
@@ -261,7 +275,7 @@ public class Afiliado : Controller
                 _context.Gerentes.Add(newAdmin);
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "TelefonoA":
                 //logica de Telefono Afiliado
                 var telA = element.Deserialize<TelefonoAfiliado>(options);
@@ -276,7 +290,7 @@ public class Afiliado : Controller
                 _context.SaveChanges();
                 return Ok();
         }
+
         return Ok();
     }
 }
-
