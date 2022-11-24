@@ -7,7 +7,7 @@ import {APIService, product} from "../ClientView/api.service";
   providedIn: 'root'
 })
 export class AfiliadoService {
-  api = "https://localhost:7183/api/";
+  api = "https://ubytec.azurewebsites.net/api/";
   http: HttpClient;
   httpOptions = {
     headers: new HttpHeaders({
