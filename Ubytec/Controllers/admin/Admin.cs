@@ -204,6 +204,20 @@ public class Admin : Controller
                 tel.Usuario = updateTel.Usuario;
                 _context.SaveChanges();
                 return Ok();
+
+            case "Repartidor":
+                var updateRep = element.Deserialize<Repartidor>();
+                var Rep = _context.Repartidors.Find(updateRep.Cedula);
+                Rep.NombreCompleto = updateRep.NombreCompleto;
+                Rep.Provincia = updateRep.Provincia;
+                Rep.Canton = updateRep.Canton;
+                Rep.Distrito = updateRep.Distrito;
+                Rep.Usuario = updateRep.Distrito;
+                Rep.Contraseña = updateRep.Distrito;
+                Rep.Correo = updateRep.Distrito;
+                _context.SaveChanges();
+                return Ok();
+
         }
 
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
