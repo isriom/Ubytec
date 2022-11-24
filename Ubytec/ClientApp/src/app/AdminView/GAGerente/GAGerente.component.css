@@ -2,7 +2,7 @@
 
  */
 .element-input {
-  width: 100%;
+  width: 80%;
 }
 
 /**
@@ -18,7 +18,7 @@
   flex-direction: column;
   margin: 0;
   background-color: #D6FFFF;
-  width: 80%;
+  width: 60%;
 
 }
 

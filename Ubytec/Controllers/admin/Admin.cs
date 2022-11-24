@@ -53,31 +53,22 @@ public class Admin : Controller
                 _context.SaveChanges();
                 return Ok();
 
-
-            case "Direccion":
-                //logica de Dirreccion
-                return Ok();
-
-            case "Telefono":
-                //logica de Telefono
-                return Ok();
-
             case "Administrador":
-                //logica para crear un admin
+                //logica para registrar un admin
                 var Admin = element.Deserialize<Gerente>(options);
                 _context.Gerentes.Add(Admin);
                 _context.SaveChanges();
                 return Ok();
 
             case "TelefonoG":
-                //logica de Telefono
+                //logica para agregar un Telefono a un Gerente
                 var tel = element.Deserialize<TelefonoGerente>(options);
                 _context.TelefonoGerentes.Add(tel);
                 _context.SaveChanges();
                 return Ok();
 
             case "Afiliado":
-                //logica para crear un admin
+                //logica para agregar un afiliado
                 var Afil = element.Deserialize<Afiliado>(options);
                 _context.Afiliados.Add(Afil);
                 _context.SaveChanges();
@@ -153,8 +144,16 @@ public class Admin : Controller
                 return Json(listaTelG, options);
 
             case "Administrador":
-                var Admin = _context.Gerentes.Where(x => x.Usuario == HttpContext.User.Identity.Name).ToList();
+                var Admin = _context.Gerentes.Where(x => x.Usuario == id).ToList();
                 return Json(Admin, options);
+            
+            case "TelefonoA":
+                var listaTelA = _context.TelefonoAfiliados.Where(x => x.CedulaJuridica == id).ToList();
+                return Json(listaTelA, options);
+
+            case "Afiliado":
+                var Afiliado = _context.Afiliados.Where(x => x.CedulaJuridica == id).ToList();
+                return Json(Afiliado, options);
         }
 
         return Json("No se encontro la lista", options);
@@ -176,10 +175,24 @@ public class Admin : Controller
                 var updateAdmin = element.Deserialize<Gerente>();
                 var Admin = _context.Gerentes.Find(updateAdmin.Usuario);
                 Admin.NombreCompleto = updateAdmin.NombreCompleto;
-                Admin.Contraseña = updateAdmin.Contraseña;
                 Admin.Provincia = updateAdmin.Provincia;
                 Admin.Canton = updateAdmin.Canton;
                 Admin.Distrito = updateAdmin.Distrito;
+                Admin.CedulaJuridica = updateAdmin.CedulaJuridica;
+                _context.SaveChanges();
+                return Ok();
+            
+            case "Afiliado":
+                //logica para actualizar un admin
+                var updateAfil = element.Deserialize<Afiliado>();
+                var Afil = _context.Afiliados.Find(updateAfil.CedulaJuridica);
+                Afil.Nombre = updateAfil.Nombre;
+                Afil.Distrito = updateAfil.Distrito;
+                Afil.Canton = updateAfil.Canton;
+                Afil.Provincia = updateAfil.Provincia;
+                Afil.Correo = updateAfil.Correo;
+                Afil.Sinpe = updateAfil.Sinpe;
+                Afil.Estado = updateAfil.Estado;
                 _context.SaveChanges();
                 return Ok();
 
@@ -226,7 +239,7 @@ public class Admin : Controller
 
             case "Afiliado":
                 //logica para borrar un admin
-                var todeleteafil = _context.Afiliados.Find(element);
+                var todeleteafil = _context.Afiliados.Find(element[0]);
                 _context.Afiliados.Remove(todeleteafil);
                 _context.SaveChanges();
                 return Ok();

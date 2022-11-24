@@ -19,9 +19,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class GAGerenteComponent {
   SolR = sessionStorage.getItem("SolicitudRequerida");
   token = sessionStorage.getItem("tokenKey");
-  user = sessionStorage.getItem("Nombre")
   respuesta = {};
   TelefonosG: telefonoG[] = [];
+  Administrador: administrador[] = [];
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
@@ -45,7 +45,7 @@ export class GAGerenteComponent {
     this.SolR = 'I'
     this.http = http;
     this.baseurl = baseUrl;
-    console.log(this.user)
+
   }
 
   /*
@@ -66,15 +66,6 @@ export class GAGerenteComponent {
   async Edit_Button() {
     this.SolR = 'EG'
   }
-
-  /**
-   * Metodo donde se define la funcion del boton DELETE
-   * @constructor
-   */
-  async Delete_Button() {
-    this.SolR = 'DG'
-  }
-
 
   /*
   -------------------------------------METODOS DE REGISTRAR UN ADMINISTRADOR-------------------------------------
@@ -109,19 +100,6 @@ export class GAGerenteComponent {
 
     }, error => console.error(error));
     console.log(res)
-    //Clear
-    const usuario = (<HTMLInputElement>document.getElementById("RGUsuario"))
-    const nombre = (<HTMLInputElement>document.getElementById("RGNombreCompleto"))
-    const distrito = (<HTMLInputElement>document.getElementById("RGDistrito"))
-    const provincia = (<HTMLInputElement>document.getElementById("RGProvincia"))
-    const canton = (<HTMLInputElement>document.getElementById("RGCanton"))
-    const cedula = (<HTMLInputElement>document.getElementById("RGCedulaJ"))
-    usuario.value = "";
-    nombre.value = "";
-    distrito.value = "";
-    provincia.value = "";
-    canton.value = "";
-    cedula.value = "";
 
   }
 
@@ -157,7 +135,6 @@ export class GAGerenteComponent {
 
   /*
   -------------------------------------METODOS DE CONSULTAR UN ADMINISTRADOR-------------------------------------
-  //No implementado aun
    */
 
   async Get_Gerente() {
@@ -167,7 +144,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/Administrador/list", JSON.stringify(answer), {
+    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Admin/Administrador/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -181,21 +158,17 @@ export class GAGerenteComponent {
     const CedulaJuridica = (<HTMLInputElement>document.getElementById("EGCedulaJ"))
 
     res.subscribe(result => {
-      this.respuesta = result;
+      this.Administrador = result;
       console.log(this.respuesta);
-      // Parser result para obtener los datos
+      // Asignar los valores de la consulta indicada
+      NombreCompleto.value = this.Administrador[0].NombreCompleto;
+      Distrito.value = this.Administrador[0].Distrito;
+      Provincia.value = this.Administrador[0].Provincia;
+      Canton.value =  this.Administrador[0].Canton;
+      Contraseña.value = this.Administrador[0].Contraseña;
+      CedulaJuridica.value = this.Administrador[0].CedulaJuridica;
     }, error => console.error(error));
     console.log(res)
-
-    // Asignar los valores de la consulta indicada
-    NombreCompleto.value = "NombreCompleto";
-    Distrito.value = "Distrito";
-    Provincia.value = "Provincia";
-    Canton.value = "Canton";
-    Contraseña.value = "Contraseña";
-    CedulaJuridica.value = "CedulaJuridica";
-
-
   }
 
   /**
@@ -214,18 +187,13 @@ export class GAGerenteComponent {
         withCredentials: true,
       }
     )
-    const telG = <HTMLInputElement>document.getElementById("EGTelefono")
 
     res.subscribe(result => {
       this.TelefonosG = result;
-      // Parser result para obtener los datos y hacer un ciclo para recorrer la lista
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(res)
-    // Telefonos recopilados
-    telG.value = "2665213"
-
 
   }
 
@@ -258,6 +226,7 @@ export class GAGerenteComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
+      this.Get_Gerente()
 
     }, error => console.error(error));
     console.log(res)
@@ -285,12 +254,13 @@ export class GAGerenteComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
-
+      this.get_dataEditar();
     }, error => console.error(error));
     console.log(res)
     //Clear
     const tel = (<HTMLInputElement>document.getElementById("ERGTelefono"))
     tel.value = "";
+
   }
 
 
@@ -302,7 +272,7 @@ export class GAGerenteComponent {
    * Metodo donde se define la funcion del boton Eliminar los datos del gerente
    * @constructor
    */
-  //Este no funciona
+
   async Delete_G_Button() {
     const Usuario = (<HTMLInputElement>document.getElementById("EGUsuario")).value;
     const NombreCompleto = (<HTMLInputElement>document.getElementById("EGNombreCompleto")).value;
@@ -367,6 +337,7 @@ export class GAGerenteComponent {
 
   get_dataEditar() {
     this.Get_TG();
+    this.Get_Gerente();
   }
 }
 

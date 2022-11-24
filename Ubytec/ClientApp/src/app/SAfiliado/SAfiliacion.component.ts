@@ -98,21 +98,6 @@ export class SAfiliacionComponent {
 
     }, error => console.error(error));
     console.log(res)
-    // Clear de los espacios de texto
-    const nombre = (<HTMLInputElement>document.getElementById("ANombreCompleto"))
-    nombre.value = "";
-    const cedula = (<HTMLInputElement>document.getElementById("ACedulaJ"))
-    cedula.value = "";
-    const distrito = (<HTMLInputElement>document.getElementById("ADistrito"))
-    distrito.value = "";
-    const provincia = (<HTMLInputElement>document.getElementById("AProvincia"))
-    provincia.value = "";
-    const canton = (<HTMLInputElement>document.getElementById("ACanton"))
-    canton.value = "";
-    const sinpe = (<HTMLInputElement>document.getElementById("ASinpe"))
-    sinpe.value = "";
-    const correo = (<HTMLInputElement>document.getElementById("ACorreo"))
-    correo.value = "";
 
   }
   /**
@@ -221,6 +206,7 @@ export class SAfiliacionComponent {
     const tel = (<HTMLInputElement>document.getElementById("GTelefono"))
     tel.value = "";
   }
+
 }
 
 /*

@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div id="Buttons">
+      <div class ="Buttons">
         <button (click)="Save_A_Button()" class="form-floating" id="Asave">Guardar Afiliado</button>
       </div>
 
@@ -52,19 +52,17 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
               <div class="input-group">
-                <input class="form-control" id="ATelefono" placeholder="Telefono" >
+                <div style="display: flex; width: 100%; position: relative">
+                  <input  class="form-control"  id="ATelefono" placeholder="Telefono "  style="width: 74%" >
+                  <button (click)="Save_TA_Button()" class="form-floating" id="TAsave" style="width: 24%"> Guardar Telefono</button>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="Buttons">
-        <button (click)="Save_TA_Button()" class="form-floating" id="TAsave">Guardar Telefono</button>
-      </div>
-
-
-
 
     </ng-template>
     <ng-template [ngIf]="SolR== 'G'">
@@ -88,25 +86,26 @@
         </div>
       </div>
 
-      <div class="Buttons">
+      <div class ="Buttons">
         <button (click)="Save_G_Button()" class="form-floating" id="save">Guardar Administrador</button>
       </div>
-
-      <a class="nav-link text-dark">Agregue los teléfonos del Administrador del Comercio</a>
 
       <a class="nav-link text-dark">Teléfono del Administrador del Comercio</a>
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-3">
-            <div class="input-group">
-              <input class="form-control"  id="GTelefono" placeholder="Telefono" >
+            <div class="form-group two-fields">
+              <div class="input-group">
+                <div style="display: flex; width: 100%; position: relative">
+                  <input  class="form-control"  id="GTelefono" placeholder="Telefono Nuevo"  style="width: 74%" >
+                  <button (click)="Save_TG_Button()" class="form-floating" id="TGsave" style="width: 24%"> Guardar Telefono</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="Buttons">
-        <button (click)="Save_TG_Button()" class="form-floating" id="TGsave">Guardar Telefono</button>
-      </div>
+
 
 
 

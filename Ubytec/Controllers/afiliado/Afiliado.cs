@@ -146,13 +146,11 @@ public class Afiliado : Controller
                 return Json(listAfiliados, options);
 
             case "TelefonoG":
-                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name)
-                    .ToList();
+                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == id).ToList();
                 return Json(listaTelG, options);
             
             case "Administrador":
-                var Administradores = _context.Gerentes.Where(x => x.CedulaJuridica == Admin.First().CedulaJuridica)
-                    .ToList();
+                var Administradores = _context.Gerentes.Where(x => x.Usuario == id).ToList();
                 return Json(Administradores, options);
         }
 
@@ -214,7 +212,7 @@ public class Afiliado : Controller
         {
             case "Administrador":
                 //logica para borrar un admin
-                var todeleteadmin = _context.Gerentes.Find(element);
+                var todeleteadmin = _context.Gerentes.Find(element[0]);
                 _context.Gerentes.Remove(todeleteadmin);
                 _context.SaveChanges();
                 return Ok();

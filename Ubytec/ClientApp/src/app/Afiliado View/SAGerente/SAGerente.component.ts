@@ -21,6 +21,8 @@ export class SAGerenteComponent {
   token = sessionStorage.getItem("tokenKey");
   user = sessionStorage.getItem("Nombre")
   respuesta = {};
+  TelefonosG: telefonoG[] = [];
+  Administrador: administrador[] = [];
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
@@ -55,6 +57,7 @@ export class SAGerenteComponent {
    */
   async Add_Button() {
     this.SolR = 'RG'
+    this.Get_Afiliado()
   }
   /**
    * Metodo donde se define la funcion del boton EDIT
@@ -63,16 +66,6 @@ export class SAGerenteComponent {
   async Edit_Button() {
     this.SolR = 'EG'
   }
-  /**
-   * Metodo donde se define la funcion del boton DELETE
-   * @constructor
-   */
-  async Delete_Button() {
-    this.SolR = 'DG'
-  }
-
-
-
 
   /*
   -------------------------------------METODOS DE REGISTRAR UN ADMINISTRADOR-------------------------------------
@@ -107,19 +100,8 @@ export class SAGerenteComponent {
 
     }, error => console.error(error));
     console.log(res)
-    //Clear
-    const usuario = (<HTMLInputElement>document.getElementById("RGUsuario"))
-    const nombre = (<HTMLInputElement>document.getElementById("RGNombreCompleto"))
-    const distrito = (<HTMLInputElement>document.getElementById("RGDistrito"))
-    const provincia = (<HTMLInputElement>document.getElementById("RGProvincia"))
-    const canton = (<HTMLInputElement>document.getElementById("RGCanton"))
-    const cedula = (<HTMLInputElement>document.getElementById("RGCedulaJ"))
-    usuario.value = "";
-    nombre.value = "";
-    distrito.value = "";
-    provincia.value = "";
-    canton.value = "";
-    cedula.value = "";
+
+
 
   }
 
@@ -154,9 +136,30 @@ export class SAGerenteComponent {
 
   /*
   -------------------------------------METODOS DE CONSULTAR UN ADMINISTRADOR-------------------------------------
-  //No implementado aun
    */
 
+  async Get_Afiliado() {
+    const answer = {
+      Usuario: this.user
+    };
+    console.log(JSON.stringify(answer));
+    console.log(answer);
+    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Afiliado/Administrador/list/" + answer.Usuario,  {
+        headers: this.httpOptions.headers,
+        withCredentials: true,
+      }
+    )
+
+    res.subscribe(result => {
+      this.Administrador = result;
+      console.log(this.respuesta);
+      // Parser result para obtener los datos
+      const cedula = (<HTMLInputElement>document.getElementById("RGCedulaJ"))
+      cedula.value = this.Administrador[0].CedulaJuridica;
+    }, error => console.error(error));
+    console.log(res)
+
+  }
   async Get_Gerente() {
     const answer = {
       Usuario: (<HTMLInputElement>document.getElementById("EGUsuario")).value,
@@ -164,7 +167,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/Admin/list", JSON.stringify(answer), {
+    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Afiliado/Administrador/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -178,22 +181,17 @@ export class SAGerenteComponent {
     const CedulaJuridica =(<HTMLInputElement>document.getElementById("EGCedulaJ"))
 
     res.subscribe(result => {
-      this.respuesta = result;
+      this.Administrador = result;
       console.log(this.respuesta);
-      // Parser result para obtener los datos
+      // Asignar los valores de la consulta indicada
+      NombreCompleto.value = this.Administrador[0].NombreCompleto;
+      Distrito.value = this.Administrador[0].Distrito;
+      Provincia.value = this.Administrador[0].Provincia;
+      Canton.value =  this.Administrador[0].Canton;
+      Contraseña.value = this.Administrador[0].Contraseña;
+      CedulaJuridica.value = this.Administrador[0].CedulaJuridica;
     }, error => console.error(error));
     console.log(res)
-
-    // Asignar los valores de la consulta indicada
-    NombreCompleto.value = "NombreCompleto";
-    Distrito.value = "Distrito";
-    Provincia.value = "Provincia";
-    Canton.value = "Canton";
-    Contraseña.value = "Contraseña";
-    CedulaJuridica.value = "CedulaJuridica";
-
-
-
   }
   /**
    * Metodo para obtener el telefono de un gerente
@@ -206,30 +204,18 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoG/list", JSON.stringify(answer), {
+    let res = await this.http.get<telefonoG[]>("https://localhost:7183/api/Afiliado/TelefonoG/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
     )
-    const telG = <HTMLInputElement>document.getElementById("EGTelefono")
-    const telG1 = <HTMLInputElement>document.getElementById("EGTelefono1")
-    const telG2 = <HTMLInputElement>document.getElementById("EGTelefono2")
-    const telG3 = <HTMLInputElement>document.getElementById("EGTelefono3")
-    res.subscribe(result => {
-      this.respuesta = result;
-      // Parser result para obtener los datos y hacer un ciclo para recorrer la lista
 
+    res.subscribe(result => {
+      this.TelefonosG = result;
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(res)
-    // Telefonos recopilados
-    telG.value = "2665213"
-    telG1.value = "2687456"
-    telG2.value = "2987462"
-    telG3.value = "2963258"
-
-
   }
 
   /*
@@ -289,7 +275,7 @@ export class SAGerenteComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
-
+      this.get_dataEditar();
     }, error => console.error(error));
     console.log(res)
     //Clear
@@ -349,9 +335,7 @@ export class SAGerenteComponent {
    * Metodo donde se define la funcion del boton Eliminar los telefonos del gerente
    * @constructor
    */
-  async Delete_TG_Button() {
-    const Usuario= (<HTMLInputElement>document.getElementById("EGUsuario")).value;
-    const Telefono= (<HTMLInputElement>document.getElementById("EGTelefono")).value;
+  async Delete_TG_Button(Usuario: string, Telefono: string) {
     const key: string[] = [Usuario,Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
@@ -363,13 +347,19 @@ export class SAGerenteComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
+      this.get_dataEditar();
 
     }, error => console.error(error));
     //Clear
     const Telefono1 = (<HTMLInputElement>document.getElementById("EGTelefono"))
     Telefono1.value = "";
+    this.get_dataEditar();
   }
 
+  get_dataEditar() {
+    this.Get_TG();
+    this.Get_Gerente();
+  }
 }
 
 export class administrador {
