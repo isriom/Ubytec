@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from "@angular/router";
+import {Component, Inject} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from "@angular/router";
+
 //import { Popup } from "../Popup/Popup.component";
 
 /**
@@ -46,7 +47,7 @@ export class DealersComponent {
    * @constructor metodo relacionado
    */
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla", {
+    var res = await this.http.get<string>("https://localhost:7183/GClientes/plantilla", {
       headers: this.httpOptions.headers,
       withCredentials: true
     }).subscribe(result => {
@@ -62,7 +63,7 @@ export class DealersComponent {
    * @constructor metodo relacionado
    */
   async Add_Button2() {
-    
+
     const answer: repartidor = {
       NombreCompleto: (<HTMLInputElement>document.getElementById("Nombre")).value,
       Cedula: (<HTMLInputElement>document.getElementById("Cedula")).value,
@@ -71,13 +72,13 @@ export class DealersComponent {
       Canton: (<HTMLInputElement>document.getElementById("Canton")).value,
       Usuario: (<HTMLInputElement>document.getElementById("Usuario")).value,
       Contraseña: (<HTMLInputElement>document.getElementById("Contraseña")).value,
-      Disponible: (<HTMLInputElement>document.getElementById("Disponible")).value,
+      Disponible: true,
       Correo: (<HTMLInputElement>document.getElementById("Correo")).value
     };
-   
+
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/Repartidor/add", JSON.stringify(answer), {
+    let res = await this.http.put<repartidor>("https://localhost:7183/api/Admin/Repartidor/add", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
@@ -92,7 +93,7 @@ export class DealersComponent {
 
   async Add_Button() {
     this.op = '1'
-    
+
 
   }
 
@@ -103,19 +104,21 @@ export class DealersComponent {
   async Delete_Button() {
     this.op = '2'
   }
+
   async Edit_Button() {
     this.op = '3'
   }
 }
+
 export class repartidor {
-  public NombreCompleto: string = "";
-  public Cedula: string = "";
-  public Distrito: string = "";
-  public Provincia: string = "";
-  public Canton: string = "";
-  public Usuario: string = "";
+  public NombreCompleto: string = ""
+  public Cedula: string = ""
+  public Distrito: string = ""
+  public Provincia: string = ""
+  public Canton: string = ""
+  public Usuario: string = ""
   public Contraseña: string = "";
-  public Disponible: string = "";
-  public Correo: string = "";
+  public Disponible: boolean = true;
+  public Correo: string = ""
 }
 
