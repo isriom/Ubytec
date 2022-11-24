@@ -106,27 +106,25 @@
         </ng-template>
         <ng-template [ngIf]="rol=== 'Cliente'">
           <ul class="navbar-nav flex-grow">
-            <li
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLinkActive]="['link-active']"
-              class="nav-item"
-            >
+            <li [routerLinkActiveOptions]="{ exact: true }"
+                [routerLinkActive]="['link-active']"
+                class="nav-item">
               <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
             </li>
 
             <li [routerLinkActive]="['link-active']" class="nav-item">
-               <a [routerLink]="['Cliente/Clientes']" class="nav-link text-dark"
-               >Perfil</a
-               >
+              <a [routerLink]="['Cliente/Clientes']" class="nav-link text-dark">Perfil</a>
             </li>
 
             <li class="nav-item">
               <button (click)="logout()" class="btn btn-link" type="button">LogOut</button>
             </li>
             <li [routerLinkActive]="['link-active']" class="nav-item">
-              <a [routerLink]="['Cliente/Carrito']" class="nav-link text-dark"
-              >Carrito</a
-              >
+              <a [routerLink]="['Cliente/Carrito']" class="nav-link text-dark">Carrito</a>
+            </li>
+
+            <li [routerLinkActive]="['link-active']" class="nav-item">
+              <a [routerLink]="['Cliente/Comentarios']" class="nav-link text-dark">Finalizar Entrega</a>
             </li>
           </ul>
 

@@ -1,1 +1,47 @@
-<p>comentario-edit works!</p>
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveComentario()" [formGroup]="comentarioForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-3 col-form-label" for="comentarioCedulaId">Cedula Juridica de Afiliado</label>
+        <div class="col-md-7">
+          <input class="form-control" id="comentarioCedulaId" type="text" placeholder="Cedula Juridica de Afiliado"
+                 formControlName="cedulaJAfiliado" />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-3 col-form-label" for="comentario1Id">Comentario de Entrega</label>
+        <div class="col-md-7">
+          <input class="form-control" id="comentario1Id" type="text" placeholder="Comentario de Entrega"
+                 formControlName="comentario1" />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-6">
+          <button class="btn btn-primary" style="width:80px;margin-right:10px;" type="submit"
+                  [title]="comentarioForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!comentarioForm.valid">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary" style="width:80px;margin-right:10px;" type="button"
+                  title="Cancel your edits" [routerLink]="['/Cliente/Comentarios']">
+            Cancel
+          </button>
+          <button class="btn btn-outline-warning" *ngIf="pageTitle != 'Add Comentario'"
+                  style="width:80px;margin-right:10px" type="button" title="Delete this product" (click)="deleteComentario()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}
+  </div>
+</div>

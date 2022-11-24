@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ComentarioService {
-  private comentariosUrl = 'https://localhost:7282/Cliente/Comentarios';
+  private comentariosUrl = 'https://localhost:7183/Cliente/Comentarios';
 
   constructor(private http: HttpClient) { }
 

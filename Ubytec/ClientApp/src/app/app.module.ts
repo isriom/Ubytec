@@ -2,7 +2,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
@@ -31,7 +32,10 @@ import {VentasAfiliadoComponent} from "./AdminView/Reportes/Ventas-Afiliado/Vent
 import {AsignarRepartidorComponent} from "./Afiliado View/Asignar Repartidor/AsignarRepartidor.component";
 import {AfiliadoService} from "./Afiliado View/Afiliado.service";
 import {MatExpansionModule} from "@angular/material/expansion";
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { ComentarioListComponent } from './ClientView/Comentario/comentario-list/comentario-list.component';
+import { ComentarioEditComponent } from './ClientView/Comentario/comentario-edit/comentario-edit.component';
+import { ComentarioDetailComponent } from './ClientView/Comentario/comentario-detail/comentario-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,10 +56,14 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ConsolidadoVentasComponent,
     RepartidoresPagoComponent,
     VentasAfiliadoComponent,
-    AsignarRepartidorComponent
+    AsignarRepartidorComponent,
+    ComentarioListComponent,
+    ComentarioEditComponent,
+    ComentarioDetailComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     HttpClientModule,

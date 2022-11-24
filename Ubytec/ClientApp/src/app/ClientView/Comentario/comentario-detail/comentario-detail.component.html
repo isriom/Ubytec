@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header"
+       *ngIf="comentario">
+    {{pageTitle + ": " + comentario.cedulaJAfiliado}}
+  </div>
+  <div class="card-body"
+       *ngIf="comentario">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3">Cedula Juridica Afiliado:</div>
+          <div class="col-md-6">{{comentario.cedulaJAfiliado}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Comentario de Entrega:</div>
+          <div class="col-md-6">{{comentario.comentario1}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <button class="btn btn-outline-secondary mr-3"
+                style="width:80px;margin-right:10px;"
+                (click)="onBack()">
+          <i class="fa fa-chevron-left"></i> Retroceder
+        </button>
+        <button class="btn btn-outline-primary"
+                style="width:80px;margin-right:10px;"
+                [routerLink]="['/Cliente/Comentarios', comentario.id, 'edit']">
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</div>

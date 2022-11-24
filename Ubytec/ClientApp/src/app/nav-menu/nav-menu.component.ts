@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
   isExpanded = false;
   token = sessionStorage.getItem("Token");
   rol = sessionStorage.getItem("Rol");
@@ -17,6 +17,9 @@ export class NavMenuComponent {
       'withCredentials': 'true',
     })
   };
+
+  ngOnInit() {
+  }
 
   constructor(http: HttpClient) {
     this.http = http;
