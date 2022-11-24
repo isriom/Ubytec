@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Data;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ClientData;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using Npgsql;
 using NuGet.Protocol;
 using Ubytec.Models;
 using Ubytec.ViewModels;
@@ -25,6 +27,8 @@ public class Client : Controller
 {
     private readonly ubytecContext _context;
 
+    private readonly NpgsqlConnection _psqlConnection;
+    
     private JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true,
@@ -36,6 +40,10 @@ public class Client : Controller
     {
         Element.Context = context;
         _context = context;
+        _psqlConnection =
+            new NpgsqlConnection(
+                "Host=ubytec.postgres.database.azure.com;Port=5432;Database=ubytec;Username=ubytec@ubytec;Password=CE3110.2022.2");
+
     }
 
     /**
@@ -65,6 +73,11 @@ public class Client : Controller
                 _context.Pedidos.Add(OrderModel);
                 // guardar los cambios del contexto en la base de datos
                 _context.SaveChanges();
+                this._psqlConnection.Open();
+                var procedure = new NpgsqlCommand("CALL public.calcularprecio('"+order.ComprobantePago+"');", _psqlConnection);
+                procedure.CommandType = CommandType.Text;
+                procedure.ExecuteNonQuery();
+                this._psqlConnection.Close();
                 return Ok();
 
 
