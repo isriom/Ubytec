@@ -66,8 +66,6 @@ public class Afiliado : Controller
                 var tel = element.Deserialize<TelefonoGerente>(options);
                 _context.TelefonoGerentes.Add(tel);
                 _context.SaveChanges();
-
-
                 return Ok();
         }
 
@@ -148,9 +146,10 @@ public class Afiliado : Controller
                 return Json(listAfiliados, options);
 
             case "TelefonoG":
-                var listaTelG = _context.TelefonoGerentes.Where(x => x.Usuario == HttpContext.User.Identity.Name)
+                var listaTelG = _context.TelefonoGerentes.Where(x=> x.Usuario == HttpContext.User.Identity.Name)
                     .ToList();
                 return Json(listaTelG, options);
+            
             case "Administrador":
                 var Administradores = _context.Gerentes.Where(x => x.CedulaJuridica == Admin.First().CedulaJuridica)
                     .ToList();
@@ -168,6 +167,8 @@ public class Afiliado : Controller
     [Route("api/[controller]/{web}/update")]
     public ActionResult Update([FromBody] JsonElement element, string web)
     {
+        Console.Out.Write("update:" + element);
+        
         Console.Out.Write("update: ");
 
         switch (web)
@@ -185,31 +186,14 @@ public class Afiliado : Controller
                 return Ok();
 
             case "TelefonoG":
-                //logica de Telefono
+                //logica de actualizacion de Telefono
                 var updateTel = element.Deserialize<TelefonoGerente>();
                 var tel = _context.TelefonoGerentes.Find(updateTel.Telefono);
                 tel.Telefono = updateTel.Telefono;
                 tel.Usuario = updateTel.Usuario;
                 _context.SaveChanges();
                 return Ok();
-
-
-            /*
-            case "RAdmines":
-                //logica de Admines
-                var update = element.Deserialize<AdminData.AdmineElement>();
-                var Admine = _context.Admines.Find(update.cedula);
-                update.UpdateModel(Admine);
-                _context.SaveChanges();
-                return Ok();
-            case "Usuario":
-                //logica de Insumos
-                var updateAdmine = element.Deserialize<AdminData.AdmineElement>();
-                var Admine1 = _context.Admines.Find(updateAdmine.cedula);
-                updateAdmine.UpdateModel(Admine1);
-                _context.SaveChanges();
-                return Ok();
-                */
+            
         }
 
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
@@ -223,34 +207,27 @@ public class Afiliado : Controller
      */
     [HttpDelete]
     [Route("api/[controller]/{web}/delete")]
-    public ActionResult Delete([FromBody] string[] element, string web)
+    public ActionResult Delete([FromBody]  string[] element, string web)
     {
-        //logica para borrar una cita
         Console.Out.Write("Delete: " + element[0]);
-        /*
         switch (web)
         {
-            case "RCitas":
-                //logica de citas
-                var cita = _context.Cita.ToArray().First(x => x.Placa.ToString() == element[1] && x.Fecha.ToString(CultureInfo.InvariantCulture) == element[0] && x.Sucursal == element[2]);
-                _context.Cita.Remove(cita);
+            case "Administrador":
+                //logica para borrar un admin
+                var todeleteadmin = _context.Gerentes.Find(element);
+                _context.Gerentes.Remove(todeleteadmin);
                 _context.SaveChanges();
-                return new OkResult();
-            case "Direccion":
-                //logica de Direccion
-                var toDeleteAddres = _context.AdmineDireccions.Find(element);
-                _context.AdmineDireccions.Remove(toDeleteAddres);
+                return Ok();
+            
+            case "TelefonoG":
+                //logica de borrar un telefono
+                var deletetel = _context.TelefonoGerentes.Find(element);
+                _context.TelefonoGerentes.Remove(deletetel);
                 _context.SaveChanges();
-                return new OkResult();
-            case "Telefono":
-                //logica de Telefono
-                var toDeletePhone = _context.AdmineTelefonos.Find(element);
-                _context.AdmineTelefonos.Remove(toDeletePhone);
-                _context.SaveChanges();
-                return new OkResult();
-
+                return Ok();
+            
         }
-        */
+        
         return new OkResult();
     }
 
@@ -290,7 +267,6 @@ public class Afiliado : Controller
                 _context.SaveChanges();
                 return Ok();
         }
-
         return Ok();
     }
 }

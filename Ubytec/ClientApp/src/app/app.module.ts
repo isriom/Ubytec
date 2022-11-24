@@ -75,8 +75,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         path: "Admin", children: [
           {path: 'Dealers', data: {title: "Dealers"}, component: DealersComponent},
           {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent},
-          {path: 'Afiliado', data: {title: "Gestion Afiliado"}, component: ConsolidadoVentasComponent},
-          {path: 'Gerente', data: {title: "Gestion Gerente"}, component: ConsolidadoVentasComponent},
+          {path: 'Afiliado', data: {title: "Gestion Afiliado"}, component: GAfiliadoComponent},
+          {path: 'Gerente', data: {title: "Gestion Gerente"}, component:GAGerenteComponent},
           {path: 'ConsolidadoVentas', data: {title: "ConsolidadoVentas"}, component: ConsolidadoVentasComponent},
           {path: 'RepartidoresPago', data: {title: "RepartidoresPago"}, component: RepartidoresPagoComponent},
           {path: 'VentasAfiliado', data: {title: "RepartidoresPago"}, component: VentasAfiliadoComponent}

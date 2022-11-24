@@ -98,19 +98,34 @@ export class SAfiliacionComponent {
 
     }, error => console.error(error));
     console.log(res)
+    // Clear de los espacios de texto
+    const nombre = (<HTMLInputElement>document.getElementById("ANombreCompleto"))
+    nombre.value = "";
+    const cedula = (<HTMLInputElement>document.getElementById("ACedulaJ"))
+    cedula.value = "";
+    const distrito = (<HTMLInputElement>document.getElementById("ADistrito"))
+    distrito.value = "";
+    const provincia = (<HTMLInputElement>document.getElementById("AProvincia"))
+    provincia.value = "";
+    const canton = (<HTMLInputElement>document.getElementById("ACanton"))
+    canton.value = "";
+    const sinpe = (<HTMLInputElement>document.getElementById("ASinpe"))
+    sinpe.value = "";
+    const correo = (<HTMLInputElement>document.getElementById("ACorreo"))
+    correo.value = "";
+
   }
   /**
    * Metodo donde se define la funcion del boton SAVE para el telefono del afiliado
    * @constructor
    */
   async Save_TA_Button() {
-    const answer = {
-
+    const answer : telefonoA ={
       CedulaJuridica: (<HTMLInputElement>document.getElementById("ACedulaJ")).value,
       Telefono: (<HTMLInputElement>document.getElementById("ATelefono")).value,
     };
 
-    console.log(this.respuesta);
+    console.log(JSON.stringify(answer));
     console.log(answer);
     let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoA/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
@@ -123,6 +138,8 @@ export class SAfiliacionComponent {
 
     }, error => console.error(error));
     console.log(res)
+    const tel = (<HTMLInputElement>document.getElementById("ATelefono"))
+    tel.value = "";
   }
 
 
@@ -136,17 +153,17 @@ export class SAfiliacionComponent {
    * @constructor
    */
   async Save_G_Button() {
-    const answer = {
+    const answer:administrador = {
       Usuario: (<HTMLInputElement>document.getElementById("GUsuario")).value,
       NombreCompleto: (<HTMLInputElement>document.getElementById("GNombreCompleto")).value,
       Distrito: (<HTMLInputElement>document.getElementById("GDistrito")).value,
       Provincia: (<HTMLInputElement>document.getElementById("GProvincia")).value,
       Canton: (<HTMLInputElement>document.getElementById("GCanton")).value,
       Contraseña: "1234",
-      CedulaJurifica: (<HTMLInputElement>document.getElementById("GCedulaJ")).value,
+      CedulaJuridica: (<HTMLInputElement>document.getElementById("GCedulaJ")).value,
 
     };
-    console.log(this.respuesta);
+    console.log(JSON.stringify(answer));
     console.log(answer);
     let res = await this.http.put("https://localhost:7183/api/Afiliado/Admin/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
@@ -159,6 +176,20 @@ export class SAfiliacionComponent {
 
     }, error => console.error(error));
     console.log(res)
+    // Clear de los espacios de texto
+    const usuario = (<HTMLInputElement>document.getElementById("GUsuario"))
+    usuario.value = "";
+    const nombre = (<HTMLInputElement>document.getElementById("GNombreCompleto"))
+    nombre.value = "";
+    const distrito = (<HTMLInputElement>document.getElementById("GDistrito"))
+    distrito.value = "";
+    const provincia = (<HTMLInputElement>document.getElementById("GProvincia"))
+    provincia.value = "";
+    const canton = (<HTMLInputElement>document.getElementById("GCanton"))
+    canton.value = "";
+    const cedula = (<HTMLInputElement>document.getElementById("GCedulaJ"))
+    cedula.value = "";
+
 
   }
 
@@ -167,13 +198,13 @@ export class SAfiliacionComponent {
    * @constructor
    */
   async Save_TG_Button() {
-    const answer = {
+    const answer:telefonoG = {
 
       Usuario: (<HTMLInputElement>document.getElementById("GUsuario")).value,
       Telefono: (<HTMLInputElement>document.getElementById("GTelefono")).value,
     };
 
-    console.log(this.respuesta);
+    console.log(JSON.stringify(answer));
     console.log(answer);
     let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoG/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
@@ -186,8 +217,15 @@ export class SAfiliacionComponent {
 
     }, error => console.error(error));
     console.log(res)
+    // Clear de los espacios de texto
+    const tel = (<HTMLInputElement>document.getElementById("GTelefono"))
+    tel.value = "";
   }
 }
+
+/*
+--------------------------------------------Estructuras --------------------------------------------
+ */
 export class afiliado {
 public Nombre: string="";
 public CedulaJuridica: string="";
@@ -197,4 +235,21 @@ public Canton: string="";
 public Sinpe: string="";
 public Correo: string="";
 public Estado: string="";
+}
+export class telefonoA {
+  public CedulaJuridica: string="";
+  public Telefono: string="";
+}
+export class administrador {
+  public Usuario: string="";
+  public NombreCompleto: string="";
+  public Distrito: string="";
+  public Provincia: string="";
+  public Canton: string="";
+  public Contraseña: string="";
+  public CedulaJuridica: string="";
+}
+export class telefonoG {
+  public Usuario: string="";
+  public Telefono: string="";
 }

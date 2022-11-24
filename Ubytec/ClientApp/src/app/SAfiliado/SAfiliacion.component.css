@@ -18,6 +18,7 @@
   flex-direction: column;
   margin: 0;
   background-color: #FFE3FF;
+  width: 80%;
 }
 
 /**
@@ -48,7 +49,7 @@ Formato de los figura de los botones de la pagina
 
 
 .two-fields {
-  width: 100%;
+  width: 80%;
 }
 
 .two-fields .input-group {
