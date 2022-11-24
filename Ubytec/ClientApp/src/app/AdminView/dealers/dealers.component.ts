@@ -120,5 +120,18 @@ export class repartidor {
   public Contraseña: string = "";
   public Disponible: boolean = true;
   public Correo: string = ""
+
+
+  constructor(NombreCompleto: string, Cedula: string, Distrito: string, Provincia: string, Canton: string, Usuario: string, Contraseña: string, Disponible: boolean, Correo: string) {
+    this.NombreCompleto = NombreCompleto;
+    this.Cedula = Cedula;
+    this.Distrito = Distrito;
+    this.Provincia = Provincia;
+    this.Canton = Canton;
+    this.Usuario = Usuario;
+    this.Contraseña = Contraseña;
+    this.Disponible = Disponible;
+    this.Correo = Correo;
+  }
 }
 

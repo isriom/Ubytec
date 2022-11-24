@@ -375,6 +375,7 @@ export class administrador {
   public Canton: string="";
   public Contraseña: string="";
   public CedulaJuridica: string="";
+
 }
 export class telefonoG {
   public Usuario: string="";

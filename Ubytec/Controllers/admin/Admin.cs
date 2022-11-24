@@ -213,7 +213,7 @@ public class Admin : Controller
         {
             case "Administrador":
                 //logica para borrar un admin
-                var todeleteadmin = _context.Gerentes.Find(element);
+                var todeleteadmin = _context.Gerentes.Find(element[0]);
                 _context.Gerentes.Remove(todeleteadmin);
                 _context.SaveChanges();
                 return Ok();

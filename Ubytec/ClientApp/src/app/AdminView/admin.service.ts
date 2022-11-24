@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {IconType} from "@angular/material/icon/testing";
 
 @Injectable({
   providedIn: 'root'
