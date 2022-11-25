@@ -35,7 +35,7 @@ namespace Ubytec.Controllers.client
         {
             await _comentarioService.CreateAsync(nuevoComentario);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPut("{id}")]

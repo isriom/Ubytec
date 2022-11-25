@@ -13,6 +13,6 @@ namespace Ubytec.Models
         public string CedulaJafiliado { get; set; } = null!;
         public string Comentario1 { get; set; } = null!;
 
-        public virtual Afiliado CedulaJafiliadoNavigation { get; set; } = null!;
+        public virtual Afiliado? CedulaJafiliadoNavigation { get; set; } = null!;
     }
 }

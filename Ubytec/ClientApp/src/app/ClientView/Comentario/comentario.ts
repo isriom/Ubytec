@@ -1,5 +1,5 @@
-export interface Comentario {
-  Id: string,
-  CedulaJafiliado: string,
-  Comentario1: string
+export class Comentario {
+  Id: string="0";
+  CedulaJafiliado: string="";
+  Comentario1: string="";
 }

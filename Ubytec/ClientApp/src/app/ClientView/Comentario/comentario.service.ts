@@ -29,6 +29,7 @@ export class ComentarioService {
   }
 
   getComentario(id: string | null): Observable<Comentario> {
+    console.log("as"+id);
     if (id === '') {
       return of(this.initializeComentario());
     }
@@ -44,13 +45,11 @@ export class ComentarioService {
 
   createComentario(comentario: Comentario): Observable<Comentario> {
     comentario.Id = '';
+    console.log(comentario);
     return this.http.post<Comentario>(this.comentariosUrl, comentario, {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
   deleteComentario(id: string): Observable<{}> {
@@ -65,7 +64,8 @@ export class ComentarioService {
   }
 
   updateComentario(comentario: Comentario): Observable<Comentario> {
-    const url = `${this.comentariosUrl}/${comentario.Id}`;
+    const url = this.comentariosUrl+"/"+comentario.Id;
+    console.log(url);
     return this.http.put<Comentario>(url, comentario, {
       headers: this.httpOptions.headers,
       withCredentials: true,
