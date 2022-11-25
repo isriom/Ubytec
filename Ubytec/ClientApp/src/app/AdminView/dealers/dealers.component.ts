@@ -23,13 +23,14 @@ export class DealersComponent {
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
-  Repartidor: repartidor[] = [];
+  Repartidor: repartidor = new repartidor("", "", "", "", "", "", "", true, "");
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'withCredentials': 'true'
     })
   };
+  allRepatidores: repartidor[] = [];
 
   /**
    * Constructor de la clase
@@ -40,6 +41,7 @@ export class DealersComponent {
     this.op = '0';
     this.http = http;
     this.baseurl = baseUrl;
+    this.get_all_repartidores();
     //this.Obtener_Clientes();
   }
 
@@ -91,7 +93,6 @@ export class DealersComponent {
     console.log(res)
 
 
-
   }
 
   async Add_Button() {
@@ -107,24 +108,25 @@ export class DealersComponent {
   async Delete_Button() {
     this.op = '2'
   }
+
   async Delete_Button2() {
-    
-    const Cedula= (<HTMLInputElement>document.getElementById("CedulaEliminar")).value;
-    
+
+    const Cedula = (<HTMLInputElement>document.getElementById("CedulaEliminar")).value;
+
     const key: string[] = [Cedula];
     console.log(key)
     console.log("Repartidor eliminado: " + (key[0]))
     let res = await this.http.delete("https://localhost:7183/api/Admin/Repartidor/delete", {
-      headers: this.httpOptions.headers,
-      withCredentials: true, body: key
-    }
+        headers: this.httpOptions.headers,
+        withCredentials: true, body: key
+      }
     )
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
     }, error => console.error(error));
-    
+
   }
 
   async Edit_Button() {
@@ -138,34 +140,25 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<repartidor[]>("https://localhost:7183/api/Admin/Repartidor/list/" + answer.Cedula, {
-      headers: this.httpOptions.headers,
-      withCredentials: true,
-    }
+    let res = await this.http.get<repartidor>("https://localhost:7183/api/Admin/Repartidor/list/" + answer.Cedula, {
+        headers: this.httpOptions.headers,
+        withCredentials: true,
+      }
     )
-
-    const NombreCompleto = (<HTMLInputElement>document.getElementById("NombreEditar"))
-    const Distrito = (<HTMLInputElement>document.getElementById("DistritoEditar"))
-    const Provincia = (<HTMLInputElement>document.getElementById("ProvinciaEditar"))
-    const Canton = (<HTMLInputElement>document.getElementById("CantonEditar"))
-    const Usuario = (<HTMLInputElement>document.getElementById("UsuarioEditar"))
-    const Contraseña = (<HTMLInputElement>document.getElementById("ContraseñaEditar"))
-    const Disponible = (<HTMLInputElement>document.getElementById("DisponibleEditar"))
-    const Correo = (<HTMLInputElement>document.getElementById("CorreoEditar"))
-
     res.subscribe(result => {
       console.log(this.Repartidor);
       this.Repartidor = result;
       console.log(this.Repartidor);
-      
+
       // Asignar los valores de la consulta indicada
-      NombreCompleto.value = this.Repartidor[0].NombreCompleto;
-      Distrito.value = this.Repartidor[0].Distrito;
-      Provincia.value = this.Repartidor[0].Provincia;
-      Canton.value = this.Repartidor[0].Canton;
-      Usuario.value = this.Repartidor[0].Usuario;
-      Contraseña.value = this.Repartidor[0].Contraseña;
-      Correo.value = this.Repartidor[0].Correo;
+      (<HTMLInputElement>document.getElementById("NombreEditar")).value = this.Repartidor.NombreCompleto;
+      (<HTMLInputElement>document.getElementById("DistritoEditar")).value = this.Repartidor.Distrito;
+      (<HTMLInputElement>document.getElementById("ProvinciaEditar")).value = this.Repartidor.Provincia;
+      (<HTMLInputElement>document.getElementById("CantonEditar")).value = this.Repartidor.Canton;
+      (<HTMLInputElement>document.getElementById("UsuarioEditar")).value = this.Repartidor.Usuario;
+      (<HTMLInputElement>document.getElementById("ContraseñaEditar")).value = this.Repartidor.Contraseña;
+      (<HTMLInputElement>document.getElementById("DisponibleEditar")).checked = this.Repartidor.Disponible;
+      (<HTMLInputElement>document.getElementById("CorreoEditar")).value = this.Repartidor.Correo;
     }, error => console.error(error));
     console.log(res)
   }
@@ -179,7 +172,7 @@ export class DealersComponent {
       Canton: (<HTMLInputElement>document.getElementById("CantonEditar")).value,
       Usuario: (<HTMLInputElement>document.getElementById("UsuarioEditar")).value,
       Contraseña: (<HTMLInputElement>document.getElementById("ContraseñaEditar")).value,
-      Disponible: true,
+      Disponible: (<HTMLInputElement>document.getElementById("DisponibleEditar")).checked,
       Correo: (<HTMLInputElement>document.getElementById("CorreoEditar")).value
     };
 
@@ -207,7 +200,7 @@ export class DealersComponent {
       withCredentials: true,
     }
     )
-   
+
     const NombreCompleto = (<HTMLInputElement>document.getElementById("NombreEditar"))
     const Distrito = (<HTMLInputElement>document.getElementById("DistritoEditar"))
     const Provincia = (<HTMLInputElement>document.getElementById("ProvinciaEditar"))
@@ -236,6 +229,16 @@ export class DealersComponent {
     */
 
 
+  }
+
+  private get_all_repartidores() {
+    this.http.get<repartidor[]>("https://localhost:7183/api/Admin/Repartidor/list", {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    }).subscribe(result => {
+      this.allRepatidores = result;
+      console.log(this.allRepatidores);
+    }, error => console.error(error));
   }
 }
 

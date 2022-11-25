@@ -146,7 +146,7 @@ public class Admin : Controller
             case "Administrador":
                 var Admin = _context.Gerentes.Where(x => x.Usuario == id).ToList();
                 return Json(Admin, options);
-            
+
             case "TelefonoA":
                 var listaTelA = _context.TelefonoAfiliados.Where(x => x.CedulaJuridica == id).ToList();
                 return Json(listaTelA, options);
@@ -154,10 +154,23 @@ public class Admin : Controller
             case "Afiliado":
                 var Afiliado = _context.Afiliados.Where(x => x.CedulaJuridica == id).ToList();
                 return Json(Afiliado, options);
-            
+
             case "Repartidor":
-                var Repartidores = _context.Repartidors.Where(x => x.Cedula == id).ToList();
-                return Json(Repartidores, options);
+                if (id != null && id2 != null && id3 != null)
+                {
+                }
+
+                if (id != null && id2 != null)
+                {
+                }
+
+                if (id != null)
+                {
+                    var Repartidor = _context.Repartidors.Find(id);
+                    return Json(Repartidor, options);
+                }
+
+                return Json(_context.Repartidors.ToList());
         }
 
         return Json("No se encontro la lista", options);
@@ -185,7 +198,7 @@ public class Admin : Controller
                 Admin.CedulaJuridica = updateAdmin.CedulaJuridica;
                 _context.SaveChanges();
                 return Ok();
-            
+
             case "Afiliado":
                 //logica para actualizar un admin
                 var updateAfil = element.Deserialize<Afiliado>();
@@ -221,7 +234,6 @@ public class Admin : Controller
                 Rep.Correo = updateRep.Distrito;
                 _context.SaveChanges();
                 return Ok();
-
         }
 
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
@@ -260,7 +272,7 @@ public class Admin : Controller
                 var todeleteafil = _context.Afiliados.Find(element[0]);
                 _context.Afiliados.Remove(todeleteafil);
                 _context.SaveChanges();
-                
+
                 return Ok();
 
             case "TelefonoA":
