@@ -170,7 +170,7 @@ public class Admin : Controller
                     return Json(Repartidor, options);
                 }
 
-                return Json(_context.Repartidors.ToList());
+                return Json(_context.Repartidors.ToList(), options);
         }
 
         return Json("No se encontro la lista", options);

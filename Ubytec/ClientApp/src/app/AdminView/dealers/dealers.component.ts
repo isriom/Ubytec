@@ -31,6 +31,7 @@ export class DealersComponent {
     })
   };
   allRepatidores: repartidor[] = [];
+  allRepartidoresnames: string[] = [];
 
   /**
    * Constructor de la clase
@@ -237,7 +238,10 @@ export class DealersComponent {
       withCredentials: true
     }).subscribe(result => {
       this.allRepatidores = result;
+      this.allRepartidoresnames = [];
+      this.allRepatidores.forEach(element => {this.allRepartidoresnames.push(element.NombreCompleto)});
       console.log(this.allRepatidores);
+      console.log(this.allRepartidoresnames);
     }, error => console.error(error));
   }
 }

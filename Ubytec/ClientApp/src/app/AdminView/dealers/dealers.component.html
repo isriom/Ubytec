@@ -71,8 +71,9 @@
           <div class="col-xs-12 col-md-3">
             <div class="form-group two-fields">
               <div class="input-group">
-                <input class="form-control" id="CedulaEliminar" placeholder="Cedula de Identidad" requiredtype="text" value="">
-
+                <select class="form-control" id="CedulaEliminar" placeholder="Cedula de Identidad" required type="text" value="">
+                  <option *ngFor="let option of this.allRepatidores" value="{{option.Cedula}}"> {{option.Usuario}}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -98,7 +99,9 @@
           <div class="col-xs-12 col-md-3">
             <div class="form-group two-fields">
               <div class="input-group">
-                <input class="form-control" id="CedulaEditar" placeholder="Cedula de Identidad" requiredtype="text" value="">
+                <select class="form-control" id="CedulaEditar" placeholder="Cedula de Identidad" required type="text" value="">
+                  <option *ngFor="let option of this.allRepatidores" value="{{option.Cedula}}"> {{option.Usuario}}</option>
+                </select>
 
               </div>
             </div>
