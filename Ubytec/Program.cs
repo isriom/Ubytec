@@ -9,7 +9,7 @@ using Ubytec.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("MongoDBSettings"));
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddSingleton<ComentarioService>();
 
 builder.Services.AddControllers();

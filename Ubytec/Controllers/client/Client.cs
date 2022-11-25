@@ -102,6 +102,11 @@ public class Client : Controller
 
         switch (web)
         {
+            case "Pedidos":
+                var Pedidos = _context.Pedidos.Where(x =>
+                    x.CedulaCliente == user.Cedula && x.EstadoPedido == id).ToList(); //En camino, Entregado
+                return Json(Pedidos, serializerSettings: options);
+
             case "Afiliados":
                 //logica de Puntos
                 //lista de afiliados validados

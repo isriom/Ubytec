@@ -20,13 +20,24 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
   private sub!: Subscription;
 
   displayMessage: { [key: string]: string } = {};
-  //private validationMessages: { [key: string]: { [key: string]: string } };
+  private validationMessages: { [key: string]: { [key: string]: string } };
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private comentarioService: ComentarioService) {
+
+    this.validationMessages = {
+      cedulaJAfiliado: {
+        required: 'Debe ingresar un valor de cedula judridica.'
+      },
+      comentario1: {
+        required: 'Ingrese un comentario de su experiencia'
+      }
+    };
   }
+
+  
 
   ngOnInit(): void {
     this.tranMode = "new";
@@ -103,7 +114,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
             .subscribe({
               next: () => this.onSaveComplete(),
               error: (err) => this.errorMessage = <any>err,
-              complete: () => console.info('Agregar nuevo comentario')
+              complete: () => console.info('Comentario agregado')
             });
         } else {
           this.comentarioService.updateComentario(e)

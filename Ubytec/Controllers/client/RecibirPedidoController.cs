@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using Ubytec.Models;
 using Ubytec.Services;
 
@@ -6,7 +8,8 @@ namespace Ubytec.Controllers.client
 {
     [Route("Cliente/Comentarios")]
     [ApiController]
-    public class RecibirPedidoController : ControllerBase
+    [Authorize(Roles = "Cliente")]
+    public class RecibirPedidoController : Controller
     {
         private readonly ComentarioService _comentarioService;
 
