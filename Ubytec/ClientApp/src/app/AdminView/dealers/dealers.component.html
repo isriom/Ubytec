@@ -56,6 +56,25 @@
 
 
       </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+
+              <div class="input-group">
+                <input class="form-control" id="Telefono" placeholder="Telefono">
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Buttons">
+        <button (click)="AddTel_Button()" class="form-floating" id="save">Guardar Telefono</button>
+
+
+      </div>
 
     </ng-template>
     <ng-template [ngIf]="op== '2'">
@@ -81,6 +100,26 @@
       </div>
       <div id="Buttons">
         <button (click)="Delete_Button2()" class="form-floating" id="Rdelete">Confirmar Eliminación</button>
+
+
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group two-fields">
+
+              <div class="input-group">
+                <input class="form-control" id="CedulaEliminar2" placeholder="Cedula">
+                <input class="form-control" id="TelefonoEliminar" placeholder="Telefono">
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Buttons">
+        <button (click)="DeleteTel_Button()" class="form-floating" id="deleteTel">Eliminar Telefono</button>
 
 
       </div>
@@ -135,8 +174,8 @@
                 <input class="form-control" id="ContraseñaEditar" placeholder="Contraseña" />
               </div>
               <div class="input-group">
-                <div style="display: flex; width: 50%;" > <p class="text-center align-content-center align-content-between">Disponible:</p> <input class="form-check" id="DisponibleEditar" placeholder="Disponibilidad" type="checkbox" /></div>
-                <input class="form-control" id="CorreoEditar" placeholder="Correo" style="width: 50%"  />
+                <div style="display: flex; width: 50%;"> <p class="text-center align-content-center align-content-between">Disponible:</p> <input class="form-check" id="DisponibleEditar" placeholder="Disponibilidad" type="checkbox" /></div>
+                <input class="form-control" id="CorreoEditar" placeholder="Correo" style="width: 50%" />
               </div>
             </div>
           </div>
@@ -147,6 +186,7 @@
 
 
       </div>
+     
 
     </ng-template>
   </div>

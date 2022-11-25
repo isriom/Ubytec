@@ -81,6 +81,14 @@ public class Admin : Controller
                 _context.TelefonoAfiliados.Add(telA);
                 _context.SaveChanges();
                 return Ok();
+
+            case "TelefonoR":
+                //logica de Telefono
+                var telR = element.Deserialize<TelefonoRepartidor>(options);
+                _context.TelefonoRepartidors.Add(telR);
+                _context.SaveChanges();
+                return Ok();
+
         }
 
         Console.Out.Write(element);
@@ -234,6 +242,7 @@ public class Admin : Controller
                 Rep.Correo = updateRep.Distrito;
                 _context.SaveChanges();
                 return Ok();
+            
         }
 
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
@@ -286,6 +295,13 @@ public class Admin : Controller
                 //logica para borrar un admin
                 var todeleterep = _context.Repartidors.Find(element[0]);
                 _context.Repartidors.Remove(todeleterep);
+                _context.SaveChanges();
+                return Ok();
+
+            case "TelefonoR":
+                //logica de borrar un telefono
+                var deletetelR = _context.TelefonoRepartidors.Find(element);
+                _context.TelefonoRepartidors.Remove(deletetelR);
                 _context.SaveChanges();
                 return Ok();
         }

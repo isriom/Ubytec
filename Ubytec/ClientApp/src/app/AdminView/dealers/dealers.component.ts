@@ -101,6 +101,30 @@ export class DealersComponent {
 
 
   }
+  async AddTel_Button() {
+
+    const answer: telefonoR = {
+      CedulaRepartidor: (<HTMLInputElement>document.getElementById("Cedula")).value,
+      Telefono: (<HTMLInputElement>document.getElementById("Telefono")).value,
+    };
+
+    console.log(JSON.stringify(answer));
+    console.log(answer);
+    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoR/add", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    }
+    )
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+
+    }, error => console.error(error));
+    console.log(res)
+    //Clear
+    const tel = (<HTMLInputElement>document.getElementById("Telefono"))
+    tel.value = "";
+  }
 
   /**
    * Metodo donde se define la funcion del boton DELETE
@@ -129,6 +153,27 @@ export class DealersComponent {
     }, error => console.error(error));
 
   }
+  async DeleteTel_Button() {
+    const CedulaRepartidor = (<HTMLInputElement>document.getElementById("CedulaEliminar")).value;
+    const Telefono = (<HTMLInputElement>document.getElementById("TelefonoEliminar")).value;
+
+    const key: string[] = [CedulaRepartidor, Telefono];
+    console.log(key)
+    console.log("Telefono eliminado: " + (key[0]))
+    let res = await this.http.delete("https://localhost:7183/api/Admin/TelefonoR/delete", {
+      headers: this.httpOptions.headers,
+      withCredentials: true, body: key
+    }
+    )
+
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+      
+
+    }, error => console.error(error)); 
+  
+}
 
   async Edit_Button() {
     this.op = '3'
@@ -268,6 +313,16 @@ export class repartidor {
     this.Contraseña = Contraseña;
     this.Disponible = Disponible;
     this.Correo = Correo;
+  }
+}
+
+export class telefonoR {
+  public CedulaRepartidor: string = "";
+  public Telefono: string = "";
+
+  constructor(CedulaRepartidor: string, Telefono: string) {
+    this.Telefono = Telefono;
+    this.CedulaRepartidor = CedulaRepartidor;
   }
 }
 
