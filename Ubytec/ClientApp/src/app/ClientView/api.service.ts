@@ -12,7 +12,7 @@ declare global {
 })
 
 export class APIService {
-  api = "https://ubytec.azurewebsites.net/api/";
+  api = "https://localhost:7183/api/"   ;
   http: HttpClient;
   httpOptions = {
     headers: new HttpHeaders({
