@@ -88,7 +88,7 @@ export class ComentarioListComponent implements OnInit {
   performFilter(filterBy: string): Comentario[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.comentarios.filter((comentario: Comentario) =>
-      comentario.cedulaJAfiliado.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      comentario.CedulaJafiliado.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   ngOnInit(): void {

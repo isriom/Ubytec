@@ -33,20 +33,20 @@
         <tbody>
           <tr *ngFor="let comentario of filteredComentarios">
             <td>
-              <a [routerLink]="['/Cliente/Comentarios', comentario.id]">
-                {{ comentario.cedulaJAfiliado }}
+              <a [routerLink]="['/Cliente/Comentarios', comentario.Id]">
+                {{ comentario.CedulaJafiliado }}
               </a>
             </td>
-            <td>{{ comentario.comentario1 }}</td>
+            <td>{{ comentario.Comentario1 }}</td>
             <td>
               <button class="btn btn-outline-primary btn-sm"
-                      [routerLink]="['/Cliente/Comentarios', comentario.id, 'edit']">
+                      [routerLink]="['/Cliente/Comentarios', comentario.Id, 'edit']">
                 Edit
               </button>
             </td>
             <td>
               <button class="btn btn-outline-warning btn-sm"
-                      (click)="deleteComentario(comentario.id,comentario.cedulaJAfiliado);">
+                      (click)="deleteComentario(comentario.Id,comentario.CedulaJafiliado);">
                 Delete
               </button>
             </td>

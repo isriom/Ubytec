@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header"
        *ngIf="comentario">
-    {{pageTitle + ": " + comentario.cedulaJAfiliado}}
+    {{pageTitle + ": " + comentario.CedulaJafiliado}}
   </div>
   <div class="card-body"
        *ngIf="comentario">
@@ -9,11 +9,11 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-3">Cedula Juridica Afiliado:</div>
-          <div class="col-md-6">{{comentario.cedulaJAfiliado}}</div>
+          <div class="col-md-6">{{comentario.CedulaJafiliado}}</div>
         </div>
         <div class="row">
           <div class="col-md-3">Comentario de Entrega:</div>
-          <div class="col-md-6">{{comentario.comentario1}}</div>
+          <div class="col-md-6">{{comentario.Comentario1}}</div>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
         </button>
         <button class="btn btn-outline-primary"
                 style="width:80px;margin-right:10px;"
-                [routerLink]="['/Cliente/Comentarios', comentario.id, 'edit']">
+                [routerLink]="['/Cliente/Comentarios', comentario.Id, 'edit']">
           Editar
         </button>
       </div>

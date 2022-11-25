@@ -28,10 +28,10 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     private comentarioService: ComentarioService) {
 
     this.validationMessages = {
-      cedulaJAfiliado: {
+      CedulaJafiliado: {
         required: 'Debe ingresar un valor de cedula judridica.'
       },
-      comentario1: {
+      Comentario1: {
         required: 'Ingrese un comentario de su experiencia'
       }
     };
@@ -42,16 +42,16 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.tranMode = "new";
     this.comentarioForm = this.fb.group({
-      cedulaJAfiliado: '',
-      comentario1: '',
+      CedulaJafiliado: '',
+      Comentario1: '',
     });
 
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = params.get('id');
-        const cedulaJAfiliado = params.get('cedulaJAfiliado');
+        const CedulaJafiliado = params.get('CedulaJafiliado');
         if (id == '0') {
-          const comentario: Comentario = { id: "0", cedulaJAfiliado: "", comentario1: "" };
+          const comentario: Comentario = { Id: "0", CedulaJafiliado: "", Comentario1: "" };
           this.displayComentario(comentario);
         }
         else {
@@ -79,23 +79,23 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
       this.comentarioForm.reset();
     }
     this.comentario = comentario;
-    if (this.comentario.id == '0') {
+    if (this.comentario.Id == '0') {
       this.pageTitle = 'Agregar Comentario';
     } else {
-      this.pageTitle = `Editar Comentario: ${this.comentario.cedulaJAfiliado}`;
+      this.pageTitle = `Editar Comentario: ${this.comentario.CedulaJafiliado}`;
     }
     this.comentarioForm.patchValue({
-      cedulaJAfiliado: this.comentario.cedulaJAfiliado,
-      comentario1: this.comentario.comentario1
+      CedulaJafiliado: this.comentario.CedulaJafiliado,
+      Comentario1: this.comentario.Comentario1
     });
   }
 
   deleteComentario(): void {
-    if (this.comentario.id == '0') {
+    if (this.comentario.Id == '0') {
       this.onSaveComplete();
     } else {
-      if (confirm(`Desea eliminar el comentario: ${this.comentario.cedulaJAfiliado}?`)) {
-        this.comentarioService.deleteComentario(this.comentario.id)
+      if (confirm(`Desea eliminar el comentario: ${this.comentario.CedulaJafiliado}?`)) {
+        this.comentarioService.deleteComentario(this.comentario.Id)
           .subscribe({
             next: () => this.onSaveComplete(),
             error: (err) => this.errorMessage = <any>err,
