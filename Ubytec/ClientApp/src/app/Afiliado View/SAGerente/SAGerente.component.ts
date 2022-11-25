@@ -209,11 +209,9 @@ export class SAGerenteComponent {
         withCredentials: true,
       }
     )
-
     res.subscribe(result => {
       this.TelefonosG = result;
       console.log(this.respuesta);
-
     }, error => console.error(error));
     console.log(res)
   }
