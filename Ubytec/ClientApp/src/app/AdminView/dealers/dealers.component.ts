@@ -23,6 +23,7 @@ export class DealersComponent {
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
+  Repartidor: repartidor[] = [];
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -106,9 +107,67 @@ export class DealersComponent {
   async Delete_Button() {
     this.op = '2'
   }
+  async Delete_Button2() {
+    
+    const Cedula= (<HTMLInputElement>document.getElementById("CedulaEliminar")).value;
+    
+    const key: string[] = [Cedula];
+    console.log(key)
+    console.log("Repartidor eliminado: " + (key[0]))
+    let res = await this.http.delete("https://localhost:7183/api/Admin/Repartidor/delete", {
+      headers: this.httpOptions.headers,
+      withCredentials: true, body: key
+    }
+    )
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+
+    }, error => console.error(error));
+    
+  }
 
   async Edit_Button() {
     this.op = '3'
+  }
+
+  async Get_Button() {
+    const answer = {
+      Cedula: (<HTMLInputElement>document.getElementById("CedulaEditar")).value,
+    };
+
+    console.log(JSON.stringify(answer));
+    console.log(answer);
+    let res = await this.http.get<repartidor[]>("https://localhost:7183/api/Admin/Repartidor/list/" + answer.Cedula, {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    }
+    )
+
+    const NombreCompleto = (<HTMLInputElement>document.getElementById("NombreEditar"))
+    const Distrito = (<HTMLInputElement>document.getElementById("DistritoEditar"))
+    const Provincia = (<HTMLInputElement>document.getElementById("ProvinciaEditar"))
+    const Canton = (<HTMLInputElement>document.getElementById("CantonEditar"))
+    const Usuario = (<HTMLInputElement>document.getElementById("UsuarioEditar"))
+    const Contraseña = (<HTMLInputElement>document.getElementById("ContraseñaEditar"))
+    const Disponible = (<HTMLInputElement>document.getElementById("DisponibleEditar"))
+    const Correo = (<HTMLInputElement>document.getElementById("CorreoEditar"))
+
+    res.subscribe(result => {
+      console.log(this.Repartidor);
+      this.Repartidor = result;
+      console.log(this.Repartidor);
+      
+      // Asignar los valores de la consulta indicada
+      NombreCompleto.value = this.Repartidor[0].NombreCompleto;
+      Distrito.value = this.Repartidor[0].Distrito;
+      Provincia.value = this.Repartidor[0].Provincia;
+      Canton.value = this.Repartidor[0].Canton;
+      Usuario.value = this.Repartidor[0].Usuario;
+      Contraseña.value = this.Repartidor[0].Contraseña;
+      Correo.value = this.Repartidor[0].Correo;
+    }, error => console.error(error));
+    console.log(res)
   }
 
   async Edit_Button2() {

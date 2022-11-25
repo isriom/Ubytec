@@ -154,6 +154,10 @@ public class Admin : Controller
             case "Afiliado":
                 var Afiliado = _context.Afiliados.Where(x => x.CedulaJuridica == id).ToList();
                 return Json(Afiliado, options);
+            
+            case "Repartidor":
+                var Repartidores = _context.Repartidors.Where(x => x.Cedula == id).ToList();
+                return Json(Repartidores, options);
         }
 
         return Json("No se encontro la lista", options);
@@ -256,12 +260,20 @@ public class Admin : Controller
                 var todeleteafil = _context.Afiliados.Find(element[0]);
                 _context.Afiliados.Remove(todeleteafil);
                 _context.SaveChanges();
+                
                 return Ok();
 
             case "TelefonoA":
                 //logica de borrar un telefono
                 var deletetelA = _context.TelefonoAfiliados.Find(element);
                 _context.TelefonoAfiliados.Remove(deletetelA);
+                _context.SaveChanges();
+                return Ok();
+
+            case "Repartidor":
+                //logica para borrar un admin
+                var todeleterep = _context.Repartidors.Find(element[0]);
+                _context.Repartidors.Remove(todeleterep);
                 _context.SaveChanges();
                 return Ok();
         }
