@@ -89,7 +89,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/Afiliado/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/Afiliado/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -116,7 +116,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoA/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/TelefonoA/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -144,7 +144,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<afiliado[]>("https://localhost:7183/api/Admin/Afiliado/list/" + answer.CedulaJuridica, {
+    let res = await this.http.get<afiliado[]>("https://ubytec.azurewebsites.net/api/Admin/Afiliado/list/" + answer.CedulaJuridica, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -186,7 +186,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<telefonoA[]>("https://localhost:7183/api/Admin/TelefonoA/list/" + answer.CedulaJuridica, {
+    let res = await this.http.get<telefonoA[]>("https://ubytec.azurewebsites.net/api/Admin/TelefonoA/list/" + answer.CedulaJuridica, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -222,7 +222,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7183/api/Admin/Afiliado/update", JSON.stringify(answer), {
+    let res = await this.http.post("https://ubytec.azurewebsites.net/api/Admin/Afiliado/update", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -250,7 +250,7 @@ export class GAfiliadoComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoA/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/TelefonoA/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -290,7 +290,7 @@ export class GAfiliadoComponent {
     const key: string[] = [ CedulaJuridica,Nombre, Distrito, Provincia, Canton, Sinpe, Correo, Estado];
     console.log(key)
     console.log("Afiliado eliminado: " + (key[0])+" "+(key[1]) )
-    let res = await this.http.delete("https://localhost:7183/api/Admin/Afiliado/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/Afiliado/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }
@@ -328,7 +328,7 @@ export class GAfiliadoComponent {
     const key: string[] = [CedulaJuridica, Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Admin/TelefonoG/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/TelefonoG/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }

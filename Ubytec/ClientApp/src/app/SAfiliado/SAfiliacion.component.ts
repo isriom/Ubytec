@@ -87,7 +87,7 @@ export class SAfiliacionComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/Afiliado/solicitud", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/Afiliado/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -112,7 +112,7 @@ export class SAfiliacionComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoA/solicitud", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoA/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -150,7 +150,7 @@ export class SAfiliacionComponent {
     };
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/Admin/solicitud", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/Admin/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -191,7 +191,7 @@ export class SAfiliacionComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoG/solicitud", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoG/solicitud", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }

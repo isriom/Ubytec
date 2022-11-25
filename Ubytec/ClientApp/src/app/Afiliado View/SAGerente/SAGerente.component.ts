@@ -89,7 +89,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/Administrador/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/Administrador/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -118,7 +118,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoG/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoG/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -144,7 +144,7 @@ export class SAGerenteComponent {
     };
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Afiliado/Administrador/list/" + answer.Usuario,  {
+    let res = await this.http.get<administrador[]>("https://ubytec.azurewebsites.net/api/Afiliado/Administrador/list/" + answer.Usuario,  {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -167,7 +167,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Afiliado/Administrador/list/" + answer.Usuario, {
+    let res = await this.http.get<administrador[]>("https://ubytec.azurewebsites.net/api/Afiliado/Administrador/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -204,7 +204,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<telefonoG[]>("https://localhost:7183/api/Afiliado/TelefonoG/list/" + answer.Usuario, {
+    let res = await this.http.get<telefonoG[]>("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoG/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -237,7 +237,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7183/api/Afiliado/Administrador/update", JSON.stringify(answer), {
+    let res = await this.http.post("https://ubytec.azurewebsites.net/api/Afiliado/Administrador/update", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -265,7 +265,7 @@ export class SAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Afiliado/TelefonoG/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoG/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -302,7 +302,7 @@ export class SAGerenteComponent {
     const key: string[] = [Usuario, NombreCompleto, Distrito, Provincia, Canton, Contraseña, CedulaJuridica];
     console.log(key)
     console.log("Administrador eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Afiliado/Administrador/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Afiliado/Administrador/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }
@@ -337,7 +337,7 @@ export class SAGerenteComponent {
     const key: string[] = [Usuario,Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Afiliado/TelefonoG/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Afiliado/TelefonoG/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }

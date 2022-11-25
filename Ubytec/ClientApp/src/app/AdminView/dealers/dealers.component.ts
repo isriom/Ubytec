@@ -51,7 +51,7 @@ export class DealersComponent {
    * @constructor metodo relacionado
    */
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7183/GClientes/plantilla", {
+    var res = await this.http.get<string>("https://ubytec.azurewebsites.net/GClientes/plantilla", {
       headers: this.httpOptions.headers,
       withCredentials: true
     }).subscribe(result => {
@@ -82,7 +82,7 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put<repartidor>("https://localhost:7183/api/Admin/Repartidor/add", JSON.stringify(answer), {
+    let res = await this.http.put<repartidor>("https://ubytec.azurewebsites.net/api/Admin/Repartidor/add", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
@@ -110,7 +110,7 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoR/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/TelefonoR/add", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     }
@@ -141,7 +141,7 @@ export class DealersComponent {
     const key: string[] = [Cedula];
     console.log(key)
     console.log("Repartidor eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Admin/Repartidor/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/Repartidor/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }
@@ -160,7 +160,7 @@ export class DealersComponent {
     const key: string[] = [CedulaRepartidor, Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Admin/TelefonoR/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/TelefonoR/delete", {
       headers: this.httpOptions.headers,
       withCredentials: true, body: key
     }
@@ -169,10 +169,10 @@ export class DealersComponent {
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
-      
 
-    }, error => console.error(error)); 
-  
+
+    }, error => console.error(error));
+
 }
 
   async Edit_Button() {
@@ -186,7 +186,7 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<repartidor>("https://localhost:7183/api/Admin/Repartidor/list/" + answer.Cedula, {
+    let res = await this.http.get<repartidor>("https://ubytec.azurewebsites.net/api/Admin/Repartidor/list/" + answer.Cedula, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -224,7 +224,7 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7183/api/Admin/Repartidor/update", JSON.stringify(answer), {
+    let res = await this.http.post("https://ubytec.azurewebsites.net/api/Admin/Repartidor/update", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
@@ -241,7 +241,7 @@ export class DealersComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/Repartidor/list", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/Repartidor/list", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     }
@@ -278,7 +278,7 @@ export class DealersComponent {
   }
 
   private get_all_repartidores() {
-    this.http.get<repartidor[]>("https://localhost:7183/api/Admin/Repartidor/list", {
+    this.http.get<repartidor[]>("https://ubytec.azurewebsites.net/api/Admin/Repartidor/list", {
       headers: this.httpOptions.headers,
       withCredentials: true
     }).subscribe(result => {

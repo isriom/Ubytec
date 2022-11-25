@@ -65,7 +65,7 @@ export class ClientsComponent {
    */
   async Add_Button() {
     this.opC ='1'
-    
+
 
   }
   async Get_Client() {
@@ -75,7 +75,7 @@ export class ClientsComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<cliente>("https://localhost:7183/api/Client/Cliente/list/" + answer.Cedula, {
+    let res = await this.http.get<cliente>("https://ubytec.azurewebsites.net/api/Client/Cliente/list/" + answer.Cedula, {
       headers: this.httpOptions.headers,
       withCredentials: true,
     }
@@ -106,7 +106,7 @@ export class ClientsComponent {
     const key: string[] = [Cedula];
     console.log(key)
     console.log("Cuenta eliminada: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Client/Cliente/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Client/Cliente/delete", {
       headers: this.httpOptions.headers,
       withCredentials: true, body: key
     }
@@ -134,7 +134,7 @@ export class ClientsComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7183/api/Client/Cliente/update", JSON.stringify(answer), {
+    let res = await this.http.post("https://ubytec.azurewebsites.net/api/Client/Cliente/update", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })

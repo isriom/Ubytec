@@ -6,7 +6,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   providedIn: 'root'
 })
 export class AdminService {
-  api ="https://localhost:7183/api/";
+  api ="https://ubytec.azurewebsites.net/api/";
   http: HttpClient;
   httpOptions = {
     headers: new HttpHeaders({

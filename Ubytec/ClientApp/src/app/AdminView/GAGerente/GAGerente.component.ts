@@ -89,7 +89,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/Administrador/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/Administrador/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -116,7 +116,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoG/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/TelefonoG/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -144,7 +144,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<administrador[]>("https://localhost:7183/api/Admin/Administrador/list/" + answer.Usuario, {
+    let res = await this.http.get<administrador[]>("https://ubytec.azurewebsites.net/api/Admin/Administrador/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -182,7 +182,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.get<telefonoG[]>("https://localhost:7183/api/Admin/TelefonoG/list/" + answer.Usuario, {
+    let res = await this.http.get<telefonoG[]>("https://ubytec.azurewebsites.net/api/Admin/TelefonoG/list/" + answer.Usuario, {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -218,7 +218,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.post("https://localhost:7183/api/Admin/Administrador/update", JSON.stringify(answer), {
+    let res = await this.http.post("https://ubytec.azurewebsites.net/api/Admin/Administrador/update", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -246,7 +246,7 @@ export class GAGerenteComponent {
 
     console.log(JSON.stringify(answer));
     console.log(answer);
-    let res = await this.http.put("https://localhost:7183/api/Admin/TelefonoG/add", JSON.stringify(answer), {
+    let res = await this.http.put("https://ubytec.azurewebsites.net/api/Admin/TelefonoG/add", JSON.stringify(answer), {
         headers: this.httpOptions.headers,
         withCredentials: true,
       }
@@ -284,7 +284,7 @@ export class GAGerenteComponent {
     const key: string[] = [Usuario, NombreCompleto, Distrito, Provincia, Canton, Contraseña, CedulaJuridica];
     console.log(key)
     console.log("Administrador eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Admin/Administrador/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/Administrador/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }
@@ -319,7 +319,7 @@ export class GAGerenteComponent {
     const key: string[] = [Usuario, Telefono];
     console.log(key)
     console.log("Telefono eliminado: " + (key[0]))
-    let res = await this.http.delete("https://localhost:7183/api/Admin/TelefonoG/delete", {
+    let res = await this.http.delete("https://ubytec.azurewebsites.net/api/Admin/TelefonoG/delete", {
         headers: this.httpOptions.headers,
         withCredentials: true, body: key
       }
