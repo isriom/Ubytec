@@ -90,6 +90,7 @@ export class ComentarioService {
   private initializeComentario(): Comentario {
     return {
       Id: "",
+      ComprobantePago: "",
       CedulaJafiliado: "",
       Comentario1: ""
     };

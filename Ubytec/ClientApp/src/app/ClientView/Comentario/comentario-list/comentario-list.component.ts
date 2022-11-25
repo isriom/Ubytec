@@ -29,7 +29,8 @@ export class ComentarioListComponent implements OnInit {
   };
   private BASE_URL: string | URL = "";
 
-  order: Order[] = []
+  ordersEnCamino: Order[] = []
+  ordersEntregado: Order[] = []
 
   _listFilter = '';
   get listFilter(): string {
@@ -43,46 +44,34 @@ export class ComentarioListComponent implements OnInit {
   constructor(private comentarioService: ComentarioService, http: HttpClient, @Inject('BASE_URL') baseUrl: string, public _modal: NgbModal) {
     this.http = http;
     this.BASE_URL = baseUrl;
+    this.getOrders();
   }
 
   getOrders() {
-    const res = this.http.get<Order[]>(this.api + "Client/Pedidos/list/En camino", {
+    const res1 = this.http.get<Order[]>(this.api + "Client/Pedidos/list/En camino", {
       headers: this.httpOptions.headers,
       withCredentials: true,
     });
-    res.subscribe(result => {
+    res1.subscribe(result => {
       console.log(result)
-      this.order = result
+      this.ordersEnCamino = result
+      console.log(this.ordersEnCamino)
     }, error => {
       console.error(error)
     });
 
-    //const res = this.http.get<Order[]>(this.api + "Client/Pedidos/list/Entregado", {
-     // headers: this.httpOptions.headers,
-    //  withCredentials: true,
-    //});
-    //res.subscribe(result => {
-     // console.log(result)
-     // this.order = result
-    //}, error => {
-      //console.error(error)
-    //});
+    const res2 = this.http.get<Order[]>(this.api + "Client/Pedidos/list/Entregado", {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
+    res2.subscribe(result => {
+      console.log(result)
+      this.ordersEntregado = result
+      console.log(this.ordersEntregado)
+    }, error => {
+      console.error(error)
+    });
  
-  }
-
-  getProductosPedido(order: Order) {
-    const res = this.http.get<ProductoPedido[]>(this.api + "Afiliado/ProductosPedido/list/" + order.ComprobantePago, {
-      headers: this.httpOptions.headers,
-      withCredentials: true,
-    });
-    res.subscribe(result => {
-      console.log(result)
-      order.Products = result
-      return result
-    }, error => {
-      console.error(error)
-    });
-    return []
   }
 
   performFilter(filterBy: string): Comentario[] {
@@ -107,11 +96,11 @@ export class ComentarioListComponent implements OnInit {
       });
   }
 
-  deleteComentario(id: string, cedulaJAfiliado: string): void {
+  deleteComentario(id: string, ComprobantePago: string): void {
     if (id == '') {
       this.onSaveComplete();
     } else {
-      if (confirm(`Confirme que desea eliminar este comentario: ${cedulaJAfiliado}?`)) {
+      if (confirm(`Confirme que desea eliminar este comentario: ${ComprobantePago}?`)) {
         this.comentarioService.deleteComentario(id)
           .subscribe({
             next: () => this.onSaveComplete(),

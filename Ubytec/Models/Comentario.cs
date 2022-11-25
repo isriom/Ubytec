@@ -10,6 +10,7 @@ namespace Ubytec.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
+        public string ComprobantePago { get; set; } = null!;
         public string CedulaJafiliado { get; set; } = null!;
         public string Comentario1 { get; set; } = null!;
 

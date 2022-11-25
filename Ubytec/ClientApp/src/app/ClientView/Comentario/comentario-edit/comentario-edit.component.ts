@@ -28,6 +28,9 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     private comentarioService: ComentarioService) {
 
     this.validationMessages = {
+      ComprobantePago: {
+        required: 'Debe ingresar un comprobante de pago.'
+      },
       CedulaJafiliado: {
         required: 'Debe ingresar un valor de cedula judridica.'
       },
@@ -42,6 +45,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.tranMode = "new";
     this.comentarioForm = this.fb.group({
+      ComprobantePago: '',
       CedulaJafiliado: '',
       Comentario1: '',
     });
@@ -51,7 +55,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
         const id = params.get('id');
         const CedulaJafiliado = params.get('CedulaJafiliado');
         if (id == '0') {
-          const comentario: Comentario = { Id: "0", CedulaJafiliado: "", Comentario1: "" };
+          const comentario: Comentario = { Id: "0", ComprobantePago: "", CedulaJafiliado: "", Comentario1: "" };
           this.displayComentario(comentario);
         }
         else {
@@ -82,9 +86,10 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     if (this.comentario.Id == '0') {
       this.pageTitle = 'Agregar Comentario';
     } else {
-      this.pageTitle = `Editar Comentario: ${this.comentario.CedulaJafiliado}`;
+      this.pageTitle = `Editar Comentario: ${this.comentario.ComprobantePago}`;
     }
     this.comentarioForm.patchValue({
+      ComprobantePago: this.comentario.ComprobantePago,
       CedulaJafiliado: this.comentario.CedulaJafiliado,
       Comentario1: this.comentario.Comentario1
     });
@@ -94,7 +99,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     if (this.comentario.Id == '0') {
       this.onSaveComplete();
     } else {
-      if (confirm(`Desea eliminar el comentario: ${this.comentario.CedulaJafiliado}?`)) {
+      if (confirm(`Desea eliminar el comentario: ${this.comentario.ComprobantePago}?`)) {
         this.comentarioService.deleteComentario(this.comentario.Id)
           .subscribe({
             next: () => this.onSaveComplete(),
@@ -109,7 +114,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     if (this.comentarioForm.valid) {
       if (this.comentarioForm.dirty) {
         const e = { ...this.comentario, ...this.comentarioForm.value };
-        if (e.id === '0') {
+        if (e.Id === '0') {
           this.comentarioService.createComentario(e)
             .subscribe({
               next: () => this.onSaveComplete(),

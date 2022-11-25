@@ -1,61 +1,106 @@
-<div class="card">
-  <div class="card-header">
-    {{pageTitle}}
-  </div>
-  <div class="card-body">
-    <div class="row" style="margin-bottom:15px;">
-      <div class="col-md-2">Filter by:</div>
-      <div class="col-md-4">
-        <input type="text" [(ngModel)]="listFilter" />
-      </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-4">
-        <button class="btn btn-primary mr-3" [routerLink]="['/Cliente/Comentarios/0/edit']">
-          Nuevo Comentario
+<div>
+  <h1>Comentarios</h1>
+  <h2>En camino</h2>
+  <div *ngIf="ordersEnCamino.length==0">En este momento no hay pedidos en camino para este cliente</div>
+  <mat-accordion>
+    <mat-expansion-panel style="border-style: solid; margin-top: 1px" *ngFor="let data of ordersEnCamino">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 class="h4">{{data.Id}}</h2>
+        </mat-panel-title>
+        <button class="btn btn-primary" *ngIf="data.EstadoPedido=='En Camino'" style="position: relative; left: -1%; height: 50%" [routerLink]="['/Cliente/Comentarios/0/edit']">
+          Agregar comentario
         </button>
+        <mat-panel-description>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Comprobante de Pago: {{data.ComprobantePago}}</p>
+      <div class="table-responsive">
+        <table class="table mb-0" *ngIf="comentarios && comentarios.length">
+          <thead>
+            <tr>
+              <th>Cedula Juridica de Afiliado</th>
+              <th>Comentario</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comentario of filteredComentarios">
+              <td>
+                <a [routerLink]="['/Cliente/Comentarios', comentario.Id]">
+                  {{ comentario.ComprobantePago }}
+                </a>
+              </td>
+              <td>{{ comentario.Comentario1 }}</td>
+              <td>{{ comentario.CedulaJafiliado }}</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm"
+                        [routerLink]="['/Cliente/Comentarios', comentario.Id, 'edit']">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-outline-warning btn-sm"
+                        (click)="deleteComentario(comentario.Id,comentario.CedulaJafiliado);">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <div class="row" *ngIf="listFilter">
-      <div class="col-md-6">
-        <h4>Filtered by: {{listFilter}}</h4>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <h2>Entregado</h2>
+  <div *ngIf="ordersEntregado.length==0">En este momento no hay pedidos finalizados para este cliente</div>
+  <mat-accordion>
+    <mat-expansion-panel style="border-style: solid; margin-top: 1px" *ngFor="let data of ordersEntregado">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 class="h4">{{data.Id}}</h2>
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Comprobante de Pago: {{data.ComprobantePago}}</p>
+      <div class="table-responsive">
+        <table class="table mb-0" *ngIf="comentarios && comentarios.length">
+          <thead>
+            <tr>
+              <th>Cedula Juridica de Afiliado</th>
+              <th>Comentario</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comentario of filteredComentarios">
+              <td>
+                <a [routerLink]="['/Cliente/Comentarios', comentario.Id]">
+                  {{ comentario.ComprobantePago }}
+                </a>
+              </td>
+              <td>{{ comentario.Comentario1 }}</td>
+              <td>{{ comentario.CedulaJafiliado }}</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm"
+                        [routerLink]="['/Cliente/Comentarios', comentario.Id, 'edit']">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-outline-warning btn-sm"
+                        (click)="deleteComentario(comentario.Id,comentario.CedulaJafiliado);">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table mb-0" *ngIf="comentarios && comentarios.length">
-        <thead>
-          <tr>
-            <th>Cedula Juridica de Afiliado</th>
-            <th>Comentario</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let comentario of filteredComentarios">
-            <td>
-              <a [routerLink]="['/Cliente/Comentarios', comentario.Id]">
-                {{ comentario.CedulaJafiliado }}
-              </a>
-            </td>
-            <td>{{ comentario.Comentario1 }}</td>
-            <td>
-              <button class="btn btn-outline-primary btn-sm"
-                      [routerLink]="['/Cliente/Comentarios', comentario.Id, 'edit']">
-                Edit
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-outline-warning btn-sm"
-                      (click)="deleteComentario(comentario.Id,comentario.CedulaJafiliado);">
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<div *ngIf="errorMessage" class="alert alert-danger">
-  Error: {{ errorMessage }}
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
