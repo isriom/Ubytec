@@ -142,7 +142,18 @@ public class Client : Controller
 
                 // lista de afiliados
                 return Json(listAfiliados, options);
+
+            case "Cliente":
+               
+                if (id != null)
+                {
+                    var Cliente = _context.Clientes.Find(id);
+                    return Json(Cliente, options);
+                }
+
+                return Json(_context.Clientes.ToList(), options);
         }
+
 
         return Json(listTest);
     }
@@ -156,36 +167,25 @@ public class Client : Controller
     public ActionResult Update([FromBody] JsonElement element, string web)
     {
         Console.Out.Write("update: ");
-        /*
+        
         switch (web)
         {
-            case "RCitas":
-                //logica de citas
-                var updater = element.Deserialize<AdminData.CitaElement>();
-                var cita = _context.Cita.Find(updater.placa, updater.fecha, updater.sucursal);
-                updater.cedula = cita.Cedula;
-                updater.nombre = cita.Nombre;
-                updater.monto = (int)cita.Monto;
-                updater.iva = (int)cita.Iva;
-                _context.SaveChanges();
-                updater.UpdateModel(cita);
-                return Ok();
-            case "RClientes":
-                //logica de Clientes
-                var update = element.Deserialize<AdminData.ClienteElement>();
-                var cliente = _context.Clientes.Find(update.cedula);
-                update.UpdateModel(cliente);
-                _context.SaveChanges();
-                return Ok();
-            case "Usuario":
-                //logica de Insumos
-                var updateCliente = element.Deserialize<AdminData.ClienteElement>();
-                var cliente1 = _context.Clientes.Find(updateCliente.cedula);
-                updateCliente.UpdateModel(cliente1);
+            case "Cliente":
+                var updateCli = element.Deserialize<Cliente>();
+                var Cli = _context.Clientes.Find(updateCli.Cedula);
+                Cli.Nombre = updateCli.Nombre;
+                Cli.Apellidos = updateCli.Apellidos;
+                Cli.Provincia = updateCli.Provincia;
+                Cli.Canton = updateCli.Canton;
+                Cli.Distrito = updateCli.Distrito;
+                Cli.Usuario = updateCli.Usuario;
+                Cli.Contraseña = updateCli.Contraseña;
+                Cli.FechaNacimiento = updateCli.FechaNacimiento;
+                Cli.Correo = updateCli.Distrito;
                 _context.SaveChanges();
                 return Ok();
         }
-        */
+        
         Console.Out.Write("update: " + JsonSerializer.Serialize(element));
 
         return new AcceptedResult();
@@ -199,11 +199,13 @@ public class Client : Controller
     [Route("api/[controller]/{web}/delete")]
     public ActionResult Delete([FromBody] string[] element, string web)
     {
+
         //logica para borrar una cita
         Console.Out.Write("Delete: " + element[0]);
-        /*
+        
         switch (web)
         {
+            /*
             case "RCitas":
                 //logica de citas
                 var cita = _context.Cita.ToArray().First(x => x.Placa.ToString() == element[1] && x.Fecha.ToString(CultureInfo.InvariantCulture) == element[0] && x.Sucursal == element[2]);
@@ -221,10 +223,16 @@ public class Client : Controller
                 var toDeletePhone = _context.ClienteTelefonos.Find(element);
                 _context.ClienteTelefonos.Remove(toDeletePhone);
                 _context.SaveChanges();
-                return new OkResult();
+                return new OkResult();*/
+            case "Cliente":
+                //logica para borrar un admin
+                var todeletecli = _context.Clientes.Find(element[0]);
+                _context.Clientes.Remove(todeletecli);
+                _context.SaveChanges();
+                return Ok();
 
         }
-        */
+        
         return new OkResult();
     }
 }
