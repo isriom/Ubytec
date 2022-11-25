@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChildren } from '@angular/core';
-import { FormControlName, FormGroup, FormBuilder, Validator } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Comentario } from '../comentario';
-import { ComentarioService } from '../comentario.service';
+import {Component, OnInit, OnDestroy, ElementRef, ViewChildren} from '@angular/core';
+import {FormControlName, FormGroup, FormBuilder, Validator} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Comentario} from '../comentario';
+import {ComentarioService} from '../comentario.service';
 
 @Component({
   selector: 'app-comentario-edit',
@@ -11,7 +11,7 @@ import { ComentarioService } from '../comentario.service';
   styleUrls: ['./comentario-edit.component.css']
 })
 export class ComentarioEditComponent implements OnInit, OnDestroy {
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
+  @ViewChildren(FormControlName, {read: ElementRef}) formInputElements!: ElementRef[];
   pageTitle = 'Editar Comentario';
   errorMessage!: string;
   comentarioForm!: FormGroup;
@@ -23,9 +23,9 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
   private validationMessages: { [key: string]: { [key: string]: string } };
 
   constructor(private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private comentarioService: ComentarioService) {
+              private route: ActivatedRoute,
+              private router: Router,
+              private comentarioService: ComentarioService) {
 
     this.validationMessages = {
       ComprobantePago: {
@@ -40,7 +40,6 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
     };
   }
 
-  
 
   ngOnInit(): void {
     this.tranMode = "new";
@@ -57,8 +56,7 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
         if (id == '0') {
           const comentario: Comentario = { Id: "0", ComprobantePago: "", CedulaJafiliado: "", Comentario1: "" };
           this.displayComentario(comentario);
-        }
-        else {
+        } else {
           this.getComentario(id);
         }
       }
@@ -70,10 +68,14 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
   }
 
   getComentario(id: string | null): void {
+    console.log(id);
     this.comentarioService.getComentario(id)
       .subscribe({
         next: (comentario: Comentario) => this.displayComentario(comentario),
-        error: (err) => this.errorMessage = <any>err,
+        error: (err) => {
+          this.errorMessage = <any>err;
+          console.log(err)
+        },
         complete: () => console.info('Editando comentario')
       });
   }
@@ -133,11 +135,14 @@ export class ComentarioEditComponent implements OnInit, OnDestroy {
         this.onSaveComplete();
       }
     } else {
-      this.errorMessage = 'Corrija los errores de validacion';
+      this
+        .errorMessage = 'Corrija los errores de validacion';
     }
   }
 
-  onSaveComplete(): void {
+  onSaveComplete()
+    :
+    void {
     this.comentarioForm.reset();
     this.router.navigate(['/Cliente/Comentarios']);
   }

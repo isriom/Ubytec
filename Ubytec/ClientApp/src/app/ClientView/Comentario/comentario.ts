@@ -1,6 +1,6 @@
-export interface Comentario {
-  Id: string,
-  ComprobantePago: string;
-  CedulaJafiliado: string,
-  Comentario1: string
+export class Comentario {
+    Id: string = "0";
+    ComprobantePago: string = "";
+    CedulaJafiliado: string="";
+    Comentario1: string="";
 }
